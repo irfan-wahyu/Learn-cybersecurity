@@ -79,7 +79,7 @@ function loadData(cb){
 
 function showLogin(){
   var el=document.getElementById('app');
-  el.innerHTML='<div class="login-screen"><div class="login-box"><div class="login-logo">[ CYBERSEC ]</div><div class="login-subtitle">Learning Portfolio</div><input type="password" class="login-input" id="access-code" placeholder="Enter access code"><button class="login-btn" id="login-btn">ENTER</button><div class="login-error" id="login-error"></div><button class="login-guest" id="guest-btn">Continue as Guest</button><div class="login-hint">Access code: irfan123</div></div></div>';
+  el.innerHTML='<div class="login-screen"><div class="login-box"><div class="login-logo">[ CYBERSEC ]</div><div class="login-subtitle">Learning Portfolio</div><input type="password" class="login-input" id="access-code" placeholder="Enter access code"><button class="login-btn" id="login-btn">ENTER</button><div class="login-error" id="login-error"></div><button class="login-guest" id="guest-btn">Continue as Guest</button></div></div>';
   var inp=document.getElementById('access-code');
   var err=document.getElementById('login-error');
   inp.focus();
