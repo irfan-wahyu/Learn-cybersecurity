@@ -1,4 +1,3 @@
-// Main application entry point
 import './style.css';
 import { storage } from './utils/storage.js';
 import { xpSystem } from './utils/xp-system.js';
@@ -7,39 +6,134 @@ import { showToast } from './utils/toast.js';
 import { showConfetti } from './utils/confetti.js';
 import { githubAPI } from './utils/github-api.js';
 
-// Import data
 import curriculumData from './data/curriculum.json';
 import challengesData from './data/challenges.json';
 import cheatsheetData from './data/cheatsheet.json';
 
-// App state
 const state = {
   currentPage: 'dashboard',
   curriculum: curriculumData,
   challenges: challengesData,
   cheatsheet: cheatsheetData,
   progress: storage.get('progress', {}),
-  solvedChallenges: storage.get('solvedChallenges', [])
+  solvedChallenges: storage.get('solvedChallenges', []),
+  isLoggedIn: storage.get('isLoggedIn', false)
 };
 
-// Initialize app
+// Initialize
 document.addEventListener('DOMContentLoaded', () => {
+  if (state.isLoggedIn) {
+    showApp();
+  } else {
+    showLogin();
+  }
+});
+
+function showLogin() {
+  document.getElementById('app').innerHTML = '';
+  
+  const loginScreen = document.createElement('div');
+  loginScreen.className = 'login-screen';
+  loginScreen.innerHTML = `
+    <div class="login-box">
+      <div class="login-logo">[ <span class="bright">CYBERSEC</span> ]</div>
+      <div class="login-subtitle">Learning Portfolio</div>
+      
+      <input type="password" class="login-input" id="access-code" 
+             placeholder="Enter access code" autocomplete="off">
+      <button class="login-btn" id="login-btn">ENTER</button>
+      <div class="login-error" id="login-error">Invalid access code</div>
+      
+      <button class="login-guest" id="guest-btn">Continue as Guest</button>
+      
+      <div class="login-hint">
+        Access code is your GitHub token<br>
+        Or click "Continue as Guest" for limited access
+      </div>
+    </div>
+  `;
+  
+  document.body.appendChild(loginScreen);
+  
+  const input = document.getElementById('access-code');
+  const btn = document.getElementById('login-btn');
+  const error = document.getElementById('login-error');
+  const guestBtn = document.getElementById('guest-btn');
+  
+  // Enter key
+  input.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') handleLogin();
+  });
+  
+  btn.addEventListener('click', handleLogin);
+  
+  guestBtn.addEventListener('click', () => {
+    state.isLoggedIn = true;
+    state.isGuest = true;
+    storage.set('isLoggedIn', true);
+    storage.set('isGuest', true);
+    loginScreen.remove();
+    showApp();
+  });
+  
+  async function handleLogin() {
+    const code = input.value.trim();
+    
+    if (!code) {
+      error.textContent = 'Please enter an access code';
+      error.classList.add('show');
+      return;
+    }
+    
+    btn.disabled = true;
+    btn.textContent = 'VERIFYING...';
+    
+    // Try as GitHub token
+    githubAPI.setToken(code);
+    const result = await githubAPI.verifyToken();
+    
+    if (result.valid) {
+      state.isLoggedIn = true;
+      state.isGuest = false;
+      storage.set('isLoggedIn', true);
+      storage.set('isGuest', false);
+      loginScreen.remove();
+      showApp();
+      showToast(`Welcome, ${result.user.login}!`, 'success');
+    } else {
+      // Try as simple password
+      if (code === 'irfan123' || code === 'admin') {
+        state.isLoggedIn = true;
+        state.isGuest = false;
+        storage.set('isLoggedIn', true);
+        storage.set('isGuest', false);
+        loginScreen.remove();
+        showApp();
+        showToast('Welcome back, Irfan!', 'success');
+      } else {
+        githubAPI.removeToken();
+        error.textContent = 'Invalid access code';
+        error.classList.add('show');
+        btn.disabled = false;
+        btn.textContent = 'ENTER';
+        input.value = '';
+        input.focus();
+      }
+    }
+  }
+}
+
+function showApp() {
+  // Show navbar
+  const navbar = document.getElementById('navbar');
+  if (navbar) navbar.classList.remove('hidden');
+  
   initMatrix();
   initNavigation();
   updateXPBadge();
   renderPage('dashboard');
-  
-  // Check if first visit
-  if (!storage.get('visited')) {
-    storage.set('visited', true);
-    setTimeout(() => {
-      showToast('Welcome to CYBERSEC LAB, Irfan! 🎉', 'success', 5000);
-      showConfetti();
-    }, 500);
-  }
-});
+}
 
-// Navigation
 function initNavigation() {
   const navLinks = document.querySelectorAll('.nav-link');
   const navToggle = document.getElementById('nav-toggle');
@@ -49,62 +143,39 @@ function initNavigation() {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const page = link.dataset.page;
-      
-      // Update active state
       navLinks.forEach(l => l.classList.remove('active'));
       link.classList.add('active');
-      
-      // Render page
       renderPage(page);
-      
-      // Close mobile nav
       navLinksContainer.classList.remove('active');
     });
   });
 
-  // Mobile toggle
   navToggle.addEventListener('click', () => {
     navLinksContainer.classList.toggle('active');
   });
 }
 
-// Page renderer
 function renderPage(page) {
   state.currentPage = page;
   const container = document.getElementById(page);
+  if (!container) return;
   
   switch (page) {
-    case 'dashboard':
-      renderDashboard(container);
-      break;
-    case 'path':
-      renderLearningPath(container);
-      break;
-    case 'curriculum':
-      renderCurriculum(container);
-      break;
-    case 'challenges':
-      renderChallenges(container);
-      break;
-    case 'cheatsheet':
-      renderCheatsheet(container);
-      break;
-    case 'projects':
-      renderProjects(container);
-      break;
-    case 'admin':
-      renderAdmin(container);
-      break;
+    case 'dashboard': renderDashboard(container); break;
+    case 'path': renderLearningPath(container); break;
+    case 'curriculum': renderCurriculum(container); break;
+    case 'challenges': renderChallenges(container); break;
+    case 'cheatsheet': renderCheatsheet(container); break;
+    case 'projects': renderProjects(container); break;
+    case 'admin': renderAdmin(container); break;
   }
 }
 
-// Dashboard
 function renderDashboard(container) {
   const xp = xpSystem.getXP();
   const level = xpSystem.getLevel();
   const title = xpSystem.getLevelTitle();
   const progress = xpSystem.getProgress();
-  
   const completedModules = Object.keys(state.progress).filter(k => state.progress[k]).length;
   const totalModules = state.curriculum.phases.reduce((acc, phase) => acc + phase.modules.length, 0);
   const solvedCount = state.solvedChallenges.length;
@@ -112,8 +183,8 @@ function renderDashboard(container) {
 
   container.innerHTML = `
     <div class="dashboard-welcome">
-      <h1 class="welcome-text">Welcome back, <span class="name">Irfan</span></h1>
-      <p class="welcome-subtitle">Level ${level} ${title} | Keep learning, keep growing!</p>
+      <h1 class="welcome-text">Welcome back, <span class="text-white">Irfan</span></h1>
+      <p class="welcome-subtitle">Level ${level} ${title} — ${xp} XP accumulated</p>
     </div>
 
     <div class="stats-grid">
@@ -123,24 +194,24 @@ function renderDashboard(container) {
         <div class="stat-label">Total XP</div>
       </div>
       <div class="stat-card">
-        <div class="stat-icon">🎯</div>
+        <div class="stat-icon">◉</div>
         <div class="stat-value">${level}</div>
         <div class="stat-label">Level</div>
       </div>
       <div class="stat-card">
-        <div class="stat-icon">📚</div>
+        <div class="stat-icon">◈</div>
         <div class="stat-value">${completedModules}/${totalModules}</div>
-        <div class="stat-label">Modules Done</div>
+        <div class="stat-label">Modules</div>
       </div>
       <div class="stat-card">
         <div class="stat-icon">🏆</div>
         <div class="stat-value">${solvedCount}/${totalChallenges}</div>
-        <div class="stat-label">Challenges Solved</div>
+        <div class="stat-label">Challenges</div>
       </div>
     </div>
 
     <div class="progress-section">
-      <h2 class="section-title">Level Progress</h2>
+      <h2 class="section-title">Progress</h2>
       <div class="progress-container">
         <div class="progress-bar" style="width: ${progress.percentage}%"></div>
       </div>
@@ -151,12 +222,12 @@ function renderDashboard(container) {
     </div>
 
     <div class="card">
-      <h2 class="section-title">Recent Activity</h2>
-      <div class="activity-list" id="activity-list">
+      <h2 class="section-title">Activity</h2>
+      <div class="activity-list">
         <div class="activity-item">
-          <div class="activity-icon">🚀</div>
+          <div class="activity-icon">►</div>
           <div class="activity-content">
-            <div class="activity-title">Started learning journey</div>
+            <div class="activity-title">Learning journey started</div>
             <div class="activity-time">Just now</div>
           </div>
         </div>
@@ -165,13 +236,12 @@ function renderDashboard(container) {
   `;
 }
 
-// Learning Path
 function renderLearningPath(container) {
   const phases = state.curriculum.phases;
   
   container.innerHTML = `
     <h1 class="section-title">Learning Path</h1>
-    <p class="mb-3" style="color: var(--text-dim);">Complete each phase to unlock the next. Choose your specialization!</p>
+    <p class="mb-3 text-dim">Complete each phase to unlock the next.</p>
     
     <div class="path-container">
       ${phases.map((phase, index) => {
@@ -184,13 +254,13 @@ function renderLearningPath(container) {
             <div class="path-node-header">
               <h3 class="path-node-title">${phase.icon} ${phase.title}</h3>
               <span class="path-node-status ${phaseProgress === 100 ? 'status-completed' : phase.status === 'active' ? 'status-active' : 'status-locked'}">
-                ${phaseProgress === 100 ? '✓ COMPLETED' : phase.status === 'active' ? '► IN PROGRESS' : '🔒 LOCKED'}
+                ${phaseProgress === 100 ? '✓ DONE' : phase.status === 'active' ? '► ACTIVE' : 'LOCKED'}
               </span>
             </div>
             <p class="path-node-desc">${phase.description}</p>
             <div class="path-node-modules">
               ${phase.modules.slice(0, 3).map(m => `<span class="module-tag">${m.title}</span>`).join('')}
-              ${phase.modules.length > 3 ? `<span class="module-tag">+${phase.modules.length - 3} more</span>` : ''}
+              ${phase.modules.length > 3 ? `<span class="module-tag">+${phase.modules.length - 3}</span>` : ''}
             </div>
           </div>
           ${index < phases.length - 1 ? '<div class="path-connector"></div>' : ''}
@@ -200,7 +270,6 @@ function renderLearningPath(container) {
   `;
 }
 
-// Curriculum
 function renderCurriculum(container) {
   const phases = state.curriculum.phases;
   
@@ -209,7 +278,7 @@ function renderCurriculum(container) {
     
     <div class="curriculum-tabs">
       ${phases.map((phase, index) => `
-        <button class="tab-btn ${index === 0 ? 'active' : ''}" onclick="switchTab('${phase.id}')">
+        <button class="tab-btn ${index === 0 ? 'active' : ''}" data-phase="${phase.id}">
           ${phase.icon} ${phase.title}
         </button>
       `).join('')}
@@ -220,14 +289,16 @@ function renderCurriculum(container) {
     </div>
   `;
 
-  // Add tab switching function to window
-  window.switchTab = (phaseId) => {
-    const phase = phases.find(p => p.id === phaseId);
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
-    document.getElementById('module-list').innerHTML = renderModules(phase);
-    initModuleClicks();
-  };
+  container.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const phaseId = btn.dataset.phase;
+      const phase = phases.find(p => p.id === phaseId);
+      container.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('module-list').innerHTML = renderModules(phase);
+      initModuleClicks();
+    });
+  });
 
   initModuleClicks();
 }
@@ -249,23 +320,23 @@ function renderModules(phase) {
           <h3>${mod.title}</h3>
           <p>${mod.content.intro}</p>
           
-          <h4 class="mt-2 mb-1">Key Concepts:</h4>
+          <h4 class="mt-2 mb-1">Key Concepts</h4>
           <ul>
             ${mod.content.concepts.map(c => `<li>${c}</li>`).join('')}
           </ul>
           
           ${mod.content.commands.length > 0 ? `
-            <h4 class="mt-2 mb-1">Commands:</h4>
+            <h4 class="mt-2 mb-1">Commands</h4>
             <pre><code>${mod.content.commands.map(c => `${c.cmd}\n# ${c.desc}`).join('\n\n')}</code></pre>
           ` : ''}
           
-          <h4 class="mt-2 mb-1">Practice:</h4>
+          <h4 class="mt-2 mb-1">Practice</h4>
           <ul>
             ${mod.content.practice.map(p => `<li>${p}</li>`).join('')}
           </ul>
           
-          <button class="btn btn-success mt-2" onclick="completeModule('${mod.id}', ${mod.xp})">
-            ${isCompleted ? '✓ Completed' : 'Mark as Complete'}
+          <button class="btn btn-primary mt-2 complete-module-btn" data-module="${mod.id}" data-xp="${mod.xp}">
+            ${isCompleted ? '✓ Completed' : 'Mark Complete'}
           </button>
         </div>
       </div>
@@ -275,16 +346,25 @@ function renderModules(phase) {
 
 function initModuleClicks() {
   document.querySelectorAll('.module-item').forEach(item => {
-    item.addEventListener('click', () => {
+    item.addEventListener('click', (e) => {
+      if (e.target.closest('.complete-module-btn')) return;
       const moduleId = item.dataset.module;
       const detail = document.getElementById(`detail-${moduleId}`);
       detail.classList.toggle('active');
     });
   });
+
+  document.querySelectorAll('.complete-module-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const moduleId = btn.dataset.module;
+      const xp = parseInt(btn.dataset.xp);
+      completeModule(moduleId, xp);
+    });
+  });
 }
 
-// Complete module
-window.completeModule = (moduleId, xp) => {
+function completeModule(moduleId, xp) {
   if (state.progress[moduleId]) return;
   
   state.progress[moduleId] = true;
@@ -298,15 +378,13 @@ window.completeModule = (moduleId, xp) => {
   
   if (result.levelUp) {
     setTimeout(() => {
-      showToast(`🎉 Level Up! You're now Level ${result.newLevel}!`, 'xp', 5000);
+      showToast(`Level Up! Level ${result.newLevel}!`, 'xp');
     }, 1000);
   }
   
-  // Re-render
   renderPage(state.currentPage);
-};
+}
 
-// Challenges
 function renderChallenges(container) {
   const challenges = state.challenges.challenges;
   
@@ -314,10 +392,10 @@ function renderChallenges(container) {
     <h1 class="section-title">Challenges</h1>
     
     <div class="challenges-filter">
-      <button class="filter-btn active" onclick="filterChallenges('all')">All</button>
-      <button class="filter-btn" onclick="filterChallenges('easy')">Easy</button>
-      <button class="filter-btn" onclick="filterChallenges('medium')">Medium</button>
-      <button class="filter-btn" onclick="filterChallenges('hard')">Hard</button>
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="easy">Easy</button>
+      <button class="filter-btn" data-filter="medium">Medium</button>
+      <button class="filter-btn" data-filter="hard">Hard</button>
     </div>
 
     <div class="challenges-grid" id="challenges-grid">
@@ -325,17 +403,19 @@ function renderChallenges(container) {
     </div>
   `;
 
-  window.filterChallenges = (difficulty) => {
-    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
-    
-    const filtered = difficulty === 'all' 
-      ? challenges 
-      : challenges.filter(ch => ch.difficulty === difficulty);
-    
-    document.getElementById('challenges-grid').innerHTML = 
-      filtered.map(ch => renderChallengeCard(ch)).join('');
-  };
+  container.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      container.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      const filtered = filter === 'all' ? challenges : challenges.filter(ch => ch.difficulty === filter);
+      document.getElementById('challenges-grid').innerHTML = filtered.map(ch => renderChallengeCard(ch)).join('');
+      initChallengeSubmit();
+    });
+  });
+
+  initChallengeSubmit();
 }
 
 function renderChallengeCard(challenge) {
@@ -343,28 +423,42 @@ function renderChallengeCard(challenge) {
   
   return `
     <div class="challenge-card ${isSolved ? 'solved' : ''}">
-      <span class="challenge-difficulty difficulty-${challenge.difficulty}">
-        ${challenge.difficulty}
-      </span>
+      <span class="challenge-difficulty">${challenge.difficulty}</span>
       <h3 class="challenge-title">${challenge.title}</h3>
       <p class="challenge-desc">${challenge.description}</p>
-      <p class="challenge-xp">⚡ ${challenge.xp} XP</p>
+      <p class="challenge-xp">${challenge.xp} XP</p>
       
       ${!isSolved ? `
         <div class="challenge-input">
-          <input type="text" id="input-${challenge.id}" placeholder="Enter answer...">
-          <button onclick="submitAnswer('${challenge.id}')">Submit</button>
+          <input type="text" data-challenge="${challenge.id}" placeholder="Enter answer...">
+          <button data-submit="${challenge.id}">Submit</button>
         </div>
         <div class="challenge-feedback" id="feedback-${challenge.id}"></div>
-      ` : '<p class="text-primary mt-1">✓ Solved!</p>'}
+      ` : '<p class="text-white mt-1" style="font-size: 0.8rem;">✓ Solved</p>'}
     </div>
   `;
 }
 
-// Submit challenge answer
-window.submitAnswer = (challengeId) => {
+function initChallengeSubmit() {
+  document.querySelectorAll('[data-submit]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const challengeId = btn.dataset.submit;
+      submitAnswer(challengeId);
+    });
+  });
+
+  document.querySelectorAll('[data-challenge]').forEach(input => {
+    input.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        submitAnswer(input.dataset.challenge);
+      }
+    });
+  });
+}
+
+function submitAnswer(challengeId) {
   const challenge = state.challenges.challenges.find(ch => ch.id === challengeId);
-  const input = document.getElementById(`input-${challengeId}`);
+  const input = document.querySelector(`[data-challenge="${challengeId}"]`);
   const feedback = document.getElementById(`feedback-${challengeId}`);
   
   const answer = input.value.trim().toLowerCase();
@@ -372,7 +466,6 @@ window.submitAnswer = (challengeId) => {
   const altAnswers = (challenge.altAnswers || []).map(a => a.toLowerCase());
   
   if (answer === correctAnswer || altAnswers.includes(answer)) {
-    // Correct!
     state.solvedChallenges.push(challengeId);
     storage.set('solvedChallenges', state.solvedChallenges);
     
@@ -387,22 +480,17 @@ window.submitAnswer = (challengeId) => {
     
     if (result.levelUp) {
       setTimeout(() => {
-        showToast(`🎉 Level Up! Level ${result.newLevel}!`, 'xp', 5000);
+        showToast(`Level Up! Level ${result.newLevel}!`, 'xp');
       }, 1000);
     }
     
-    // Update card
-    setTimeout(() => {
-      renderPage('challenges');
-    }, 1500);
+    setTimeout(() => renderPage('challenges'), 1500);
   } else {
-    // Incorrect
     feedback.className = 'challenge-feedback show incorrect';
-    feedback.textContent = '✗ Incorrect. Try again!';
+    feedback.textContent = '✗ Incorrect. Try again.';
   }
-};
+}
 
-// Cheat Sheet
 function renderCheatsheet(container) {
   const categories = state.cheatsheet.categories;
   const cheats = state.cheatsheet.cheats;
@@ -411,12 +499,12 @@ function renderCheatsheet(container) {
     <h1 class="section-title">Cheat Sheet</h1>
     
     <div class="cheatsheet-search">
-      <input type="text" id="cheatsheet-search" placeholder="Search commands..." oninput="searchCheatsheet()">
+      <input type="text" id="cheatsheet-search" placeholder="Search commands...">
     </div>
 
     <div class="cheatsheet-categories">
       ${categories.map(cat => `
-        <button class="category-btn ${cat === 'All' ? 'active' : ''}" onclick="filterCheatsheet('${cat}')">
+        <button class="category-btn ${cat === 'All' ? 'active' : ''}" data-category="${cat}">
           ${cat}
         </button>
       `).join('')}
@@ -427,34 +515,36 @@ function renderCheatsheet(container) {
     </div>
   `;
 
-  window.searchCheatsheet = () => {
-    const query = document.getElementById('cheatsheet-search').value.toLowerCase();
+  document.getElementById('cheatsheet-search').addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase();
     const filtered = cheats.filter(cheat => 
       cheat.command.toLowerCase().includes(query) ||
       cheat.description.toLowerCase().includes(query)
     );
-    document.getElementById('cheatsheet-list').innerHTML = 
-      filtered.map(cheat => renderCheatItem(cheat)).join('');
-  };
+    document.getElementById('cheatsheet-list').innerHTML = filtered.map(cheat => renderCheatItem(cheat)).join('');
+    initCopyCommand();
+  });
 
-  window.filterCheatsheet = (category) => {
-    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
-    
-    const filtered = category === 'All' 
-      ? cheats 
-      : cheats.filter(cheat => cheat.category === category);
-    
-    document.getElementById('cheatsheet-list').innerHTML = 
-      filtered.map(cheat => renderCheatItem(cheat)).join('');
-  };
+  container.querySelectorAll('.category-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const category = btn.dataset.category;
+      container.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      const filtered = category === 'All' ? cheats : cheats.filter(cheat => cheat.category === category);
+      document.getElementById('cheatsheet-list').innerHTML = filtered.map(cheat => renderCheatItem(cheat)).join('');
+      initCopyCommand();
+    });
+  });
+
+  initCopyCommand();
 }
 
 function renderCheatItem(cheat) {
   return `
     <div class="cheat-item">
       <div class="cheat-header">
-        <code class="cheat-command" onclick="copyCommand(this)">${cheat.command}</code>
+        <code class="cheat-command">${cheat.command}</code>
         <span class="cheat-category">${cheat.category}</span>
       </div>
       <p class="cheat-desc">${cheat.description}</p>
@@ -462,29 +552,32 @@ function renderCheatItem(cheat) {
   `;
 }
 
-// Copy command to clipboard
-window.copyCommand = (element) => {
-  navigator.clipboard.writeText(element.textContent);
-  element.classList.add('copied');
-  element.textContent = 'Copied!';
-  setTimeout(() => {
-    element.classList.remove('copied');
-    element.textContent = element.dataset.original || element.textContent;
-  }, 1500);
-};
+function initCopyCommand() {
+  document.querySelectorAll('.cheat-command').forEach(cmd => {
+    cmd.addEventListener('click', () => {
+      navigator.clipboard.writeText(cmd.textContent);
+      cmd.classList.add('copied');
+      const original = cmd.textContent;
+      cmd.textContent = 'Copied!';
+      setTimeout(() => {
+        cmd.classList.remove('copied');
+        cmd.textContent = original;
+      }, 1000);
+    });
+  });
+}
 
-// Projects
 function renderProjects(container) {
   container.innerHTML = `
     <h1 class="section-title">Projects</h1>
-    <p class="mb-3" style="color: var(--text-dim);">Showcase your work and achievements!</p>
+    <p class="mb-3 text-dim">Showcase your work and achievements.</p>
     
     <div class="projects-grid">
       <div class="project-card">
         <div class="project-image">🔐</div>
         <div class="project-content">
           <h3 class="project-title">Network Scan Report</h3>
-          <p class="project-desc">Completed Nmap scan of local network with service detection.</p>
+          <p class="project-desc">Nmap scan of local network with service detection.</p>
           <div class="project-tags">
             <span class="project-tag">Nmap</span>
             <span class="project-tag">Networking</span>
@@ -496,7 +589,7 @@ function renderProjects(container) {
         <div class="project-image">💀</div>
         <div class="project-content">
           <h3 class="project-title">Password Cracking Lab</h3>
-          <p class="project-desc">Practiced hash cracking with John the Ripper.</p>
+          <p class="project-desc">Hash cracking practice with John the Ripper.</p>
           <div class="project-tags">
             <span class="project-tag">John</span>
             <span class="project-tag">Crypto</span>
@@ -508,10 +601,10 @@ function renderProjects(container) {
         <div class="project-image">🌐</div>
         <div class="project-content">
           <h3 class="project-title">Web App Testing</h3>
-          <p class="project-desc">Basic security assessment of a vulnerable web application.</p>
+          <p class="project-desc">Security assessment of a vulnerable web application.</p>
           <div class="project-tags">
             <span class="project-tag">Burp Suite</span>
-            <span class="project-tag">Web Security</span>
+            <span class="project-tag">Web</span>
           </div>
         </div>
       </div>
@@ -519,7 +612,6 @@ function renderProjects(container) {
   `;
 }
 
-// Admin
 function renderAdmin(container) {
   const hasToken = githubAPI.hasToken();
   
@@ -529,55 +621,77 @@ function renderAdmin(container) {
     ${!hasToken ? `
       <div class="admin-login">
         <div class="card">
-          <h3 class="card-title mb-2">GitHub Authentication</h3>
-          <p class="mb-2" style="color: var(--text-dim);">Connect your GitHub account to sync progress.</p>
+          <h3 class="mb-2" style="color: var(--white);">GitHub Authentication</h3>
+          <p class="mb-2 text-dim" style="font-size: 0.8rem;">Connect your GitHub account to sync progress.</p>
           
-          <div class="admin-form">
-            <div class="form-group">
-              <label>GitHub Token (Classic)</label>
-              <input type="password" id="github-token" placeholder="ghp_xxxxxxxxxxxx">
-              <small style="color: var(--text-dim);">Settings → Developer settings → Personal access tokens → Tokens (classic)</small>
-            </div>
-            
-            <button class="btn btn-success" onclick="connectGitHub()">Connect</button>
+          <div class="form-group">
+            <label>GitHub Token</label>
+            <input type="password" id="github-token" placeholder="ghp_xxxxxxxxxxxx">
+            <small>Settings → Developer settings → Personal access tokens</small>
           </div>
+          
+          <button class="btn btn-primary" id="connect-btn">Connect</button>
         </div>
       </div>
     ` : `
       <div class="admin-panel active">
         <div class="flex-between mb-2">
-          <p class="text-primary">✓ Connected to GitHub</p>
-          <button class="btn" onclick="disconnectGitHub()">Disconnect</button>
+          <p class="text-white" style="font-size: 0.85rem;">✓ Connected to GitHub</p>
+          <button class="btn" id="disconnect-btn">Disconnect</button>
         </div>
         
         <div class="admin-tabs">
-          <button class="admin-tab active" onclick="switchAdminTab('progress')">Progress</button>
-          <button class="admin-tab" onclick="switchAdminTab('challenges')">Challenges</button>
-          <button class="admin-tab" onclick="switchAdminTab('settings')">Settings</button>
+          <button class="admin-tab active" data-tab="progress">Progress</button>
+          <button class="admin-tab" data-tab="challenges">Challenges</button>
+          <button class="admin-tab" data-tab="settings">Settings</button>
         </div>
         
         <div class="admin-content" id="admin-content">
-          <h3 class="mb-2">Sync Progress</h3>
-          <p class="mb-2" style="color: var(--text-dim);">Save your learning progress to GitHub.</p>
-          <button class="btn btn-success" onclick="syncProgress()">⬆ Sync to GitHub</button>
+          <h3 class="mb-2" style="color: var(--white);">Sync Progress</h3>
+          <p class="mb-2 text-dim" style="font-size: 0.8rem;">Save your learning progress to GitHub.</p>
+          <button class="btn btn-primary" id="sync-btn">Sync to GitHub</button>
         </div>
       </div>
     `}
   `;
+
+  const connectBtn = document.getElementById('connect-btn');
+  if (connectBtn) {
+    connectBtn.addEventListener('click', connectGitHub);
+  }
+
+  const disconnectBtn = document.getElementById('disconnect-btn');
+  if (disconnectBtn) {
+    disconnectBtn.addEventListener('click', disconnectGitHub);
+  }
+
+  const syncBtn = document.getElementById('sync-btn');
+  if (syncBtn) {
+    syncBtn.addEventListener('click', syncProgress);
+  }
+
+  container.querySelectorAll('.admin-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      container.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
 }
 
-// Connect GitHub
-window.connectGitHub = async () => {
+async function connectGitHub() {
   const tokenInput = document.getElementById('github-token');
   const token = tokenInput.value.trim();
+  const btn = document.getElementById('connect-btn');
   
   if (!token) {
     showToast('Please enter a token', 'error');
     return;
   }
   
-  githubAPI.setToken(token);
+  btn.disabled = true;
+  btn.textContent = 'VERIFYING...';
   
+  githubAPI.setToken(token);
   const verification = await githubAPI.verifyToken();
   
   if (verification.valid) {
@@ -585,19 +699,19 @@ window.connectGitHub = async () => {
     renderPage('admin');
   } else {
     githubAPI.removeToken();
-    showToast('Invalid token. Please check and try again.', 'error');
+    showToast('Invalid token', 'error');
+    btn.disabled = false;
+    btn.textContent = 'CONNECT';
   }
-};
+}
 
-// Disconnect GitHub
-window.disconnectGitHub = () => {
+function disconnectGitHub() {
   githubAPI.removeToken();
   showToast('Disconnected from GitHub', 'info');
   renderPage('admin');
-};
+}
 
-// Sync progress to GitHub
-window.syncProgress = async () => {
+async function syncProgress() {
   try {
     const progressData = {
       user: 'irfan',
@@ -613,9 +727,8 @@ window.syncProgress = async () => {
   } catch (error) {
     showToast('Failed to sync: ' + error.message, 'error');
   }
-};
+}
 
-// Helper functions
 function getPhaseProgress(phase) {
   const completed = phase.modules.filter(m => state.progress[m.id]).length;
   return (completed / phase.modules.length) * 100;
@@ -632,8 +745,13 @@ function updateXPBadge() {
   }
 }
 
-// Make functions available globally
 window.showPhaseDetail = (phaseId) => {
-  // Could open a modal or navigate to detail view
   console.log('Phase clicked:', phaseId);
+};
+
+window.logout = () => {
+  storage.remove('isLoggedIn');
+  storage.remove('isGuest');
+  state.isLoggedIn = false;
+  location.reload();
 };
