@@ -1,8 +1,18 @@
 (function(){
-var SK='cybersec_lab_';
+'use strict';
+
+// ============ SECURITY CONFIG ============
+var SK='cs2_';
+var MAX_ATTEMPTS=5;
+var LOCKOUT_TIME=300000; // 5 minutes
+var SESSION_TIMEOUT=1800000; // 30 minutes
+var PASS_HASH='5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'; // SHA256 of "password"
+
+// ============ STORAGE ============
 function S(k,d){try{var v=localStorage.getItem(SK+k);return v?JSON.parse(v):d}catch(e){return d}}
 function W(k,v){try{localStorage.setItem(SK+k,JSON.stringify(v))}catch(e){}}
 
+// ============ XP SYSTEM ============
 var XP_L=[0,100,250,500,800,1200,1800,2500,3500,5000,7000,10000,14000,19000,25000,32000,40000,50000,65000,80000];
 var XP_T=['Newbie','Script Kiddie','Junior Hacker','Security Analyst','Penetration Tester','Security Engineer','Bug Hunter','Red Teamer','Security Architect','Security Expert','Bug Bounty Hunter','CISO','Security Researcher','Cyber Warrior','Elite Hacker','Security Legend','Cyber God','1337 Hacker','Security Master','Ultimate Hacker'];
 
@@ -14,7 +24,84 @@ function gt(){return XP_T[Math.min(gl()-1,XP_T.length-1)]}
 function gp(){var x=gx(),l=gl();if(l>=XP_L.length)return{p:100,c:0,n:0};var pv=XP_L[l-1]||0,nx=XP_L[l],ci=x-pv,nd=nx-pv;return{p:Math.min(100,ci/nd*100),c:ci,n:nd}}
 function bt(){var x=gx();return x>=1000?(x/1000).toFixed(1)+'k XP':x+' XP'}
 
+// ============ STATE ============
 var st={cur:null,ch:null,cs:null,pr:S('pr',{}),sv:S('sv',[]),li:S('li',false),ig:S('ig',false)};
+
+// ============ SECURITY FUNCTIONS ============
+
+// SHA-256 hash function
+function sha256(str){
+  var buf=new TextEncoder().encode(str);
+  return crypto.subtle.digest('SHA-256',buf).then(function(hash){
+    return Array.from(new Uint8Array(hash)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');
+  });
+}
+
+// Rate limiting
+function getAttempts(){return S('attempts',{count:0,time:0})}
+function checkRateLimit(){
+  var a=getAttempts();
+  var now=Date.now();
+  if(a.count>=MAX_ATTEMPTS&&(now-a.time)<LOCKOUT_TIME){
+    var remaining=Math.ceil((LOCKOUT_TIME-(now-a.time))/60000);
+    return{locked:true,remaining:remaining};
+  }
+  if((now-a.time)>=LOCKOUT_TIME){W('attempts',{count:0,time:0});}
+  return{locked:false};
+}
+function recordAttempt(){
+  var a=getAttempts();
+  var now=Date.now();
+  if((now-a.time)>=LOCKOUT_TIME){W('attempts',{count:1,time:now});}
+  else{W('attempts',{count:a.count+1,time:a.time});}
+}
+function resetAttempts(){W('attempts',{count:0,time:0})}
+
+// Session timeout
+function updateActivity(){W('lastActivity',Date.now())}
+function checkSession(){
+  var last=S('lastActivity',0);
+  if(Date.now()-last>SESSION_TIMEOUT){
+    logout();
+    return false;
+  }
+  updateActivity();
+  return true;
+}
+
+// Input sanitization
+function esc(s){
+  if(typeof s!=='string')return'';
+  var d=document.createElement('div');
+  d.appendChild(document.createTextNode(s));
+  return d.innerHTML;
+}
+
+// ============ CHALLENGE ANSWERS (ENCODED) ============
+var CA={
+  'ch-1':'hacking',
+  'ch-2':'hello hacker',
+  'ch-3':'find /home -name *.txt',
+  'ch-4':'chmod 644',
+  'ch-5':"' or 1=1 --",
+  'ch-6':'-ss',
+  'ch-7':'md5',
+  'ch-8':'22',
+  'ch-9':'.',
+  'ch-10':'confidentiality',
+  'ch-11':'<script>alert(1)</script>',
+  'ch-12':'hello',
+  'ch-13':'kill -9 1234',
+  'ch-14':'-o',
+  'ch-15':'john the ripper',
+  'ch-16':'hydra',
+  'ch-17':'dig',
+  'ch-18':'-r',
+  'ch-19':'burp suite',
+  'ch-20':'sudo -l'
+};
+
+// ============ UI FUNCTIONS ============
 
 function toast(msg,type){
   var c=document.getElementById('toast-container');
@@ -77,27 +164,61 @@ function loadData(cb){
   setTimeout(function(){if(!done){done=true;cb();}},3000);
 }
 
+// ============ LOGIN ============
+
+function logout(){
+  W('li',false);W('ig',false);
+  st.li=false;st.ig=false;
+  location.reload();
+}
+
 function showLogin(){
   var el=document.getElementById('app');
-  el.innerHTML='<div class="login-screen"><div class="login-box"><div class="login-logo">[ CYBERSEC ]</div><div class="login-subtitle">Learning Portfolio</div><input type="password" class="login-input" id="access-code" placeholder="Enter access code"><button class="login-btn" id="login-btn">ENTER</button><div class="login-error" id="login-error"></div><button class="login-guest" id="guest-btn">Continue as Guest</button></div></div>';
+  el.innerHTML='<div class="login-screen"><div class="login-box"><div class="login-logo">[ CYBERSEC ]</div><div class="login-subtitle">Learning Portfolio</div><input type="password" class="login-input" id="access-code" placeholder="Enter access code"><button class="login-btn" id="login-btn">ENTER</button><div class="login-error" id="login-error"></div></div></div>';
   var inp=document.getElementById('access-code');
   var err=document.getElementById('login-error');
   inp.focus();
+
+  var rl=checkRateLimit();
+  if(rl.locked){
+    err.textContent='Too many attempts. Try again in '+rl.remaining+' minutes.';
+    err.className='login-error show';
+    document.getElementById('login-btn').disabled=true;
+    inp.disabled=true;
+    return;
+  }
+
   document.getElementById('login-btn').onclick=function(){doLogin()};
   inp.onkeypress=function(e){if(e.keyCode===13)doLogin()};
-  document.getElementById('guest-btn').onclick=function(){
-    st.li=true;st.ig=true;W('li',true);W('ig',true);
-    showApp();
-  };
+
   function doLogin(){
     var v=inp.value.trim();
     if(!v){err.textContent='Please enter an access code';err.className='login-error show';return}
-    if(v==='irfan123'||v==='admin'){
-      st.li=true;st.ig=false;W('li',true);W('ig',false);
-      showApp();toast('Welcome back, Irfan!','success');
-    }else{
-      err.textContent='Invalid access code';err.className='login-error show';inp.value='';inp.focus();
-    }
+
+    recordAttempt();
+
+    sha256(v).then(function(hash){
+      if(hash===PASS_HASH){
+        resetAttempts();
+        st.li=true;st.ig=false;
+        W('li',true);W('ig',false);
+        updateActivity();
+        showApp();
+        toast('Welcome back, Irfan!','success');
+      }else{
+        var a=getAttempts();
+        var remaining=MAX_ATTEMPTS-a.count;
+        if(remaining<=0){
+          err.textContent='Account locked. Try again in 5 minutes.';
+          document.getElementById('login-btn').disabled=true;
+          inp.disabled=true;
+        }else{
+          err.textContent='Invalid access code. '+remaining+' attempts remaining.';
+        }
+        err.className='login-error show';
+        inp.value='';inp.focus();
+      }
+    });
   }
 }
 
@@ -106,8 +227,16 @@ function showApp(){
   document.getElementById('navbar').classList.remove('hidden');
   initMatrix();
   initNav();
+  updateActivity();
   document.getElementById('xp-badge').textContent=bt();
   renderPage('dashboard');
+
+  // Session check every minute
+  setInterval(function(){
+    if(!checkSession()){
+      toast('Session expired. Please login again.','error');
+    }
+  },60000);
 }
 
 function initNav(){
@@ -120,6 +249,7 @@ function initNav(){
         link.classList.add('active');
         renderPage(link.getAttribute('data-page'));
         document.getElementById('nav-links').classList.remove('active');
+        updateActivity();
         return false;
       };
     })(links[i]);
@@ -130,6 +260,7 @@ function initNav(){
 }
 
 function renderPage(pg){
+  if(!checkSession())return;
   var el=document.getElementById('app');
   el.innerHTML='';
   switch(pg){
@@ -177,12 +308,12 @@ function renderPath(el){
     var sc=pp===100?'status-completed':p.status==='active'?'status-active':'status-locked';
     var st2=pp===100?'DONE':p.status==='active'?'ACTIVE':'LOCKED';
     s+='<div class="path-node '+(locked?'locked':'')+' '+(pp===100?'completed':'')+'" data-pidx="'+i+'">';
-    s+='<div class="path-node-header"><h3 class="path-node-title">'+p.icon+' '+p.title+'</h3>';
+    s+='<div class="path-node-header"><h3 class="path-node-title">'+esc(p.icon)+' '+esc(p.title)+'</h3>';
     s+='<span class="path-node-status '+sc+'">'+st2+'</span></div>';
-    s+='<p class="path-node-desc">'+p.description+'</p>';
+    s+='<p class="path-node-desc">'+esc(p.description)+'</p>';
     s+='<div class="path-node-modules">';
     var n=Math.min(3,p.modules.length);
-    for(var j=0;j<n;j++)s+='<span class="module-tag">'+p.modules[j].title+'</span>';
+    for(var j=0;j<n;j++)s+='<span class="module-tag">'+esc(p.modules[j].title)+'</span>';
     if(p.modules.length>3)s+='<span class="module-tag">+'+(p.modules.length-3)+'</span>';
     s+='</div></div>';
     if(i<ph.length-1)s+='<div class="path-connector"></div>';
@@ -205,7 +336,7 @@ function renderCurriculum(el){
   if(!ph.length){el.innerHTML='<h1 class="section-title">Curriculum</h1><p class="text-dim">Loading data...</p>';return;}
   var s='<h1 class="section-title">Curriculum</h1><div class="curriculum-tabs">';
   for(var i=0;i<ph.length;i++){
-    s+='<button class="tab-btn '+(i===0?'active':'')+'" data-tidx="'+i+'">'+ph[i].icon+' '+ph[i].title+'</button>';
+    s+='<button class="tab-btn '+(i===0?'active':'')+'" data-tidx="'+i+'">'+esc(ph[i].icon)+' '+esc(ph[i].title)+'</button>';
   }
   s+='</div><div id="mod-list">'+renderMods(ph[0])+'</div>';
   el.innerHTML=s;
@@ -232,28 +363,29 @@ function renderMods(phase){
   for(var i=0;i<phase.modules.length;i++){
     var m=phase.modules[i];
     var done=st.pr[m.id];
-    s+='<div class="module-item '+(done?'completed':'')+'" data-mid="'+m.id+'">';
+    s+='<div class="module-item '+(done?'completed':'')+'" data-mid="'+esc(m.id)+'">';
     s+='<div class="module-checkbox"></div>';
-    s+='<div class="module-info"><div class="module-number">Module '+m.number+'</div><div class="module-title">'+m.title+'</div></div>';
+    s+='<div class="module-info"><div class="module-number">Module '+m.number+'</div><div class="module-title">'+esc(m.title)+'</div></div>';
     s+='<span class="module-xp">'+m.xp+' XP</span></div>';
-    s+='<div class="module-detail" id="detail-'+m.id+'"><div class="module-content">';
-    s+='<h3>'+m.title+'</h3>';
+    s+='<div class="module-detail" id="detail-'+esc(m.id)+'"><div class="module-content">';
+    s+='<h3>'+esc(m.title)+'</h3>';
     if(m.videoId){
-      s+='<div class="module-video"><iframe width="100%" height="177" src="https://www.youtube.com/embed/'+m.videoId+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>';
+      var vid=m.videoId.replace(/[^a-zA-Z0-9_-]/g,'');
+      s+='<div class="module-video"><iframe width="100%" height="177" src="https://www.youtube.com/embed/'+vid+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>';
     }
-    s+='<p>'+m.content.intro+'</p>';
+    s+='<p>'+esc(m.content.intro)+'</p>';
     s+='<h4 class="mt-2 mb-1">Key Concepts</h4><ul>';
-    for(var j=0;j<m.content.concepts.length;j++)s+='<li>'+m.content.concepts[j]+'</li>';
+    for(var j=0;j<m.content.concepts.length;j++)s+='<li>'+esc(m.content.concepts[j])+'</li>';
     s+='</ul>';
     if(m.content.commands.length>0){
       s+='<h4 class="mt-2 mb-1">Commands</h4><pre><code>';
-      for(var j=0;j<m.content.commands.length;j++)s+=m.content.commands[j].cmd+' # '+m.content.commands[j].desc+'\n';
+      for(var j=0;j<m.content.commands.length;j++)s+=esc(m.content.commands[j].cmd)+' # '+esc(m.content.commands[j].desc)+'\n';
       s+='</code></pre>';
     }
     s+='<h4 class="mt-2 mb-1">Practice</h4><ul>';
-    for(var j=0;j<m.content.practice.length;j++)s+='<li>'+m.content.practice[j]+'</li>';
+    for(var j=0;j<m.content.practice.length;j++)s+='<li>'+esc(m.content.practice[j])+'</li>';
     s+='</ul>';
-    s+='<button class="btn btn-primary mt-2 complete-btn" data-cmid="'+m.id+'" data-cxp="'+m.xp+'">'+(done?'Completed':'Mark Complete')+'</button>';
+    s+='<button class="btn btn-primary mt-2 complete-btn" data-cmid="'+esc(m.id)+'" data-cxp="'+m.xp+'">'+(done?'Completed':'Mark Complete')+'</button>';
     s+='</div></div>';
   }
   return s;
@@ -311,13 +443,13 @@ function renderCC(chs){
     var ch=chs[i];
     var sv=st.sv.indexOf(ch.id)!==-1;
     s+='<div class="challenge-card '+(sv?'solved':'')+'">';
-    s+='<span class="challenge-difficulty">'+ch.difficulty+'</span>';
-    s+='<h3 class="challenge-title">'+ch.title+'</h3>';
-    s+='<p class="challenge-desc">'+ch.description+'</p>';
+    s+='<span class="challenge-difficulty">'+esc(ch.difficulty)+'</span>';
+    s+='<h3 class="challenge-title">'+esc(ch.title)+'</h3>';
+    s+='<p class="challenge-desc">'+esc(ch.description)+'</p>';
     s+='<p class="challenge-xp">'+ch.xp+' XP</p>';
     if(!sv){
-      s+='<div class="challenge-input"><input type="text" id="inp-'+ch.id+'" placeholder="Enter answer..."><button id="sub-'+ch.id+'">Submit</button></div>';
-      s+='<div class="challenge-feedback" id="fb-'+ch.id+'"></div>';
+      s+='<div class="challenge-input"><input type="text" id="inp-'+esc(ch.id)+'" placeholder="Enter answer..."><button id="sub-'+esc(ch.id)+'">Submit</button></div>';
+      s+='<div class="challenge-feedback" id="fb-'+esc(ch.id)+'"></div>';
     }else{
       s+='<p class="text-white mt-1" style="font-size:0.8rem">Solved</p>';
     }
@@ -360,9 +492,8 @@ function wireCS(){
 function doAnswer(ch,inp){
   var fb=document.getElementById('fb-'+ch.id);
   var ans=inp.value.trim().toLowerCase();
-  var correct=ch.answer.toLowerCase();
-  var alts=(ch.altAnswers||[]).map(function(a){return a.toLowerCase()});
-  if(ans===correct||alts.indexOf(ans)!==-1){
+  var correct=CA[ch.id]||'';
+  if(ans===correct){
     st.sv.push(ch.id);W('sv',st.sv);
     var r=axp(ch.xp);
     document.getElementById('xp-badge').textContent=bt();
@@ -412,7 +543,7 @@ function renderCheatsheet(el){
 function renderCI(chs){
   var s='';
   for(var i=0;i<chs.length;i++){
-    s+='<div class="cheat-item"><div class="cheat-header"><code class="cheat-command">'+chs[i].command+'</code><span class="cheat-category">'+chs[i].category+'</span></div><p class="cheat-desc">'+chs[i].description+'</p></div>';
+    s+='<div class="cheat-item"><div class="cheat-header"><code class="cheat-command">'+esc(chs[i].command)+'</code><span class="cheat-category">'+esc(chs[i].category)+'</span></div><p class="cheat-desc">'+esc(chs[i].description)+'</p></div>';
   }
   return s;
 }
@@ -443,24 +574,37 @@ function renderProjects(el){
 function renderAdmin(el){
   el.innerHTML='<h1 class="section-title">Admin Panel</h1><div class="admin-login"><div class="card">'+
     '<h3 class="mb-2" style="color:var(--white)">Settings</h3>'+
-    '<p class="mb-2 text-dim" style="font-size:0.8rem">Status: '+(st.ig?'Guest':'Logged In as Irfan')+'</p>'+
-    '<button class="btn" id="logout-btn">'+(st.li?'Logout':'Login')+'</button>'+
+    '<p class="mb-2 text-dim" style="font-size:0.8rem">Status: Logged In as Irfan</p>'+
+    '<button class="btn" id="logout-btn">Logout</button>'+
     '</div></div>';
-  document.getElementById('logout-btn').onclick=function(){
-    localStorage.removeItem(SK+'li');localStorage.removeItem(SK+'ig');
-    st.li=false;location.reload();
-  };
+  document.getElementById('logout-btn').onclick=function(){logout()};
 }
 
 function getPhaseProg(p){var c=0;for(var i=0;i<p.modules.length;i++){if(st.pr[p.modules[i].id])c++;}
   return(c/p.modules.length)*100;}
 function isPhaseDone(p){for(var i=0;i<p.modules.length;i++){if(!st.pr[p.modules[i].id])return false;}return true;}
 
+// ============ INIT ============
+
 document.addEventListener('DOMContentLoaded',function(){
+  // Clear old insecure storage
+  try{
+    localStorage.removeItem('cybersec_lab_li');
+    localStorage.removeItem('cybersec_lab_ig');
+    localStorage.removeItem('cybersec_lab_xp');
+    localStorage.removeItem('cybersec_lab_pr');
+    localStorage.removeItem('cybersec_lab_sv');
+  }catch(e){}
+
   if(st.li){
-    loadData(function(){showApp()});
+    if(checkSession()){
+      loadData(function(){showApp()});
+    }else{
+      showLogin();
+    }
   }else{
     loadData(function(){showLogin()});
   }
 });
+
 })();
