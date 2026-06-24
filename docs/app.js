@@ -5,8 +5,8 @@
 var SK='cs2_';
 var MAX_ATTEMPTS=5;
 var LOCKOUT_TIME=300000; // 5 minutes
-var SESSION_TIMEOUT=1800000; // 30 minutes
-var PASS_HASH='52b460ebf051833dd95ace66190bfb36c097a5e3a4e2bb07655254450acb2048'; // SHA256 of "irfan123"
+var SESSION_TIMEOUT=86400000; // 24 hours
+var PASS_HASH='d04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa'; // SHA256 of "hash"
 
 // ============ STORAGE ============
 function S(k,d){try{var v=localStorage.getItem(SK+k);return v?JSON.parse(v):d}catch(e){return d}}
