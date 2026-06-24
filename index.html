@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBERSEC LAB | Irfan Wahyu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+    <canvas id="matrix-bg"></canvas>
+    <div class="scanline"></div>
+    
+    <nav class="navbar" id="navbar">
+        <div class="logo">
+            <span class="bracket">[</span>
+            <span class="highlight">CYBER</span>
+            <span class="accent">SEC</span>
+            <span class="bracket">]</span>
+            <span class="version">v1.0</span>
+        </div>
+        <div class="nav-toggle" id="nav-toggle">
+            <span></span><span></span><span></span>
+        </div>
+        <div class="nav-links" id="nav-links">
+            <a href="#dashboard" class="nav-link active" data-page="dashboard">
+                <span class="link-icon">&gt;_</span> Dashboard
+            </a>
+            <a href="#path" class="nav-link" data-page="path">
+                <span class="link-icon">◉</span> Learning Path
+            </a>
+            <a href="#curriculum" class="nav-link" data-page="curriculum">
+                <span class="link-icon">◈</span> Curriculum
+            </a>
+            <a href="#challenges" class="nav-link" data-page="challenges">
+                <span class="link-icon">⚡</span> Challenges
+            </a>
+            <a href="#cheatsheet" class="nav-link" data-page="cheatsheet">
+                <span class="link-icon">⌘</span> Cheat Sheet
+            </a>
+            <a href="#projects" class="nav-link" data-page="projects">
+                <span class="link-icon">◈</span> Projects
+            </a>
+            <a href="#admin" class="nav-link" data-page="admin">
+                <span class="link-icon">⚙</span> Admin
+            </a>
+        </div>
+        <div class="user-info">
+            <span class="xp-badge" id="xp-badge">0 XP</span>
+            <span class="user-avatar" id="user-avatar">IR</span>
+        </div>
+    </nav>
+
+    <main class="container" id="app">
+        <section id="dashboard" class="page active"></section>
+        <section id="path" class="page"></section>
+        <section id="curriculum" class="page"></section>
+        <section id="challenges" class="page"></section>
+        <section id="cheatsheet" class="page"></section>
+        <section id="projects" class="page"></section>
+        <section id="admin" class="page"></section>
+    </main>
+
+    <div class="toast-container" id="toast-container"></div>
+    <div class="confetti-container" id="confetti-container"></div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>

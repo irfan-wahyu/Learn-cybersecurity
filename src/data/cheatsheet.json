@@ -1,0 +1,380 @@
+{
+  "categories": ["All", "Linux", "Networking", "Nmap", "Crypto", "Web", "Tools"],
+  "cheats": [
+    {
+      "command": "ls -la",
+      "description": "List all files with details and hidden files",
+      "category": "Linux"
+    },
+    {
+      "command": "cd /path/to/dir",
+      "description": "Navigate to a directory",
+      "category": "Linux"
+    },
+    {
+      "command": "pwd",
+      "description": "Print current working directory",
+      "category": "Linux"
+    },
+    {
+      "command": "chmod 755 file",
+      "description": "Set read/write/execute for owner, read/execute for others",
+      "category": "Linux"
+    },
+    {
+      "command": "chmod +x script.sh",
+      "description": "Make a script executable",
+      "category": "Linux"
+    },
+    {
+      "command": "chown user:group file",
+      "description": "Change file owner and group",
+      "category": "Linux"
+    },
+    {
+      "command": "cp -r dir1 dir2",
+      "description": "Copy directory recursively",
+      "category": "Linux"
+    },
+    {
+      "command": "mv old.txt new.txt",
+      "description": "Rename a file",
+      "category": "Linux"
+    },
+    {
+      "command": "rm -rf directory",
+      "description": "Force remove directory and contents",
+      "category": "Linux"
+    },
+    {
+      "command": "grep -r 'pattern' /path",
+      "description": "Recursive search for pattern in files",
+      "category": "Linux"
+    },
+    {
+      "command": "grep -i 'error' log.txt",
+      "description": "Case-insensitive search in file",
+      "category": "Linux"
+    },
+    {
+      "command": "cat file | head -20",
+      "description": "Show first 20 lines of file",
+      "category": "Linux"
+    },
+    {
+      "command": "cat file | tail -20",
+      "description": "Show last 20 lines of file",
+      "category": "Linux"
+    },
+    {
+      "command": "find / -name '*.txt' 2>/dev/null",
+      "description": "Find all .txt files on system",
+      "category": "Linux"
+    },
+    {
+      "command": "ps aux | grep process",
+      "description": "Find specific process",
+      "category": "Linux"
+    },
+    {
+      "command": "kill -9 PID",
+      "description": "Force kill a process",
+      "category": "Linux"
+    },
+    {
+      "command": "top",
+      "description": "Real-time process monitor",
+      "category": "Linux"
+    },
+    {
+      "command": "df -h",
+      "description": "Show disk usage in human readable format",
+      "category": "Linux"
+    },
+    {
+      "command": "du -sh /path",
+      "description": "Show directory size",
+      "category": "Linux"
+    },
+    {
+      "command": "chmod 600 file",
+      "description": "Read/write for owner only (secure)",
+      "category": "Linux"
+    },
+    {
+      "command": "sudo apt update && sudo apt upgrade -y",
+      "description": "Update and upgrade all packages",
+      "category": "Linux"
+    },
+    {
+      "command": "sudo apt install package-name",
+      "description": "Install a package",
+      "category": "Linux"
+    },
+    {
+      "command": "ifconfig",
+      "description": "Show network interfaces (classic)",
+      "category": "Networking"
+    },
+    {
+      "command": "ip a",
+      "description": "Show all IP addresses (modern)",
+      "category": "Networking"
+    },
+    {
+      "command": "ip addr show eth0",
+      "description": "Show specific interface IP",
+      "category": "Networking"
+    },
+    {
+      "command": "ping -c 4 target.com",
+      "description": "Send 4 ICMP echo requests",
+      "category": "Networking"
+    },
+    {
+      "command": "traceroute target.com",
+      "description": "Trace route to destination",
+      "category": "Networking"
+    },
+    {
+      "command": "nslookup domain.com",
+      "description": "Query DNS records",
+      "category": "Networking"
+    },
+    {
+      "command": "dig domain.com",
+      "description": "Detailed DNS query",
+      "category": "Networking"
+    },
+    {
+      "command": "dig @8.8.8.8 domain.com",
+      "description": "Query specific DNS server",
+      "category": "Networking"
+    },
+    {
+      "command": "host domain.com",
+      "description": "Simple DNS lookup",
+      "category": "Networking"
+    },
+    {
+      "command": "netstat -tuln",
+      "description": "Show listening ports",
+      "category": "Networking"
+    },
+    {
+      "command": "ss -tuln",
+      "description": "Show listening ports (modern)",
+      "category": "Networking"
+    },
+    {
+      "command": "lsof -i :22",
+      "description": "Show what's using port 22",
+      "category": "Networking"
+    },
+    {
+      "command": "curl ifconfig.me",
+      "description": "Show public IP address",
+      "category": "Networking"
+    },
+    {
+      "command": "wget http://url/file",
+      "description": "Download file from URL",
+      "category": "Networking"
+    },
+    {
+      "command": "ssh user@host",
+      "description": "SSH connect to remote host",
+      "category": "Networking"
+    },
+    {
+      "command": "ssh -i key.pem user@host",
+      "description": "SSH with specific key",
+      "category": "Networking"
+    },
+    {
+      "command": "scp file user@host:/path",
+      "description": "Copy file to remote host via SSH",
+      "category": "Networking"
+    },
+    {
+      "command": "nmap target.com",
+      "description": "Basic port scan",
+      "category": "Nmap"
+    },
+    {
+      "command": "nmap -sV target.com",
+      "description": "Detect service versions",
+      "category": "Nmap"
+    },
+    {
+      "command": "nmap -sC target.com",
+      "description": "Run default scripts",
+      "category": "Nmap"
+    },
+    {
+      "command": "nmap -O target.com",
+      "description": "OS detection",
+      "category": "Nmap"
+    },
+    {
+      "command": "nmap -A target.com",
+      "description": "Aggressive scan (OS + version + scripts)",
+      "category": "Nmap"
+    },
+    {
+      "command": "nmap -p- target.com",
+      "description": "Scan all 65535 ports",
+      "category": "Nmap"
+    },
+    {
+      "command": "nmap -p 22,80,443 target.com",
+      "description": "Scan specific ports",
+      "category": "Nmap"
+    },
+    {
+      "command": "nmap -sS target.com",
+      "description": "SYN stealth scan",
+      "category": "Nmap"
+    },
+    {
+      "command": "nmap -sU target.com",
+      "description": "UDP scan",
+      "category": "Nmap"
+    },
+    {
+      "command": "nmap --script vuln target.com",
+      "description": "Vulnerability scan with NSE",
+      "category": "Nmap"
+    },
+    {
+      "command": "nmap -oN output.txt target.com",
+      "description": "Save output to file",
+      "category": "Nmap"
+    },
+    {
+      "command": "echo -n 'text' | md5sum",
+      "description": "Generate MD5 hash",
+      "category": "Crypto"
+    },
+    {
+      "command": "echo -n 'text' | sha256sum",
+      "description": "Generate SHA256 hash",
+      "category": "Crypto"
+    },
+    {
+      "command": "hashid hash_value",
+      "description": "Identify hash type",
+      "category": "Crypto"
+    },
+    {
+      "command": "echo 'string' | base64 -d",
+      "description": "Decode Base64 string",
+      "category": "Crypto"
+    },
+    {
+      "command": "echo -n 'text' | base64",
+      "description": "Encode to Base64",
+      "category": "Crypto"
+    },
+    {
+      "command": "openssl enc -aes-256-cbc -in file -out file.enc",
+      "description": "Encrypt file with AES",
+      "category": "Crypto"
+    },
+    {
+      "command": "openssl enc -d -aes-256-cbc -in file.enc -out file",
+      "description": "Decrypt file with AES",
+      "category": "Crypto"
+    },
+    {
+      "command": "john --wordlist=rockyou.txt hash.txt",
+      "description": "Crack hashes with wordlist",
+      "category": "Crypto"
+    },
+    {
+      "command": "hashcat -m 0 hash.txt rockyou.txt",
+      "description": "Crack MD5 hashes with GPU",
+      "category": "Crypto"
+    },
+    {
+      "command": "sqlmap -u 'http://target/?id=1' --dbs",
+      "description": "SQL injection database enumeration",
+      "category": "Web"
+    },
+    {
+      "command": "nikto -h target.com",
+      "description": "Web server scanner",
+      "category": "Web"
+    },
+    {
+      "command": "dirb http://target.com",
+      "description": "Directory brute force",
+      "category": "Web"
+    },
+    {
+      "command": "gobuster dir -u http://target -w wordlist.txt",
+      "description": "Directory enumeration",
+      "category": "Web"
+    },
+    {
+      "command": "hydra -l admin -P rockyou.txt target ssh",
+      "description": "SSH brute force",
+      "category": "Tools"
+    },
+    {
+      "command": "hydra -l admin -P rockyou.txt target ftp",
+      "description": "FTP brute force",
+      "category": "Tools"
+    },
+    {
+      "command": "theHarvester -d target.com -b google",
+      "description": "Gather emails and subdomains",
+      "category": "Tools"
+    },
+    {
+      "command": "whois target.com",
+      "description": "Domain registration information",
+      "category": "Tools"
+    },
+    {
+      "command": "recon-ng",
+      "description": "OSINT reconnaissance framework",
+      "category": "Tools"
+    },
+    {
+      "command": "msfconsole",
+      "description": "Launch Metasploit Framework",
+      "category": "Tools"
+    },
+    {
+      "command": "aircrack-ng capture.cap",
+      "description": "Crack WiFi handshake",
+      "category": "Tools"
+    },
+    {
+      "command": "tcpdump -i eth0 -w capture.pcap",
+      "description": "Capture network packets",
+      "category": "Tools"
+    },
+    {
+      "command": "tshark -r capture.pcap",
+      "description": "Analyze packet capture file",
+      "category": "Tools"
+    },
+    {
+      "command": "steghide extract -sf image.jpg",
+      "description": "Extract hidden data from image",
+      "category": "Tools"
+    },
+    {
+      "command": "binwalk firmware.bin",
+      "description": "Analyze firmware files",
+      "category": "Tools"
+    },
+    {
+      "command": "strings binary | grep flag",
+      "description": "Search for strings in binary",
+      "category": "Tools"
+    }
+  ]
+}
