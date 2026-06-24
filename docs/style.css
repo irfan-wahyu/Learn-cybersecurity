@@ -712,6 +712,22 @@ body {
     line-height: 1.8;
 }
 
+/* MODULE VIDEO */
+.module-video {
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--bg);
+}
+
+.module-video iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16/9;
+    height: auto;
+}
+
 .btn {
     background: transparent;
     border: 1px solid var(--gray-600);

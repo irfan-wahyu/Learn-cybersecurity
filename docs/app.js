@@ -237,7 +237,11 @@ function renderMods(phase){
     s+='<div class="module-info"><div class="module-number">Module '+m.number+'</div><div class="module-title">'+m.title+'</div></div>';
     s+='<span class="module-xp">'+m.xp+' XP</span></div>';
     s+='<div class="module-detail" id="detail-'+m.id+'"><div class="module-content">';
-    s+='<h3>'+m.title+'</h3><p>'+m.content.intro+'</p>';
+    s+='<h3>'+m.title+'</h3>';
+    if(m.videoId){
+      s+='<div class="module-video"><iframe width="100%" height="177" src="https://www.youtube.com/embed/'+m.videoId+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>';
+    }
+    s+='<p>'+m.content.intro+'</p>';
     s+='<h4 class="mt-2 mb-1">Key Concepts</h4><ul>';
     for(var j=0;j<m.content.concepts.length;j++)s+='<li>'+m.content.concepts[j]+'</li>';
     s+='</ul>';
