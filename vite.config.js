@@ -4,7 +4,9 @@ export default defineConfig({
   base: '/Learn-cybersecurity/',
   build: {
     outDir: 'docs',
-    assetsDir: 'assets'
+    assetsDir: 'assets',
+    cssCodeSplit: false,
+    modulePreload: false
   },
   server: {
     port: 3000,
