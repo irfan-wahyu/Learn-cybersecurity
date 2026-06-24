@@ -304,9 +304,9 @@ function renderPath(el){
   for(var i=0;i<ph.length;i++){
     var p=ph[i];
     var pp=getPhaseProg(p);
-    var locked=p.status==='locked'&&i>0&&!isPhaseDone(ph[i-1]);
-    var sc=pp===100?'status-completed':p.status==='active'?'status-active':'status-locked';
-    var st2=pp===100?'DONE':p.status==='active'?'ACTIVE':'LOCKED';
+    var locked=i>0&&!isPhaseDone(ph[i-1]);
+    var sc=pp===100?'status-completed':!locked?'status-active':'status-locked';
+    var st2=pp===100?'DONE':!locked?'ACTIVE':'LOCKED';
     s+='<div class="path-node '+(locked?'locked':'')+' '+(pp===100?'completed':'')+'" data-pidx="'+i+'">';
     s+='<div class="path-node-header"><h3 class="path-node-title">'+esc(p.icon)+' '+esc(p.title)+'</h3>';
     s+='<span class="path-node-status '+sc+'">'+st2+'</span></div>';
@@ -322,26 +322,47 @@ function renderPath(el){
   el.innerHTML=s;
   var nodes=el.querySelectorAll('.path-node');
   for(var i=0;i<nodes.length;i++){
-    (function(node){
+    (function(node,idx){
       node.onclick=function(){
         if(node.classList.contains('locked'))return;
-        renderPage('curriculum');
+        navigateToPhase(idx);
       };
-    })(nodes[i]);
+    })(nodes[i],i);
   }
+}
+
+function navigateToPhase(phaseIdx){
+  renderPage('curriculum');
+  setTimeout(function(){
+    var tabs=document.querySelectorAll('.tab-btn:not(.locked-tab)');
+    for(var i=0;i<tabs.length;i++){
+      if(parseInt(tabs[i].getAttribute('data-tidx'))===phaseIdx){
+        tabs[i].click();
+        break;
+      }
+    }
+  },100);
 }
 
 function renderCurriculum(el){
   var ph=st.cur?st.cur.phases:[];
   if(!ph.length){el.innerHTML='<h1 class="section-title">Curriculum</h1><p class="text-dim">Loading data...</p>';return;}
+  var activeIdx=0;
+  for(var i=0;i<ph.length;i++){
+    if(i===0){activeIdx=0;continue;}
+    if(!isPhaseDone(ph[i-1])){activeIdx=i;break;}
+    activeIdx=i;
+  }
   var s='<h1 class="section-title">Curriculum</h1><div class="curriculum-tabs">';
   for(var i=0;i<ph.length;i++){
-    s+='<button class="tab-btn '+(i===0?'active':'')+'" data-tidx="'+i+'">'+esc(ph[i].icon)+' '+esc(ph[i].title)+'</button>';
+    var phaseLocked=i>0&&!isPhaseDone(ph[i-1]);
+    var isActive=i===activeIdx;
+    s+='<button class="tab-btn '+(isActive?'active':'')+' '+(phaseLocked?'locked-tab':'')+'" data-tidx="'+i+'" '+(phaseLocked?'disabled title="Complete previous phase first"':'')+'>'+(phaseLocked?'🔒 ':'')+esc(ph[i].icon)+' '+esc(ph[i].title)+'</button>';
   }
-  s+='</div><div id="mod-list">'+renderMods(ph[0])+'</div>';
+  s+='</div><div id="mod-list">'+renderMods(ph[activeIdx])+'</div>';
   el.innerHTML=s;
 
-  var tabs=el.querySelectorAll('.tab-btn');
+  var tabs=el.querySelectorAll('.tab-btn:not(.locked-tab)');
   for(var i=0;i<tabs.length;i++){
     (function(tab){
       tab.onclick=function(){
