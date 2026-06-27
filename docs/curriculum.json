@@ -903,12 +903,49 @@
       ]
     },
     {
-      "id": "offensive",
-      "title": "OFFENSIVE SECURITY",
-      "icon": "⚔️",
-      "description": "Penetration testing and ethical hacking",
+      "id": "red_team",
+      "title": "RED TEAM",
+      "icon": "🔴",
+      "description": "Master offensive security tools and techniques for penetration testing",
       "status": "locked",
       "modules": [
+        {
+          "id": "mod-red-1",
+          "number": 1,
+          "title": "Fundamentals of Red Team",
+          "xp": 100,
+          "description": "Pengenalan konsep Red Team, mindset attacker, legal & etika dalam pengujian keamanan.",
+          "content": {
+            "intro": "Red Team adalah simulasi serangan realistis yang dilakukan oleh tim keamanan internal atau kontraktor eksternal untuk menguji pertahanan organisasi. Berbeda dari penetration testing konvensional, Red Team beroperasi dengan otorisasi minimum dan berusaha meniru perilaku attacker sungguhan. Modul ini membahas fondasi penting yang harus dipahami sebelum mempelajari teknik teknis, termasuk aspek legal, etika, dan cara berpikir seorang attacker.",
+            "concepts": [
+              "Red Team vs Blue Team vs Purple Team - Red Team menyerang, Blue Team bertahan, Purple Team kolaborasi untuk perbaikan keamanan",
+              "Mindset Attacker - Berpikir seperti penjahat: mencari celah terlemah, menghindari deteksi, dan memaksimalkan dampak serangan",
+              "Rules of Engagement (RoE) - Dokumen yang mengatur batasan serangan, target, waktu, dan teknik yang diizinkan",
+              "Legal & Compliance - Pengujian keamanan harus memiliki izin tertulis (authorization) untuk menghindari konsekuensi hukum",
+              "Kill Chain & MITRE ATT&CK - Framework yang menggambarkan tahapan serangan dari reconnaissance hingga exfiltration"
+            ],
+            "commands": [
+              {
+                "cmd": "cat /etc/os-release",
+                "desc": "Cek sistem operasi yang digunakan"
+              },
+              {
+                "cmd": "msfconsole",
+                "desc": "Memulai Metasploit Framework console"
+              },
+              {
+                "cmd": "echo 'Red Team mindset: Think like an attacker'",
+                "desc": "Pengingat mindset Red Team"
+              }
+            ],
+            "practice": [
+              "Buat Rules of Engagement document untuk simulasi Red Team di lab pribadi",
+              "Pelajari MITRE ATT&CK framework dan identifikasi minimal 10 techniques yang akan dipelajari di modul berikutnya",
+              "Analisis studi kasus Red Team engagement dari sumber publik dan identifikasi tahapan serangan yang digunakan"
+            ]
+          },
+          "videoId": "RMm37a_TETs"
+        },
         {
           "id": "mod-18",
           "number": 18,
@@ -1175,560 +1212,6 @@
             ]
           },
           "videoId": "o-tL9ULF0KI"
-        }
-      ]
-    },
-    {
-      "id": "defensive",
-      "title": "DEFENSIVE SECURITY",
-      "icon": "🛡️",
-      "description": "SOC, Blue Team, and incident response",
-      "status": "locked",
-      "modules": [
-        {
-          "id": "mod-23",
-          "number": 23,
-          "title": "Log Analysis",
-          "xp": 200,
-          "description": "Analyze system and security logs",
-          "content": {
-            "intro": "Logs are the eyes and ears of security monitoring. Learning to read them is essential for detection.",
-            "concepts": [
-              "Syslog and journalctl",
-              "Apache/Nginx access and error logs",
-              "Authentication logs (/var/log/auth.log)",
-              "SIEM concepts and log aggregation",
-              "Log correlation and analysis"
-            ],
-            "commands": [
-              {
-                "cmd": "journalctl -f",
-                "desc": "Follow system logs in real-time"
-              },
-              {
-                "cmd": "cat /var/log/auth.log | grep 'Failed'",
-                "desc": "Find failed logins"
-              },
-              {
-                "cmd": "tail -f /var/log/apache2/access.log",
-                "desc": "Watch web access log"
-              },
-              {
-                "cmd": "grep 'error' /var/log/syslog",
-                "desc": "Find errors in syslog"
-              },
-              {
-                "cmd": "last -i",
-                "desc": "Show login history"
-              },
-              {
-                "cmd": "lastb",
-                "desc": "Show failed login attempts"
-              }
-            ],
-            "practice": [
-              "Find failed SSH login attempts in auth.log",
-              "Analyze web server access logs for patterns",
-              "Create a simple log monitoring script",
-              "Identify suspicious activity in logs",
-              "Use awk to parse log files"
-            ]
-          },
-          "videoId": "kY-TT538jp4"
-        },
-        {
-          "id": "mod-24",
-          "number": 24,
-          "title": "Incident Response",
-          "xp": 200,
-          "description": "How to respond to security incidents",
-          "content": {
-            "intro": "Incident response is a structured approach to handling security breaches. Preparation is key.",
-            "concepts": [
-              "NIST Incident Response Lifecycle",
-              "Preparation phase",
-              "Detection and Analysis",
-              "Containment, Eradication, Recovery",
-              "Post-incident activity and lessons learned"
-            ],
-            "commands": [
-              {
-                "cmd": " volatility -f memory.dump imageinfo",
-                "desc": "Memory forensics"
-              },
-              {
-                "cmd": " autopsy",
-                "desc": "Disk forensics GUI"
-              },
-              {
-                "cmd": " volatility -f memory.dump pslist",
-                "desc": "List processes from memory"
-              },
-              {
-                "cmd": " strings suspicious.exe",
-                "desc": "Extract strings from binary"
-              }
-            ],
-            "practice": [
-              "Create an incident response checklist",
-              "Analyze a compromised system scenario",
-              "Document findings and recommendations",
-              "Practice chain of custody for evidence",
-              "Create an incident response plan for a company"
-            ]
-          },
-          "videoId": "H-e0PSnSjC8"
-        },
-        {
-          "id": "mod-25",
-          "number": 25,
-          "title": "SIEM & Monitoring",
-          "xp": 250,
-          "description": "Security Information and Event Management",
-          "content": {
-            "intro": "SIEM tools collect and analyze security data in real-time. Essential for SOC analysts.",
-            "concepts": [
-              "SIEM architecture and components",
-              "Splunk, ELK Stack, Wazuh",
-              "Alert rules and correlation",
-              "Dashboard creation",
-              "Threat hunting basics"
-            ],
-            "commands": [
-              {
-                "cmd": "splunk search 'index=main'",
-                "desc": "Search Splunk logs"
-              },
-              {
-                "cmd": "curl -XGET 'localhost:9200/_search'",
-                "desc": "Query Elasticsearch"
-              },
-              {
-                "cmd": "ossec-control start",
-                "desc": "Start OSSEC/Wazuh"
-              },
-              {
-                "cmd": "journalctl -u wazuh-agent",
-                "desc": "Check Wazuh agent"
-              }
-            ],
-            "practice": [
-              "Set up a basic SIEM in a lab environment",
-              "Create alert rules for suspicious activity",
-              "Build a security dashboard",
-              "Perform threat hunting with queries",
-              "Analyze false positives and tune alerts"
-            ]
-          },
-          "videoId": "Fqs23bJzN0E"
-        },
-        {
-          "id": "mod-26",
-          "number": 26,
-          "title": "Firewalls & IDS/IPS",
-          "xp": 250,
-          "description": "Network defense mechanisms",
-          "content": {
-            "intro": "Firewalls and IDS/IPS are the first line of defense. Understanding them helps both attack and defense.",
-            "concepts": [
-              "Packet filtering firewalls",
-              "Stateful inspection",
-              "IDS vs IPS differences",
-              "Snort/Suricata rules",
-              "Network segmentation"
-            ],
-            "commands": [
-              {
-                "cmd": "sudo ufw status",
-                "desc": "Check UFW firewall status"
-              },
-              {
-                "cmd": "sudo ufw enable",
-                "desc": "Enable firewall"
-              },
-              {
-                "cmd": "sudo ufw allow 22/tcp",
-                "desc": "Allow SSH"
-              },
-              {
-                "cmd": "sudo iptables -L",
-                "desc": "List iptables rules"
-              },
-              {
-                "cmd": "sudo snort -A console -q -u snort -c /etc/snort/snort.conf -i eth0",
-                "desc": "Run Snort IDS"
-              }
-            ],
-            "practice": [
-              "Configure UFW to allow only SSH and HTTP",
-              "Write basic Snort rules",
-              "Analyze firewall logs",
-              "Set up a basic IDS in lab environment",
-              "Test rules against known attack patterns"
-            ]
-          },
-          "videoId": "Zgh2nFjv3H0"
-        },
-        {
-          "id": "mod-27",
-          "number": 27,
-          "title": "Malware Analysis",
-          "xp": 300,
-          "description": "Analyze and reverse engineer malware",
-          "content": {
-            "intro": "Malware analysis helps understand threats and develop countermeasures. Essential for advanced defense.",
-            "concepts": [
-              "Static vs Dynamic analysis",
-              "Sandboxing and behavioral analysis",
-              "Reverse engineering basics",
-              "Common malware families",
-              "Anti-analysis techniques"
-            ],
-            "commands": [
-              {
-                "cmd": "file malware.exe",
-                "desc": "Identify file type"
-              },
-              {
-                "cmd": "strings malware.exe",
-                "desc": "Extract readable strings"
-              },
-              {
-                "cmd": "objdump -d malware.exe",
-                "desc": "Disassemble binary"
-              },
-              {
-                "cmd": "strace ./malware",
-                "desc": "Trace system calls"
-              },
-              {
-                "cmd": "yara -r rules/ malware.exe",
-                "desc": "Scan with YARA rules"
-              }
-            ],
-            "practice": [
-              "Analyze a benign executable with static tools",
-              "Extract strings and find indicators",
-              "Use a sandbox for behavioral analysis",
-              "Write basic YARA rules",
-              "Document malware capabilities"
-            ]
-          },
-          "videoId": "jM3wR8qV5gA"
-        }
-      ]
-    },
-    {
-      "id": "web",
-      "title": "WEB SECURITY",
-      "icon": "🕸️",
-      "description": "Web application security testing",
-      "status": "locked",
-      "modules": [
-        {
-          "id": "mod-28",
-          "number": 28,
-          "title": "Burp Suite Basics",
-          "xp": 250,
-          "description": "Web application security testing tool",
-          "content": {
-            "intro": "Burp Suite is the industry standard for web application security testing. Master it to test web apps effectively.",
-            "concepts": [
-              "Proxy setup and configuration",
-              "Repeater for request manipulation",
-              "Intruder for automated attacks",
-              "Scanner for vulnerability detection",
-              "Extensions and custom plugins"
-            ],
-            "commands": [
-              {
-                "cmd": "burpsuite",
-                "desc": "Launch Burp Suite"
-              },
-              {
-                "cmd": "Configure browser proxy to 127.0.0.1:8080",
-                "desc": "Route traffic through Burp"
-              },
-              {
-                "cmd": "Use Repeater to modify requests",
-                "desc": "Manual request testing"
-              },
-              {
-                "cmd": "Configure Intruder positions and payloads",
-                "desc": "Automated attacks"
-              }
-            ],
-            "practice": [
-              "Configure browser to use Burp proxy",
-              "Intercept and modify HTTP requests",
-              "Use Repeater to test input validation",
-              "Perform a basic SQL injection with Intruder",
-              "Analyze a web application's authentication"
-            ]
-          },
-          "videoId": "MGmfLvhhtSY"
-        },
-        {
-          "id": "mod-29",
-          "number": 29,
-          "title": "Web Exploitation Labs",
-          "xp": 300,
-          "description": "Practice on vulnerable web applications",
-          "content": {
-            "intro": "Practice makes perfect. Use vulnerable web apps to hone your web exploitation skills safely.",
-            "concepts": [
-              "DVWA (Damn Vulnerable Web App)",
-              "WebGoat - OWASP teaching app",
-              "HackTheBox web challenges",
-              "Bug bounty programs",
-              "Responsible disclosure"
-            ],
-            "commands": [
-              {
-                "cmd": "docker run --rm -p 80:80 vulnerables/web-dvwa",
-                "desc": "Run DVWA"
-              },
-              {
-                "cmd": "docker run --rm -p 8080:80 webgoat/webgoat",
-                "desc": "Run WebGoat"
-              },
-              {
-                "cmd": "curl -X POST url -d 'username=admin'",
-                "desc": "Test login bypass"
-              },
-              {
-                "cmd": "sqlmap -u 'url?id=1' --level=5 --risk=3",
-                "desc": "Advanced SQLi"
-              }
-            ],
-            "practice": [
-              "Set up and exploit DVWA vulnerabilities",
-              "Complete WebGoat lessons",
-              "Solve HackTheBox web challenges",
-              "Document your findings professionally",
-              "Practice responsible reporting"
-            ]
-          },
-          "videoId": "PzN0ADwHJn8"
-        },
-        {
-          "id": "mod-30",
-          "number": 30,
-          "title": "API Security",
-          "xp": 300,
-          "description": "REST and GraphQL API security testing",
-          "content": {
-            "intro": "APIs are everywhere. Securing them is critical as they're often the backbone of modern applications.",
-            "concepts": [
-              "OWASP API Security Top 10",
-              "Authentication: API keys, JWT, OAuth",
-              "Common API vulnerabilities",
-              "Rate limiting and abuse prevention",
-              "GraphQL-specific attacks"
-            ],
-            "commands": [
-              {
-                "cmd": "curl -H 'Authorization: Bearer token' url",
-                "desc": "Test API with JWT"
-              },
-              {
-                "cmd": "arjun -u url/api",
-                "desc": "Find hidden API endpoints"
-              },
-              {
-                "cmd": "katana -u url",
-                "desc": "API crawling"
-              },
-              {
-                "cmd": "ffuf -w wordlist -u url/api/FUZZ",
-                "desc": "API fuzzing"
-              }
-            ],
-            "practice": [
-              "Test API authentication mechanisms",
-              "Find and exploit IDOR vulnerabilities",
-              "Test for mass assignment",
-              "Implement proper API security controls",
-              "Analyze API documentation for weaknesses"
-            ]
-          },
-          "videoId": "b6fYJq1KzYQ"
-        }
-      ]
-    },
-    {
-      "id": "ai-security",
-      "title": "AI SECURITY",
-      "icon": "🤖",
-      "description": "AI/ML security and adversarial attacks",
-      "status": "locked",
-      "modules": [
-        {
-          "id": "mod-31",
-          "number": 31,
-          "title": "AI Security Fundamentals",
-          "xp": 200,
-          "description": "Security implications of AI systems",
-          "content": {
-            "intro": "As AI becomes prevalent, securing AI systems and using AI for security becomes critical.",
-            "concepts": [
-              "Adversarial attacks on ML models",
-              "Data poisoning attacks",
-              "Model theft and extraction",
-              "AI-powered cyber attacks",
-              "Ethical considerations"
-            ],
-            "commands": [
-              {
-                "cmd": "python3 -m pip install adversarial-robustness-toolbox",
-                "desc": "Install ART library"
-              },
-              {
-                "cmd": "python3 -c 'import art'",
-                "desc": "Verify installation"
-              },
-              {
-                "cmd": "Capture AI model with",
-                "desc": "model extraction tools"
-              }
-            ],
-            "practice": [
-              "Understand adversarial examples conceptually",
-              "Analyze AI model vulnerabilities",
-              "Explore defensive techniques",
-              "Research recent AI security incidents",
-              "Discuss ethical implications of AI in security"
-            ]
-          },
-          "videoId": "kY-TT538jp4"
-        },
-        {
-          "id": "mod-32",
-          "number": 32,
-          "title": "AI-Powered Security Tools",
-          "xp": 250,
-          "description": "Using AI for cybersecurity defense and offense",
-          "content": {
-            "intro": "AI is revolutionizing cybersecurity - both for attackers and defenders. Learn to leverage AI tools.",
-            "concepts": [
-              "ML-based threat detection",
-              "User and Entity Behavior Analytics (UEBA)",
-              "Automated vulnerability scanning",
-              "AI for malware detection",
-              "Prompt injection and LLM attacks"
-            ],
-            "commands": [
-              {
-                "cmd": "python3 anomaly_detection.py",
-                "desc": "Run anomaly detection"
-              },
-              {
-                "cmd": "use ml-based scanner",
-                "desc": "AI vulnerability scanner"
-              },
-              {
-                "cmd": "analyze with UEBA tools",
-                "desc": "Behavior analytics"
-              }
-            ],
-            "practice": [
-              "Set up a basic ML-based IDS",
-              "Analyze network traffic with ML models",
-              "Test AI-powered security tools",
-              "Build a simple threat detection model",
-              "Evaluate AI security tool effectiveness"
-            ]
-          },
-          "videoId": "Fqs23bJzN0E"
-        },
-        {
-          "id": "mod-33",
-          "number": 33,
-          "title": "Career & Certification Path",
-          "xp": 300,
-          "description": "Cybersecurity career guidance and certifications",
-          "content": {
-            "intro": "This module helps you plan your cybersecurity career and prepare for industry certifications.",
-            "concepts": [
-              "Cybersecurity career paths",
-              "Certifications: CEH, OSCP, CompTIA Security+",
-              "Building a home lab",
-              "Bug bounty hunting",
-              "Continuous learning resources"
-            ],
-            "commands": [
-              {
-                "cmd": "Build home lab with VirtualBox/VMware",
-                "desc": "Set up practice environment"
-              },
-              {
-                "cmd": "Join cybersecurity communities",
-                "desc": "Networking and learning"
-              },
-              {
-                "cmd": "Create a cybersecurity blog",
-                "desc": "Document your journey"
-              },
-              {
-                "cmd": "Contribute to open source security tools",
-                "desc": "Build your portfolio"
-              }
-            ],
-            "practice": [
-              "Create a cybersecurity career plan",
-              "Set up a complete home lab",
-              "Start a bug bounty hunting journey",
-              "Build a professional portfolio",
-              "Join cybersecurity communities and competitions"
-            ]
-          },
-          "videoId": "G7f9Q5q7z9I"
-        }
-      ]
-    },
-    {
-      "id": "red_team",
-      "title": "RED TEAM",
-      "icon": "🔴",
-      "description": "Master offensive security tools and techniques for penetration testing",
-      "status": "locked",
-      "modules": [
-        {
-          "id": "mod-red-1",
-          "number": 1,
-          "title": "Fundamentals of Red Team",
-          "xp": 100,
-          "description": "Pengenalan konsep Red Team, mindset attacker, legal & etika dalam pengujian keamanan.",
-          "content": {
-            "intro": "Red Team adalah simulasi serangan realistis yang dilakukan oleh tim keamanan internal atau kontraktor eksternal untuk menguji pertahanan organisasi. Berbeda dari penetration testing konvensional, Red Team beroperasi dengan otorisasi minimum dan berusaha meniru perilaku attacker sungguhan. Modul ini membahas fondasi penting yang harus dipahami sebelum mempelajari teknik teknis, termasuk aspek legal, etika, dan cara berpikir seorang attacker.",
-            "concepts": [
-              "Red Team vs Blue Team vs Purple Team - Red Team menyerang, Blue Team bertahan, Purple Team kolaborasi untuk perbaikan keamanan",
-              "Mindset Attacker - Berpikir seperti penjahat: mencari celah terlemah, menghindari deteksi, dan memaksimalkan dampak serangan",
-              "Rules of Engagement (RoE) - Dokumen yang mengatur batasan serangan, target, waktu, dan teknik yang diizinkan",
-              "Legal & Compliance - Pengujian keamanan harus memiliki izin tertulis (authorization) untuk menghindari konsekuensi hukum",
-              "Kill Chain & MITRE ATT&CK - Framework yang menggambarkan tahapan serangan dari reconnaissance hingga exfiltration"
-            ],
-            "commands": [
-              {
-                "cmd": "cat /etc/os-release",
-                "desc": "Cek sistem operasi yang digunakan"
-              },
-              {
-                "cmd": "msfconsole",
-                "desc": "Memulai Metasploit Framework console"
-              },
-              {
-                "cmd": "echo 'Red Team mindset: Think like an attacker'",
-                "desc": "Pengingat mindset Red Team"
-              }
-            ],
-            "practice": [
-              "Buat Rules of Engagement document untuk simulasi Red Team di lab pribadi",
-              "Pelajari MITRE ATT&CK framework dan identifikasi minimal 10 techniques yang akan dipelajari di modul berikutnya",
-              "Analisis studi kasus Red Team engagement dari sumber publik dan identifikasi tahapan serangan yang digunakan"
-            ]
-          },
-          "videoId": "RMm37a_TETs"
         },
         {
           "id": "mod-red-2",
@@ -2724,6 +2207,237 @@
           "videoId": "IRSQEO0koYY"
         },
         {
+          "id": "mod-23",
+          "number": 23,
+          "title": "Log Analysis",
+          "xp": 200,
+          "description": "Analyze system and security logs",
+          "content": {
+            "intro": "Logs are the eyes and ears of security monitoring. Learning to read them is essential for detection.",
+            "concepts": [
+              "Syslog and journalctl",
+              "Apache/Nginx access and error logs",
+              "Authentication logs (/var/log/auth.log)",
+              "SIEM concepts and log aggregation",
+              "Log correlation and analysis"
+            ],
+            "commands": [
+              {
+                "cmd": "journalctl -f",
+                "desc": "Follow system logs in real-time"
+              },
+              {
+                "cmd": "cat /var/log/auth.log | grep 'Failed'",
+                "desc": "Find failed logins"
+              },
+              {
+                "cmd": "tail -f /var/log/apache2/access.log",
+                "desc": "Watch web access log"
+              },
+              {
+                "cmd": "grep 'error' /var/log/syslog",
+                "desc": "Find errors in syslog"
+              },
+              {
+                "cmd": "last -i",
+                "desc": "Show login history"
+              },
+              {
+                "cmd": "lastb",
+                "desc": "Show failed login attempts"
+              }
+            ],
+            "practice": [
+              "Find failed SSH login attempts in auth.log",
+              "Analyze web server access logs for patterns",
+              "Create a simple log monitoring script",
+              "Identify suspicious activity in logs",
+              "Use awk to parse log files"
+            ]
+          },
+          "videoId": "kY-TT538jp4"
+        },
+        {
+          "id": "mod-24",
+          "number": 24,
+          "title": "Incident Response",
+          "xp": 200,
+          "description": "How to respond to security incidents",
+          "content": {
+            "intro": "Incident response is a structured approach to handling security breaches. Preparation is key.",
+            "concepts": [
+              "NIST Incident Response Lifecycle",
+              "Preparation phase",
+              "Detection and Analysis",
+              "Containment, Eradication, Recovery",
+              "Post-incident activity and lessons learned"
+            ],
+            "commands": [
+              {
+                "cmd": " volatility -f memory.dump imageinfo",
+                "desc": "Memory forensics"
+              },
+              {
+                "cmd": " autopsy",
+                "desc": "Disk forensics GUI"
+              },
+              {
+                "cmd": " volatility -f memory.dump pslist",
+                "desc": "List processes from memory"
+              },
+              {
+                "cmd": " strings suspicious.exe",
+                "desc": "Extract strings from binary"
+              }
+            ],
+            "practice": [
+              "Create an incident response checklist",
+              "Analyze a compromised system scenario",
+              "Document findings and recommendations",
+              "Practice chain of custody for evidence",
+              "Create an incident response plan for a company"
+            ]
+          },
+          "videoId": "H-e0PSnSjC8"
+        },
+        {
+          "id": "mod-25",
+          "number": 25,
+          "title": "SIEM & Monitoring",
+          "xp": 250,
+          "description": "Security Information and Event Management",
+          "content": {
+            "intro": "SIEM tools collect and analyze security data in real-time. Essential for SOC analysts.",
+            "concepts": [
+              "SIEM architecture and components",
+              "Splunk, ELK Stack, Wazuh",
+              "Alert rules and correlation",
+              "Dashboard creation",
+              "Threat hunting basics"
+            ],
+            "commands": [
+              {
+                "cmd": "splunk search 'index=main'",
+                "desc": "Search Splunk logs"
+              },
+              {
+                "cmd": "curl -XGET 'localhost:9200/_search'",
+                "desc": "Query Elasticsearch"
+              },
+              {
+                "cmd": "ossec-control start",
+                "desc": "Start OSSEC/Wazuh"
+              },
+              {
+                "cmd": "journalctl -u wazuh-agent",
+                "desc": "Check Wazuh agent"
+              }
+            ],
+            "practice": [
+              "Set up a basic SIEM in a lab environment",
+              "Create alert rules for suspicious activity",
+              "Build a security dashboard",
+              "Perform threat hunting with queries",
+              "Analyze false positives and tune alerts"
+            ]
+          },
+          "videoId": "Fqs23bJzN0E"
+        },
+        {
+          "id": "mod-26",
+          "number": 26,
+          "title": "Firewalls & IDS/IPS",
+          "xp": 250,
+          "description": "Network defense mechanisms",
+          "content": {
+            "intro": "Firewalls and IDS/IPS are the first line of defense. Understanding them helps both attack and defense.",
+            "concepts": [
+              "Packet filtering firewalls",
+              "Stateful inspection",
+              "IDS vs IPS differences",
+              "Snort/Suricata rules",
+              "Network segmentation"
+            ],
+            "commands": [
+              {
+                "cmd": "sudo ufw status",
+                "desc": "Check UFW firewall status"
+              },
+              {
+                "cmd": "sudo ufw enable",
+                "desc": "Enable firewall"
+              },
+              {
+                "cmd": "sudo ufw allow 22/tcp",
+                "desc": "Allow SSH"
+              },
+              {
+                "cmd": "sudo iptables -L",
+                "desc": "List iptables rules"
+              },
+              {
+                "cmd": "sudo snort -A console -q -u snort -c /etc/snort/snort.conf -i eth0",
+                "desc": "Run Snort IDS"
+              }
+            ],
+            "practice": [
+              "Configure UFW to allow only SSH and HTTP",
+              "Write basic Snort rules",
+              "Analyze firewall logs",
+              "Set up a basic IDS in lab environment",
+              "Test rules against known attack patterns"
+            ]
+          },
+          "videoId": "Zgh2nFjv3H0"
+        },
+        {
+          "id": "mod-27",
+          "number": 27,
+          "title": "Malware Analysis",
+          "xp": 300,
+          "description": "Analyze and reverse engineer malware",
+          "content": {
+            "intro": "Malware analysis helps understand threats and develop countermeasures. Essential for advanced defense.",
+            "concepts": [
+              "Static vs Dynamic analysis",
+              "Sandboxing and behavioral analysis",
+              "Reverse engineering basics",
+              "Common malware families",
+              "Anti-analysis techniques"
+            ],
+            "commands": [
+              {
+                "cmd": "file malware.exe",
+                "desc": "Identify file type"
+              },
+              {
+                "cmd": "strings malware.exe",
+                "desc": "Extract readable strings"
+              },
+              {
+                "cmd": "objdump -d malware.exe",
+                "desc": "Disassemble binary"
+              },
+              {
+                "cmd": "strace ./malware",
+                "desc": "Trace system calls"
+              },
+              {
+                "cmd": "yara -r rules/ malware.exe",
+                "desc": "Scan with YARA rules"
+              }
+            ],
+            "practice": [
+              "Analyze a benign executable with static tools",
+              "Extract strings and find indicators",
+              "Use a sandbox for behavioral analysis",
+              "Write basic YARA rules",
+              "Document malware capabilities"
+            ]
+          },
+          "videoId": "jM3wR8qV5gA"
+        },
+        {
           "id": "mod-blue-2",
           "number": 2,
           "title": "Wireshark Basics",
@@ -3459,7 +3173,7 @@
       ]
     },
     {
-      "id": "web_security_new",
+      "id": "web_security",
       "title": "WEB SECURITY",
       "icon": "🌐",
       "description": "Web application security testing and vulnerability assessment",
@@ -3509,6 +3223,135 @@
             ]
           },
           "videoId": "p34y1wm4Ul0"
+        },
+        {
+          "id": "mod-28",
+          "number": 28,
+          "title": "Burp Suite Basics",
+          "xp": 250,
+          "description": "Web application security testing tool",
+          "content": {
+            "intro": "Burp Suite is the industry standard for web application security testing. Master it to test web apps effectively.",
+            "concepts": [
+              "Proxy setup and configuration",
+              "Repeater for request manipulation",
+              "Intruder for automated attacks",
+              "Scanner for vulnerability detection",
+              "Extensions and custom plugins"
+            ],
+            "commands": [
+              {
+                "cmd": "burpsuite",
+                "desc": "Launch Burp Suite"
+              },
+              {
+                "cmd": "Configure browser proxy to 127.0.0.1:8080",
+                "desc": "Route traffic through Burp"
+              },
+              {
+                "cmd": "Use Repeater to modify requests",
+                "desc": "Manual request testing"
+              },
+              {
+                "cmd": "Configure Intruder positions and payloads",
+                "desc": "Automated attacks"
+              }
+            ],
+            "practice": [
+              "Configure browser to use Burp proxy",
+              "Intercept and modify HTTP requests",
+              "Use Repeater to test input validation",
+              "Perform a basic SQL injection with Intruder",
+              "Analyze a web application's authentication"
+            ]
+          },
+          "videoId": "MGmfLvhhtSY"
+        },
+        {
+          "id": "mod-29",
+          "number": 29,
+          "title": "Web Exploitation Labs",
+          "xp": 300,
+          "description": "Practice on vulnerable web applications",
+          "content": {
+            "intro": "Practice makes perfect. Use vulnerable web apps to hone your web exploitation skills safely.",
+            "concepts": [
+              "DVWA (Damn Vulnerable Web App)",
+              "WebGoat - OWASP teaching app",
+              "HackTheBox web challenges",
+              "Bug bounty programs",
+              "Responsible disclosure"
+            ],
+            "commands": [
+              {
+                "cmd": "docker run --rm -p 80:80 vulnerables/web-dvwa",
+                "desc": "Run DVWA"
+              },
+              {
+                "cmd": "docker run --rm -p 8080:80 webgoat/webgoat",
+                "desc": "Run WebGoat"
+              },
+              {
+                "cmd": "curl -X POST url -d 'username=admin'",
+                "desc": "Test login bypass"
+              },
+              {
+                "cmd": "sqlmap -u 'url?id=1' --level=5 --risk=3",
+                "desc": "Advanced SQLi"
+              }
+            ],
+            "practice": [
+              "Set up and exploit DVWA vulnerabilities",
+              "Complete WebGoat lessons",
+              "Solve HackTheBox web challenges",
+              "Document your findings professionally",
+              "Practice responsible reporting"
+            ]
+          },
+          "videoId": "PzN0ADwHJn8"
+        },
+        {
+          "id": "mod-30",
+          "number": 30,
+          "title": "API Security",
+          "xp": 300,
+          "description": "REST and GraphQL API security testing",
+          "content": {
+            "intro": "APIs are everywhere. Securing them is critical as they're often the backbone of modern applications.",
+            "concepts": [
+              "OWASP API Security Top 10",
+              "Authentication: API keys, JWT, OAuth",
+              "Common API vulnerabilities",
+              "Rate limiting and abuse prevention",
+              "GraphQL-specific attacks"
+            ],
+            "commands": [
+              {
+                "cmd": "curl -H 'Authorization: Bearer token' url",
+                "desc": "Test API with JWT"
+              },
+              {
+                "cmd": "arjun -u url/api",
+                "desc": "Find hidden API endpoints"
+              },
+              {
+                "cmd": "katana -u url",
+                "desc": "API crawling"
+              },
+              {
+                "cmd": "ffuf -w wordlist -u url/api/FUZZ",
+                "desc": "API fuzzing"
+              }
+            ],
+            "practice": [
+              "Test API authentication mechanisms",
+              "Find and exploit IDOR vulnerabilities",
+              "Test for mass assignment",
+              "Implement proper API security controls",
+              "Analyze API documentation for weaknesses"
+            ]
+          },
+          "videoId": "b6fYJq1KzYQ"
         },
         {
           "id": "mod-web-2",
@@ -4143,7 +3986,7 @@
       ]
     },
     {
-      "id": "ai_security_new",
+      "id": "ai_security",
       "title": "AI SECURITY",
       "icon": "🤖",
       "description": "AI/ML security, adversarial attacks, and defensive techniques",
@@ -4193,6 +4036,127 @@
             ]
           },
           "videoId": "n-c4GhugN-I"
+        },
+        {
+          "id": "mod-31",
+          "number": 31,
+          "title": "AI Security Fundamentals",
+          "xp": 200,
+          "description": "Security implications of AI systems",
+          "content": {
+            "intro": "As AI becomes prevalent, securing AI systems and using AI for security becomes critical.",
+            "concepts": [
+              "Adversarial attacks on ML models",
+              "Data poisoning attacks",
+              "Model theft and extraction",
+              "AI-powered cyber attacks",
+              "Ethical considerations"
+            ],
+            "commands": [
+              {
+                "cmd": "python3 -m pip install adversarial-robustness-toolbox",
+                "desc": "Install ART library"
+              },
+              {
+                "cmd": "python3 -c 'import art'",
+                "desc": "Verify installation"
+              },
+              {
+                "cmd": "Capture AI model with",
+                "desc": "model extraction tools"
+              }
+            ],
+            "practice": [
+              "Understand adversarial examples conceptually",
+              "Analyze AI model vulnerabilities",
+              "Explore defensive techniques",
+              "Research recent AI security incidents",
+              "Discuss ethical implications of AI in security"
+            ]
+          },
+          "videoId": "kY-TT538jp4"
+        },
+        {
+          "id": "mod-32",
+          "number": 32,
+          "title": "AI-Powered Security Tools",
+          "xp": 250,
+          "description": "Using AI for cybersecurity defense and offense",
+          "content": {
+            "intro": "AI is revolutionizing cybersecurity - both for attackers and defenders. Learn to leverage AI tools.",
+            "concepts": [
+              "ML-based threat detection",
+              "User and Entity Behavior Analytics (UEBA)",
+              "Automated vulnerability scanning",
+              "AI for malware detection",
+              "Prompt injection and LLM attacks"
+            ],
+            "commands": [
+              {
+                "cmd": "python3 anomaly_detection.py",
+                "desc": "Run anomaly detection"
+              },
+              {
+                "cmd": "use ml-based scanner",
+                "desc": "AI vulnerability scanner"
+              },
+              {
+                "cmd": "analyze with UEBA tools",
+                "desc": "Behavior analytics"
+              }
+            ],
+            "practice": [
+              "Set up a basic ML-based IDS",
+              "Analyze network traffic with ML models",
+              "Test AI-powered security tools",
+              "Build a simple threat detection model",
+              "Evaluate AI security tool effectiveness"
+            ]
+          },
+          "videoId": "Fqs23bJzN0E"
+        },
+        {
+          "id": "mod-33",
+          "number": 33,
+          "title": "Career & Certification Path",
+          "xp": 300,
+          "description": "Cybersecurity career guidance and certifications",
+          "content": {
+            "intro": "This module helps you plan your cybersecurity career and prepare for industry certifications.",
+            "concepts": [
+              "Cybersecurity career paths",
+              "Certifications: CEH, OSCP, CompTIA Security+",
+              "Building a home lab",
+              "Bug bounty hunting",
+              "Continuous learning resources"
+            ],
+            "commands": [
+              {
+                "cmd": "Build home lab with VirtualBox/VMware",
+                "desc": "Set up practice environment"
+              },
+              {
+                "cmd": "Join cybersecurity communities",
+                "desc": "Networking and learning"
+              },
+              {
+                "cmd": "Create a cybersecurity blog",
+                "desc": "Document your journey"
+              },
+              {
+                "cmd": "Contribute to open source security tools",
+                "desc": "Build your portfolio"
+              }
+            ],
+            "practice": [
+              "Create a cybersecurity career plan",
+              "Set up a complete home lab",
+              "Start a bug bounty hunting journey",
+              "Build a professional portfolio",
+              "Join cybersecurity communities and competitions"
+            ]
+          },
+          "videoId": "G7f9Q5q7z9I"
         },
         {
           "id": "mod-ai-2",
