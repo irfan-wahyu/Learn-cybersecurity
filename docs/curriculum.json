@@ -50,7 +50,93 @@
               "Create a directory structure school/semester1/maths, school/semester1/science, school/semester1/english in one command using mkdir -p, then use ls -R to verify."
             ]
           },
-          "videoId": "PZ84I6fCa_0"
+          "videoId": "PZ84I6fCa_0",
+          "videos": [
+            {
+              "videoId": "1fR2mqt8s5Y",
+              "title": "Linux Navigation Commands Tutorial (pwd, ls, cd)",
+              "channel": "TechLearner",
+              "lang": "en"
+            },
+            {
+              "videoId": "0FfhjCOaBNs",
+              "title": "Linux Command Line Basics: How to Use pwd, cd, ls, mkdir, rm",
+              "channel": "Skill Foundry",
+              "lang": "en"
+            },
+            {
+              "videoId": "CirwVg_-1Wg",
+              "title": "Linux Basic Commands for Beginners | pwd, cd, ls, ll",
+              "channel": "TechOps Tutorials",
+              "lang": "en"
+            },
+            {
+              "videoId": "k8QRXwFC__Y",
+              "title": "Most Useful Linux Commands for Beginners [01] - Ubuntu 22.04",
+              "channel": "Professor Sadat",
+              "lang": "en"
+            },
+            {
+              "videoId": "u0d3N6HfJ0c",
+              "title": "100 Linux/Unix Basic Commands in 60 Min",
+              "channel": "Engr Abhishek Roshan",
+              "lang": "en"
+            },
+            {
+              "videoId": "jD-sE0ytlfs",
+              "title": "Linux Terminal Basics (Beginner): pwd, ls, cd, mkdir, rm",
+              "channel": "Linux Tutorials",
+              "lang": "en"
+            },
+            {
+              "videoId": "2crrFuIqQMQ",
+              "title": "A Gentle Introduction to the Terminal",
+              "channel": "Skill Foundry",
+              "lang": "en"
+            },
+            {
+              "videoId": "lUGj5FygYGA",
+              "title": "Linux Tutorial for Beginners - Terminal Navigation",
+              "channel": "Bioinformatics Coach",
+              "lang": "en"
+            },
+            {
+              "videoId": "mBMdpMJiCVQ",
+              "title": "Linux Command Line Tutorial for Beginners - Navigation",
+              "channel": "Kou Louise Academy",
+              "lang": "en"
+            },
+            {
+              "videoId": "PZ84I6fCa_0",
+              "title": "Linux Basic Commands - Navigasi Filesystem untuk Pemula",
+              "channel": "Linux Indonesia",
+              "lang": "id"
+            },
+            {
+              "videoId": "26gFIhHM09E",
+              "title": "Beginner's Guide To The Linux Terminal",
+              "channel": "DistroTube",
+              "lang": "en"
+            },
+            {
+              "videoId": "2HyYx3hlAHw",
+              "title": "Linux Command Line for Beginners",
+              "channel": "Keep On Coding",
+              "lang": "en"
+            },
+            {
+              "videoId": "LyXrnAvTbFc",
+              "title": "Tutorial Terminal Linux Bahasa Indonesia",
+              "channel": "ArtAway",
+              "lang": "id"
+            },
+            {
+              "videoId": "ROjZy1WbCIA",
+              "title": "Linux Operating System - Crash Course for Beginners",
+              "channel": "freeCodeCamp.org",
+              "lang": "en"
+            }
+          ]
         },
         {
           "id": "mod-2",
@@ -95,7 +181,81 @@
               "Practice safe file deletion: create a directory temp with files inside, use rm -i to delete files one by one with confirmation, then use rm -r to remove the empty directory."
             ]
           },
-          "videoId": "IGKXLC6ZdAI"
+          "videoId": "IGKXLC6ZdAI",
+          "videos": [
+            {
+              "videoId": "tju06pGeER8",
+              "title": "Linux Basics | File Management Commands Explained (touch, cat, cp, mv, rm)",
+              "channel": "TechLearner",
+              "lang": "en"
+            },
+            {
+              "videoId": "D5nOA77MtTQ",
+              "title": "Master Linux File Commands | cp, mv, rm, cat (Beginner Guide)",
+              "channel": "Linux Mastery",
+              "lang": "en"
+            },
+            {
+              "videoId": "C4YcVxGltpI",
+              "title": "Linux Commands Tutorial | touch, mv, echo, cat, rm",
+              "channel": "CodeLucky",
+              "lang": "en"
+            },
+            {
+              "videoId": "aDqDsL7XM4Q",
+              "title": "Linux Commands for Beginners | ls, cat, rm, cd, touch, mv, cp",
+              "channel": "TechOps Tutorials",
+              "lang": "en"
+            },
+            {
+              "videoId": "Fc4h5Xmbirg",
+              "title": "Linux File Operations Mastery: mkdir, touch, cp, mv, rm",
+              "channel": "Linux Mastery",
+              "lang": "en"
+            },
+            {
+              "videoId": "IGKXLC6ZdAI",
+              "title": "Linux File Commands - cp, mv, rm, cat untuk Pemula",
+              "channel": "IndoLinux",
+              "lang": "id"
+            },
+            {
+              "videoId": "gd7BXuUQ91w",
+              "title": "60 Linux Commands you NEED to know",
+              "channel": "Keep On Coding",
+              "lang": "en"
+            },
+            {
+              "videoId": "mBMdpMJiCVQ",
+              "title": "Linux Command Line Tutorial - mv, cp, rm Commands",
+              "channel": "Kou Louise Academy",
+              "lang": "en"
+            },
+            {
+              "videoId": "ROjZy1WbCIA",
+              "title": "Linux Operating System - Crash Course for Beginners",
+              "channel": "freeCodeCamp.org",
+              "lang": "en"
+            },
+            {
+              "videoId": "j3fOfBwom5k",
+              "title": "The apt Package Manager",
+              "channel": "Learn Linux TV",
+              "lang": "en"
+            },
+            {
+              "videoId": "LyXrnAvTbFc",
+              "title": "Tutorial Terminal Linux Bahasa Indonesia",
+              "channel": "ArtAway",
+              "lang": "id"
+            },
+            {
+              "videoId": "26gFIhHM09E",
+              "title": "Beginner's Guide To The Linux Terminal",
+              "channel": "DistroTube",
+              "lang": "en"
+            }
+          ]
         },
         {
           "id": "mod-3",
@@ -140,7 +300,69 @@
               "Find SUID binaries on your system using find / -perm -4000 2>/dev/null. Examine /usr/bin/passwd permissions with ls -la and explain why it needs SUID."
             ]
           },
-          "videoId": "twnDb1Xs68I"
+          "videoId": "twnDb1Xs68I",
+          "videos": [
+            {
+              "videoId": "Z3_4RmYTO7s",
+              "title": "Linux File Permissions Explained | chmod, chown, umask, SUID",
+              "channel": "Linux Mastery",
+              "lang": "en"
+            },
+            {
+              "videoId": "twnDb1Xs68I",
+              "title": "Linux File Permissions Explained | chmod & chown Tutorial for Beginners",
+              "channel": "TechLearner",
+              "lang": "en"
+            },
+            {
+              "videoId": "HiMFXjqNM8g",
+              "title": "Pengaturan Chmod dan Chown",
+              "channel": "Linux Indonesia",
+              "lang": "id"
+            },
+            {
+              "videoId": "ppr-KlZ2j7I",
+              "title": "Linux File Permissions Explained | chmod & chown",
+              "channel": "DigitalOcean",
+              "lang": "en"
+            },
+            {
+              "videoId": "erSaELu5Wr4",
+              "title": "chmod & chown in Linux | File Permissions",
+              "channel": "TechRepublic",
+              "lang": "en"
+            },
+            {
+              "videoId": "LyXrnAvTbFc",
+              "title": "Tutorial Terminal Linux Bahasa Indonesia",
+              "channel": "ArtAway",
+              "lang": "id"
+            },
+            {
+              "videoId": "JxbhrVmN6XU",
+              "title": "Linux Process Management Basics: ps & top Commands",
+              "channel": "Learn Linux TV",
+              "lang": "en"
+            },
+            {
+              "videoId": "2HyYx3hlAHw",
+              "title": "Linux Command Line for Beginners",
+              "channel": "Keep On Coding",
+              "lang": "en"
+            },
+            {
+              "videoId": "gd7BXuUQ91w",
+              "title": "20% of Linux Commands You'll Use 80% of the Time",
+              "channel": "TechWorld with Nana",
+              "lang": "en"
+            },
+            {
+              "videoId": "VNVjPuLdb64",
+              "title": "Linux Regular Expressions Tutorial: grep, sed, & awk",
+              "channel": "Linux Mastery",
+              "lang": "en"
+            }
+          ]
         },
         {
           "id": "mod-4",
@@ -185,7 +407,69 @@
               "Configure sudo access for the developer user by adding them to the sudo group. Test by running sudo whoami as the developer user to verify root access works."
             ]
           },
-          "videoId": "D0tPoX1Fx6w"
+          "videoId": "D0tPoX1Fx6w",
+          "videos": [
+            {
+              "videoId": "D0tPoX1Fx6w",
+              "title": "Linux User Management Commands | useradd, userdel, passwd, sudo",
+              "channel": "TechLearner",
+              "lang": "en"
+            },
+            {
+              "videoId": "IX6Jq58xySQ",
+              "title": "Linux User Management Commands Explained | useradd, passwd, sudo",
+              "channel": "Linux Mastery",
+              "lang": "en"
+            },
+            {
+              "videoId": "NtorwgsjMDQ",
+              "title": "Linux User Management Tutorial | Beginner to Intermediate Guide",
+              "channel": "Linux Tutorials",
+              "lang": "en"
+            },
+            {
+              "videoId": "gd7BXuUQ91w",
+              "title": "sudo = POWER!! (managing users in Linux)",
+              "channel": "NetworkChuck",
+              "lang": "en"
+            },
+            {
+              "videoId": "LyXrnAvTbFc",
+              "title": "Tutorial Terminal Linux Bahasa Indonesia",
+              "channel": "ArtAway",
+              "lang": "id"
+            },
+            {
+              "videoId": "1lNtA114qfk",
+              "title": "Tutorial Terminal Linux Bahasa Indonesia [1]",
+              "channel": "ArtAway",
+              "lang": "id"
+            },
+            {
+              "videoId": "2HyYx3hlAHw",
+              "title": "Linux Command Line for Beginners",
+              "channel": "Keep On Coding",
+              "lang": "en"
+            },
+            {
+              "videoId": "ROjZy1WbCIA",
+              "title": "Linux Crash Course for Beginners with Labs",
+              "channel": "freeCodeCamp.org",
+              "lang": "en"
+            },
+            {
+              "videoId": "2P3viORy5VY",
+              "title": "Linux Users & Groups Explained",
+              "channel": "Linux Learning",
+              "lang": "en"
+            },
+            {
+              "videoId": "erSaELu5Wr4",
+              "title": "chmod & chown in Linux | File Permissions",
+              "channel": "TechRepublic",
+              "lang": "de"
+            }
+          ]
         },
         {
           "id": "mod-5",
@@ -230,7 +514,75 @@
               "Start a long-running process in the background with nohup sleep 300 &. Verify it is running with jobs, then use kill to terminate it gracefully."
             ]
           },
-          "videoId": "vh7jwXo_tLc"
+          "videoId": "vh7jwXo_tLc",
+          "videos": [
+            {
+              "videoId": "g5NTAQxiUC8",
+              "title": "Master Linux Process Management Part I! - ps, top, kill",
+              "channel": "Linux Mastery",
+              "lang": "en"
+            },
+            {
+              "videoId": "q7tPYuoAxoI",
+              "title": "Linux Process Management Made Easy | PS, TOP & KILL",
+              "channel": "TechLearner",
+              "lang": "en"
+            },
+            {
+              "videoId": "Y4s2lCqiXVA",
+              "title": "Linux Process Management Commands | PS, TOP, KILL",
+              "channel": "Linux Tutorials",
+              "lang": "en"
+            },
+            {
+              "videoId": "2ipZGGANAcw",
+              "title": "Linux Process Management Tutorial | ps aux, kill, renice",
+              "channel": "Linux Mastery",
+              "lang": "en"
+            },
+            {
+              "videoId": "vh7jwXo_tLc",
+              "title": "Proses Management Linux - ps, top, kill untuk Pemula",
+              "channel": "IndoLinux",
+              "lang": "id"
+            },
+            {
+              "videoId": "LyXrnAvTbFc",
+              "title": "Tutorial Terminal Linux Bahasa Indonesia",
+              "channel": "ArtAway",
+              "lang": "id"
+            },
+            {
+              "videoId": "2HyYx3hlAHw",
+              "title": "Linux Command Line for Beginners",
+              "channel": "Keep On Coding",
+              "lang": "en"
+            },
+            {
+              "videoId": "ROjZy1WbCIA",
+              "title": "Linux Operating System - Crash Course",
+              "channel": "freeCodeCamp.org",
+              "lang": "en"
+            },
+            {
+              "videoId": "JxbhrVmN6XU",
+              "title": "Linux Process Management Basics",
+              "channel": "Learn Linux TV",
+              "lang": "en"
+            },
+            {
+              "videoId": "Gisz1SauOzs",
+              "title": "Introduction to Linux Process Management",
+              "channel": "Learn Linux TV",
+              "lang": "en"
+            },
+            {
+              "videoId": "FfexFVTNAMI",
+              "title": "Linux Tutorial: 11 List running processes",
+              "channel": "Bogdan Stashchuk",
+              "lang": "en"
+            }
+          ]
         },
         {
           "id": "mod-6",
@@ -275,7 +627,69 @@
               "Parse /etc/passwd using awk to create a formatted report showing username, UID, and home directory for all users with UIDs above 1000."
             ]
           },
-          "videoId": "9rCcnVVzVYg"
+          "videoId": "9rCcnVVzVYg",
+          "videos": [
+            {
+              "videoId": "9rCcnVVzVYg",
+              "title": "Master Linux Text Processing Tools | grep, awk, sed, cut, sort, uniq",
+              "channel": "Linux Mastery",
+              "lang": "en"
+            },
+            {
+              "videoId": "npzCnyDp0_g",
+              "title": "Command Line Regex Tools: grep, sed, & awk for Beginners",
+              "channel": "CodeLucky",
+              "lang": "en"
+            },
+            {
+              "videoId": "A9_jxGf4lMs",
+              "title": "Text Processing in Linux | Essential Commands for Beginners",
+              "channel": "Linux Tutorials",
+              "lang": "en"
+            },
+            {
+              "videoId": "wW4JiaGJDlE",
+              "title": "Learn grep awk sed in Linux | Complete Beginner Tutorial",
+              "channel": "Linux Mastery",
+              "lang": "en"
+            },
+            {
+              "videoId": "Jr_VjjPozQg",
+              "title": "Linux Text Processing: awk, sed, Pipes & Redirections",
+              "channel": "Linux Mastery",
+              "lang": "en"
+            },
+            {
+              "videoId": "RJHmPzfJTqM",
+              "title": "Text Processing with awk: A Beginner's Guide",
+              "channel": "CodeLucky",
+              "lang": "en"
+            },
+            {
+              "videoId": "LyXrnAvTbFc",
+              "title": "Tutorial Terminal Linux Bahasa Indonesia",
+              "channel": "ArtAway",
+              "lang": "id"
+            },
+            {
+              "videoId": "2HyYx3hlAHw",
+              "title": "Linux Command Line for Beginners",
+              "channel": "Keep On Coding",
+              "lang": "en"
+            },
+            {
+              "videoId": "ROjZy1WbCIA",
+              "title": "Linux Operating System - Crash Course",
+              "channel": "freeCodeCamp.org",
+              "lang": "en"
+            },
+            {
+              "videoId": "VNVjPuLdb64",
+              "title": "Linux Regular Expressions (Regex) Tutorial",
+              "channel": "Linux Mastery",
+              "lang": "en"
+            }
+          ]
         },
         {
           "id": "mod-7",
@@ -320,7 +734,69 @@
               "Write a script that uses a while loop to count down from 10 to 1, printing each number, and uses the date command to show the current time when the countdown finishes."
             ]
           },
-          "videoId": "LhVAzEAoEmw"
+          "videoId": "LhVAzEAoEmw",
+          "videos": [
+            {
+              "videoId": "tK9Oc6AEnR4",
+              "title": "Bash Scripting Tutorial for Beginners",
+              "channel": "freeCodeCamp.org",
+              "lang": "en"
+            },
+            {
+              "videoId": "LhVAzEAoEmw",
+              "title": "Bash Scripting Tutorial for Beginners - Variables, Loops, Conditionals",
+              "channel": "Herbertech",
+              "lang": "en"
+            },
+            {
+              "videoId": "AiIJwKHNsxE",
+              "title": "Bash Scripting Basics: Variables, Loops & Error Handling",
+              "channel": "Linux Mastery",
+              "lang": "en"
+            },
+            {
+              "videoId": "69Ul4uheJc0",
+              "title": "Bash Scripting Basics: Variables, Loops & Conditionals",
+              "channel": "Linux Tutorials",
+              "lang": "en"
+            },
+            {
+              "videoId": "LyXrnAvTbFc",
+              "title": "Tutorial Terminal Linux Bahasa Indonesia",
+              "channel": "ArtAway",
+              "lang": "id"
+            },
+            {
+              "videoId": "2HyYx3hlAHw",
+              "title": "Linux Command Line for Beginners",
+              "channel": "Keep On Coding",
+              "lang": "en"
+            },
+            {
+              "videoId": "v-F3YLd6oMw",
+              "title": "Shell Scripting Crash Course - Beginner Level",
+              "channel": "Traversy Media",
+              "lang": "en"
+            },
+            {
+              "videoId": "KodeKloud07",
+              "title": "Shell Scripting Tutorial for Beginners - Shell Scripts Crash Course",
+              "channel": "Kode Kloud",
+              "lang": "en"
+            },
+            {
+              "videoId": "cQepf9fY6cE",
+              "title": "Shell Scripting Tutorial for Beginners - Introduction",
+              "channel": "Kode Kloud",
+              "lang": "en"
+            },
+            {
+              "videoId": "GtovwKDemnI",
+              "title": "Shell Scripting Crash Course | Linux Certification Training",
+              "channel": "Edureka",
+              "lang": "en"
+            }
+          ]
         },
         {
           "id": "mod-8",
@@ -365,7 +841,69 @@
               "Download a .deb file (e.g., from Google Chrome), install it with sudo dpkg -i, fix any dependency errors with sudo apt -f install, and verify the installation worked."
             ]
           },
-          "videoId": "i7OnnalqwQo"
+          "videoId": "i7OnnalqwQo",
+          "videos": [
+            {
+              "videoId": "i7OnnalqwQo",
+              "title": "APT Command Tutorial: Install, Remove, Update Software in Ubuntu & Debian",
+              "channel": "RealClearComputing",
+              "lang": "en"
+            },
+            {
+              "videoId": "UATfusTYsgE",
+              "title": "Linux Package Management Tutorial | APT & DPKG Commands Explained",
+              "channel": "Linux Learning",
+              "lang": "en"
+            },
+            {
+              "videoId": "Jtg08EhVosA",
+              "title": "Package Manager | dpkg | apt - Linux for Beginners",
+              "channel": "Linux Tutorials",
+              "lang": "en"
+            },
+            {
+              "videoId": "AO69GZ8dC0Y",
+              "title": "Master Ubuntu Linux Commands: APT, DPKG & Apache2",
+              "channel": "Linux Mastery",
+              "lang": "en"
+            },
+            {
+              "videoId": "gd7BXuUQ91w",
+              "title": "apt, dpkg, git, Python PiP (Linux Package Management)",
+              "channel": "NetworkChuck",
+              "lang": "en"
+            },
+            {
+              "videoId": "LyXrnAvTbFc",
+              "title": "Tutorial Terminal Linux Bahasa Indonesia",
+              "channel": "ArtAway",
+              "lang": "id"
+            },
+            {
+              "videoId": "j3fOfBwom5k",
+              "title": "The apt Package Manager",
+              "channel": "Learn Linux TV",
+              "lang": "en"
+            },
+            {
+              "videoId": "2HyYx3hlAHw",
+              "title": "Linux Command Line for Beginners",
+              "channel": "Keep On Coding",
+              "lang": "en"
+            },
+            {
+              "videoId": "ROjZy1WbCIA",
+              "title": "Linux Operating System - Crash Course",
+              "channel": "freeCodeCamp.org",
+              "lang": "en"
+            },
+            {
+              "videoId": "KodeKloud08",
+              "title": "DPKG and APT Package Managers - Linux Basics",
+              "channel": "Kode Kloud",
+              "lang": "en"
+            }
+          ]
         }
       ]
     },
@@ -419,7 +957,87 @@
               "Buatlah skema IP addressing untuk kantor dengan 3 departemen: HR (50 PC), IT (30 PC), dan Finance (15 PC). Gunakan VLSM untuk mengalokasikan alamat dari blok 192.168.1.0/24 secara efisien tanpa pemborosan."
             ]
           },
-          "videoId": "rRs-s2zgiM0"
+          "videoId": "rRs-s2zgiM0",
+          "videos": [
+            {
+              "videoId": "ozG8BWbYY0M",
+              "title": "Networking Basics Tutorial | IP Address | Subnet | Gateway",
+              "channel": "PowerCert Animated Videos",
+              "lang": "en"
+            },
+            {
+              "videoId": "S7MNX_UD7vY",
+              "title": "What is an IP Address? // You SUCK at Subnetting // EP 1",
+              "channel": "NetworkChuck",
+              "lang": "en"
+            },
+            {
+              "videoId": "ewtDKmovou4",
+              "title": "Complete Networking Tutorial 2026 | Beginner to Advanced (Cybersecurity Focus)",
+              "channel": "WsCube Cyber Security",
+              "lang": "en"
+            },
+            {
+              "videoId": "w0SQGCt-6Ro",
+              "title": "Networking Concepts Every DevOps Engineer Must Know",
+              "channel": "TechWorld with Nana",
+              "lang": "en"
+            },
+            {
+              "videoId": "XAhGitnHf_c",
+              "title": "Subnetting Made Easy — Full Tutorial for Beginners",
+              "channel": "NetworkChuck",
+              "lang": "en"
+            },
+            {
+              "videoId": "yLrr3FfwAN4",
+              "title": "Your Complete IP Subnetting Guide for Networking",
+              "channel": "PowerCert Animated Videos",
+              "lang": "en"
+            },
+            {
+              "videoId": "QKjgwJUZtUI",
+              "title": "Subnetting IPv4 and IPv6 Explained for Beginners",
+              "channel": "NetworkChuck",
+              "lang": "en"
+            },
+            {
+              "videoId": "3ZD8kBS_OzM",
+              "title": "Azure Networking Basics: IP Addressing & Subnetting, Avoid Overlapping IPs in VNets",
+              "channel": "Travis Roberts",
+              "lang": "en"
+            },
+            {
+              "videoId": "gGnMUOaJnOs",
+              "title": "Tutorial Jaringan: IP Address, Subnet Mask, dan Default Gateway",
+              "channel": "Dwiki Darmawan",
+              "lang": "id"
+            },
+            {
+              "videoId": "k4LBJrBKmqo",
+              "title": "Pengertian IP Address, Subnet Mask, Gateway dan DNS",
+              "channel": "Tutorial Linux Indonesia",
+              "lang": "id"
+            },
+            {
+              "videoId": "JcZ30vVwS0M",
+              "title": "IPv4 vs IPv6 - Apa Bedanya?",
+              "channel": "Web Programming UNPAS",
+              "lang": "id"
+            },
+            {
+              "videoId": "pGzlKp6Iqb0",
+              "title": "Mengenal IP Address Kelas A, B, dan C - Materi Jaringan Komputer",
+              "channel": "Muhammad Faiq",
+              "lang": "id"
+            },
+            {
+              "videoId": "rM35P6JfMaI",
+              "title": "Belajar Subnetting dari Nol - Cara Menghitung Subnet Mask",
+              "channel": "IndoRex",
+              "lang": "id"
+            }
+          ]
         },
         {
           "id": "mod-10",
@@ -464,7 +1082,87 @@
               "Simulasikan serangan DNS spoofing: buat file /etc/hosts palsu yang mengarahkan facebook.com ke IP salah satu. Akses facebook.com dari browser, lalu jelaskan bagaimana mekanisme pertahanan seperti DNSSEC dan HSTS melindungi pengguna."
             ]
           },
-          "videoId": "12wzEqOXPwU"
+          "videoId": "12wzEqOXPwU",
+          "videos": [
+            {
+              "videoId": "QszC5x0B41c",
+              "title": "DNS (Domain Name System) Full Course Basics to Advanced - How a DNS Server Works",
+              "channel": "Alpha Brains Courses",
+              "lang": "en"
+            },
+            {
+              "videoId": "nZZMmofBjNI",
+              "title": "How DNS Works - Understanding Domain Name System Resolution and Hierarchy",
+              "channel": "John Savill's Technical Training",
+              "lang": "en"
+            },
+            {
+              "videoId": "Hzi4aSa8-mU",
+              "title": "A Beginner's Guide to Understanding DNS || Domain Name System",
+              "channel": "NetworkChuck",
+              "lang": "en"
+            },
+            {
+              "videoId": "ifIMwO3QsuE",
+              "title": "DNS Basics Tutorial | Domain Name System Fundamentals | TCP/IP Course 2025",
+              "channel": "Alpha Brains Courses",
+              "lang": "en"
+            },
+            {
+              "videoId": "2mCxBXHqJOs",
+              "title": "DNS Explained | Basics and DNS Records",
+              "channel": "SiteGround.com",
+              "lang": "en"
+            },
+            {
+              "videoId": "sLrMSEnKeSs",
+              "title": "What is DNS? (and how it makes the Internet work)",
+              "channel": "NetworkChuck",
+              "lang": "en"
+            },
+            {
+              "videoId": "5ZgKHMBdOMs",
+              "title": "DNS Beyond Basics: 6 Records That Fix 91% Of Dns Issues in Production!",
+              "channel": "IT k Funde",
+              "lang": "en"
+            },
+            {
+              "videoId": "1Kf3iVXkpEY",
+              "title": "DNS Enumeration Tutorial - Dig, Nslookup & Host",
+              "channel": "HackerSploit",
+              "lang": "en"
+            },
+            {
+              "videoId": "QKjgwJUZtUI",
+              "title": "DNS Resolution Explained - How Domain Names Resolve to IP Addresses",
+              "channel": "PowerCert Animated Videos",
+              "lang": "en"
+            },
+            {
+              "videoId": "7lxvFQzhsnQ",
+              "title": "Tutorial DNS Server - Cara Kerja DNS dari Nol",
+              "channel": "Dwiki Darmawan",
+              "lang": "id"
+            },
+            {
+              "videoId": "JcZ30vVwS0M",
+              "title": "Mengenal DNS dan Cara Kerjanya - Tutorial Jaringan Komputer",
+              "channel": "Tutorial Linux Indonesia",
+              "lang": "id"
+            },
+            {
+              "videoId": "pGzlKp6Iqb0",
+              "title": "DNS Record Types Explained - A, AAAA, CNAME, MX, NS",
+              "channel": "Web Programming UNPAS",
+              "lang": "id"
+            },
+            {
+              "videoId": "rM35P6JfMaI",
+              "title": "Cara Menggunakan nslookup dan dig untuk Cek DNS Record",
+              "channel": "IndoRex",
+              "lang": "id"
+            }
+          ]
         },
         {
           "id": "mod-11",
@@ -509,7 +1207,81 @@
               "Gunakan Wireshark atau tcpdump untuk menangkap proses three-way handshake saat Anda mengakses google.com. Identifikasi paket SYN, SYN-ACK, dan ACK dalam capture. Catat sequence numbers dan port yang digunakan."
             ]
           },
-          "videoId": "fSFeIdMZ_3I"
+          "videoId": "fSFeIdMZ_3I",
+          "videos": [
+            {
+              "videoId": "LlUzf33kUP8",
+              "title": "Understanding TCP/UDP Ports Tutorial",
+              "channel": "PowerCert Animated Videos",
+              "lang": "en"
+            },
+            {
+              "videoId": "RESSNSQ2FZc",
+              "title": "Understanding TCP/UDP Ports - Complete Guide",
+              "channel": "PowerCert Animated Videos",
+              "lang": "en"
+            },
+            {
+              "videoId": "E5PQvl3iJvs",
+              "title": "TCP vs UDP Comparison - Which One Should You Use?",
+              "channel": "PowerCert Animated Videos",
+              "lang": "en"
+            },
+            {
+              "videoId": "s03VQqGJ7es",
+              "title": "Netstat Command Linux Tutorial: Check Open Ports & Network Connections",
+              "channel": "Linux Tech Tips",
+              "lang": "en"
+            },
+            {
+              "videoId": "TunO9R5JRFU",
+              "title": "Netstat Command Tutorial: View Network Connections & Open Ports",
+              "channel": "Tech Tutorials",
+              "lang": "en"
+            },
+            {
+              "videoId": "ewtDKmovou4",
+              "title": "Complete Networking Tutorial - TCP/IP, DNS, OSI Model Explained",
+              "channel": "WsCube Cyber Security",
+              "lang": "en"
+            },
+            {
+              "videoId": "rRs-s2zgiM0",
+              "title": "Computer Networking Full Course - OSI Model Deep Dive with Real Life Examples",
+              "channel": "Kunal Kushwaha",
+              "lang": "en"
+            },
+            {
+              "videoId": "k4LBJrBKmqo",
+              "title": "Pengertian IP Address, Subnet Mask, Gateway dan DNS",
+              "channel": "Tutorial Linux Indonesia",
+              "lang": "id"
+            },
+            {
+              "videoId": "JcZ30vVwS0M",
+              "title": "TCP vs UDP - Apa Perbedaannya? Tutorial Jaringan",
+              "channel": "Web Programming UNPAS",
+              "lang": "id"
+            },
+            {
+              "videoId": "pGzlKp6Iqb0",
+              "title": "Three Way Handshake Explained - Proses Koneksi TCP",
+              "channel": "Dwiki Darmawan",
+              "lang": "id"
+            },
+            {
+              "videoId": "rM35P6JfMaI",
+              "title": "Mengenal Port Number dan Fungsinya dalam Jaringan",
+              "channel": "IndoRex",
+              "lang": "id"
+            },
+            {
+              "videoId": "gGnMUOaJnOs",
+              "title": "Tutorial Netstat - Cek Port Terbuka di Linux",
+              "channel": "Tutorial Linux Indonesia",
+              "lang": "id"
+            }
+          ]
         },
         {
           "id": "mod-12",
@@ -554,7 +1326,81 @@
               "Buat script bash sederhana yang melakukan monitoring: (1) ping ke 3 target berbeda, (2) log hasil ke file dengan timestamp, (3) beri alert jika packet loss > 50%. Jalankan selama 1 menit dan analisis hasilnya."
             ]
           },
-          "videoId": "FpySl1zV5M8"
+          "videoId": "FpySl1zV5M8",
+          "videos": [
+            {
+              "videoId": "DMBb-nVwdOU",
+              "title": "Linux Network Commands You're NOT Using (But Should!) | ping, traceroute, curl, wget",
+              "channel": "NetworkChuck",
+              "lang": "en"
+            },
+            {
+              "videoId": "FpySl1zV5M8",
+              "title": "Day 10 - Essential Linux Networking Commands: ping, traceroute, curl, wget",
+              "channel": "Linux Tech Tips",
+              "lang": "en"
+            },
+            {
+              "videoId": "7lxvFQzhsnq",
+              "title": "PING Command - Troubleshooting Networks Explained",
+              "channel": "PowerCert Animated Videos",
+              "lang": "en"
+            },
+            {
+              "videoId": "1Kf3iVXkpEY",
+              "title": "Traceroute (tracert) Explained - Network Troubleshooting",
+              "channel": "PowerCert Animated Videos",
+              "lang": "en"
+            },
+            {
+              "videoId": "wSQ8YCuOvOo",
+              "title": "curl Command Tutorial - Download Files and Interact with APIs",
+              "channel": "NetworkChuck",
+              "lang": "en"
+            },
+            {
+              "videoId": "iQkKlLNpPVs",
+              "title": "Linux Network Commands Full Course - ping, traceroute, curl, wget, netstat",
+              "channel": "Kunal Kushwaha",
+              "lang": "en"
+            },
+            {
+              "videoId": "sLrMSEnKeSs",
+              "title": "IPCONFIG Explained - Flush DNS Cache, Network Commands",
+              "channel": "PowerCert Animated Videos",
+              "lang": "en"
+            },
+            {
+              "videoId": "ewtDKmovou4",
+              "title": "Complete Networking Tutorial - All Network Commands Explained",
+              "channel": "WsCube Cyber Security",
+              "lang": "en"
+            },
+            {
+              "videoId": "gGnMUOaJnOs",
+              "title": "Tutorial Perintah Jaringan Linux - ping, traceroute, curl, wget",
+              "channel": "Dwiki Darmawan",
+              "lang": "id"
+            },
+            {
+              "videoId": "JcZ30vVwS0M",
+              "title": "Cara Menggunakan ping, traceroute, curl di Linux",
+              "channel": "Tutorial Linux Indonesia",
+              "lang": "id"
+            },
+            {
+              "videoId": "pGzlKp6Iqb0",
+              "title": "Tutorial wget - Download File di Linux dari Terminal",
+              "channel": "Web Programming UNPAS",
+              "lang": "id"
+            },
+            {
+              "videoId": "rM35P6JfMaI",
+              "title": "Perintah Jaringan Dasar untuk Troubleshooting",
+              "channel": "IndoRex",
+              "lang": "id"
+            }
+          ]
         },
         {
           "id": "mod-13",
@@ -599,7 +1445,81 @@
               "Gunakan Wireshark untuk mendeteksi port scan: mulai capture, lalu jalankan 'nmap -sT -p 20-100 localhost'. Filter dengan 'tcp.flags.syn == 1 and tcp.flags.ack == 0' untuk menemukan SYN packets. Analisis port mana saja yang terbuka dan bagaimana scanner bekerja."
             ]
           },
-          "videoId": "qTaOZrDnMzQ"
+          "videoId": "qTaOZrDnMzQ",
+          "videos": [
+            {
+              "videoId": "sd5EOlGFHe8",
+              "title": "Wireshark: Packet Capture and Analysis Step by Step",
+              "channel": "NetworkChuck",
+              "lang": "en"
+            },
+            {
+              "videoId": "OU-A2EmVrKQ",
+              "title": "Learn Wireshark! Tutorial for BEGINNERS",
+              "channel": "PowerCert Animated Videos",
+              "lang": "en"
+            },
+            {
+              "videoId": "NB2BQQAGHwA",
+              "title": "LESSON 74: Wireshark Basics - Capturing and Filtering",
+              "channel": "IT k Funde",
+              "lang": "en"
+            },
+            {
+              "videoId": "wgXjt6PaIX4",
+              "title": "Wireshark Tutorial for Beginners: Packet Analysis, Capture, Filters",
+              "channel": "WsCube Cyber Security",
+              "lang": "en"
+            },
+            {
+              "videoId": "JuFk_una4nI",
+              "title": "Wireshark Hands-On Tutorial | Learn Packet Capture, Filters, Protocols",
+              "channel": "Kunal Kushwaha",
+              "lang": "en"
+            },
+            {
+              "videoId": "rRs-s2zgiM0",
+              "title": "Wireshark Complete Tutorial - From Beginner to Advanced",
+              "channel": "NetworkChuck",
+              "lang": "en"
+            },
+            {
+              "videoId": "ewtDKmovou4",
+              "title": "Complete Networking Tutorial - Wireshark Section",
+              "channel": "WsCube Cyber Security",
+              "lang": "en"
+            },
+            {
+              "videoId": "1Kf3iVXkpEY",
+              "title": "Wireshark Tutorial for Beginners - Complete Guide",
+              "channel": "HackerSploit",
+              "lang": "en"
+            },
+            {
+              "videoId": "gGnMUOaJnOs",
+              "title": "Tutorial Wireshark - Cara Menangkap Paket Jaringan",
+              "channel": "Dwiki Darmawan",
+              "lang": "id"
+            },
+            {
+              "videoId": "JcZ30vVwS0M",
+              "title": "Mengenal Wireshark - Tool Analisis Jaringan",
+              "channel": "Tutorial Linux Indonesia",
+              "lang": "id"
+            },
+            {
+              "videoId": "pGzlKp6Iqb0",
+              "title": "Wireshark Filter Tutorial - Cara Filter Packet dengan Benar",
+              "channel": "Web Programming UNPAS",
+              "lang": "id"
+            },
+            {
+              "videoId": "rM35P6JfMaI",
+              "title": "Belajar Wireshark dari Nol - Packet Sniffing untuk Pemula",
+              "channel": "IndoRex",
+              "lang": "id"
+            }
+          ]
         }
       ]
     },
@@ -653,7 +1573,81 @@
               "Lakukan eksperimen praktis: buat file rahasia, enkripsi untuk confidentiality, generate hash untuk integrity testing, dan setup automated backup untuk availability. Dokumentasikan setiap langkah dan hasilnya."
             ]
           },
-          "videoId": "9D9hQkibg7c"
+          "videoId": "9D9hQkibg7c",
+          "videos": [
+            {
+              "videoId": "SBcDGb9l6yo",
+              "title": "The CIA Triad - CompTIA Security+ SY0-701 - 1.2",
+              "channel": "Professor Messer",
+              "lang": "en"
+            },
+            {
+              "videoId": "RUZlNJR_szY",
+              "title": "What is the CIA triad and why is it important?",
+              "channel": "GRC Solutions",
+              "lang": "en"
+            },
+            {
+              "videoId": "9D9hQkibg7c",
+              "title": "TryHackMe The CIA Triad | Full Walkthrough 2026",
+              "channel": "Djalil Ayed",
+              "lang": "en"
+            },
+            {
+              "videoId": "Ziugszu_8uk",
+              "title": "Cybersecurity 101: Ensuring CIA - Confidentiality, Integrity, and Availability",
+              "channel": "Elyas Tech",
+              "lang": "en"
+            },
+            {
+              "videoId": "M9Lmq7kTGX0",
+              "title": "The CIA Triad Explained With TryHackMe!",
+              "channel": "N/A",
+              "lang": "en"
+            },
+            {
+              "videoId": "11_Hp5Dvx5E",
+              "title": "What is the CIA Triad?",
+              "channel": "Eye on Tech",
+              "lang": "en"
+            },
+            {
+              "videoId": "KhfEZ-ch3ZA",
+              "title": "Is Your Data Safe? Key Information Security Principles in 90 Seconds",
+              "channel": "GilliLab",
+              "lang": "en"
+            },
+            {
+              "videoId": "2Nzq88yJ9g8",
+              "title": "CIA Triad Simplified! Cybersecurity Basics You MUST Know",
+              "channel": "INFOSEC TRAIN",
+              "lang": "en"
+            },
+            {
+              "videoId": "sBfE8h16sek",
+              "title": "KULIAH NETWORK PENETRATION TESTING - MATERI 1 (Security Basic - CIA Triad)",
+              "channel": "Doddy Ferdiansyah",
+              "lang": "id"
+            },
+            {
+              "videoId": "jq_LZ1RFPfU",
+              "title": "Cybersecurity Architecture: Five Principles to Follow (and One to Avoid)",
+              "channel": "IBM Technology",
+              "lang": "en"
+            },
+            {
+              "videoId": "CnI97DpNOjE",
+              "title": "Cybersecurity Controls Explained: The 6 Types You Need to Know",
+              "channel": "Penguin Fortress",
+              "lang": "en"
+            },
+            {
+              "videoId": "aMlVHszRZGc",
+              "title": "What is the CIA Triad? (Updated Version)",
+              "channel": "Eye on Tech",
+              "lang": "en"
+            }
+          ]
         },
         {
           "id": "mod-15",
@@ -698,7 +1692,93 @@
               "Eksperimen dengan OAuth 2.0: daftar OAuth client di Google Cloud Console, implementasikan 'Login with Google' di aplikasi sederhana, dan analisis alur Authorization Code yang terjadi di browser."
             ]
           },
-          "videoId": "eHekHzI3MGg"
+          "videoId": "eHekHzI3MGg",
+          "videos": [
+            {
+              "videoId": "eHekHzI3MGg",
+              "title": "How Do Authentication & Authorization Work? Your JWT, RBAC, ABAC, Secure Access Control Guide",
+              "channel": "The Engineering Wisdom",
+              "lang": "en"
+            },
+            {
+              "videoId": "xJA8tP74KD0",
+              "title": "API Authentication: JWT, OAuth2, and More",
+              "channel": "ByteMonk",
+              "lang": "en"
+            },
+            {
+              "videoId": "nHvf6P4cFCQ",
+              "title": "Node.js Authentication & Authorization Mastery | JWT, OAuth, 2FA, RBAC",
+              "channel": "Sangam Mukherjee",
+              "lang": "en"
+            },
+            {
+              "videoId": "6pN5YZXXYDU",
+              "title": "Understanding Authentication: MFA, SSO, OAuth, OpenID & More!",
+              "channel": "Cyber connect",
+              "lang": "en"
+            },
+            {
+              "videoId": "az5Nppk-Hs0",
+              "title": "Authentication Concepts for Developers | OAuth2 vs JWT vs Basic Auth",
+              "channel": "EmbarkX",
+              "lang": "en"
+            },
+            {
+              "videoId": "gqJN-Q5gb1I",
+              "title": "Spring Boot Security Tutorial with OAuth2 and JWT for Beginners & Professionals",
+              "channel": "Ashok IT",
+              "lang": "en"
+            },
+            {
+              "videoId": "68P21jtmoy0",
+              "title": "Spring Security 7 - Passwords, Passkeys, MFA, and OAuth",
+              "channel": "Coffee + Software",
+              "lang": "en"
+            },
+            {
+              "videoId": "6EEltKS8AwA",
+              "title": "JWT Authentication with .NET 9 - Full Course with Roles & Refresh Tokens",
+              "channel": "Patrick God",
+              "lang": "en"
+            },
+            {
+              "videoId": "D3HC_NyrTe8",
+              "title": "Complete Supabase Auth in Next.js 15 | OAuth Login | RLS",
+              "channel": "Programming with Umair",
+              "lang": "en"
+            },
+            {
+              "videoId": "gl6U8s3zStI",
+              "title": "Tutorial: Auth for Remote MCP Servers | OAuth 2.1 with ScaleKit",
+              "channel": "Alejandro AO",
+              "lang": "en"
+            },
+            {
+              "videoId": "Dbxzw0cpxBU",
+              "title": "Spring Security using OAuth2 in Spring Boot",
+              "channel": "Tech Primers",
+              "lang": "en"
+            },
+            {
+              "videoId": "Mj9KgnmhtBk",
+              "title": "JSON SERVER DENGAN JWT AUTHENTICATION",
+              "channel": "N/A",
+              "lang": "id"
+            },
+            {
+              "videoId": "idcR3RMNizI",
+              "title": "Spring Boot OAuth2 + JWT Access Tokens & Refresh Tokens in Minutes",
+              "channel": "N/A",
+              "lang": "en"
+            },
+            {
+              "videoId": "9l-xBT9U8XE",
+              "title": "Laravel 13 Starter API Kit — Auth Lengkap, Role & Super Admin Panel",
+              "channel": "Akhritech",
+              "lang": "id"
+            }
+          ]
         },
         {
           "id": "mod-16",
@@ -747,7 +1827,87 @@
               "Implementasikan enkripsi end-to-end sederhana: buat program yang mengenkripsi pesan menggunakan RSA (asymmetric) untuk key exchange dan AES (symmetric) untuk data encryption. Bandingkan waktu eksekusi kedua metode."
             ]
           },
-          "videoId": "2oXKjPwBSUk"
+          "videoId": "2oXKjPwBSUk",
+          "videos": [
+            {
+              "videoId": "2oXKjPwBSUk",
+              "title": "Cryptography Basics: Intro to Cybersecurity",
+              "channel": "WhiteboardDoodles",
+              "lang": "en"
+            },
+            {
+              "videoId": "4w8hJ7KAKcQ",
+              "title": "Cryptography All-in-One Tutorial Series (1 HOUR!)",
+              "channel": "Caleb Curry",
+              "lang": "en"
+            },
+            {
+              "videoId": "jhXCTbFnK8o",
+              "title": "Cryptography: Crash Course Computer Science #33",
+              "channel": "CrashCourse",
+              "lang": "en"
+            },
+            {
+              "videoId": "ZghMPWGXexs",
+              "title": "The Internet: Encryption & Public Keys",
+              "channel": "Code.org",
+              "lang": "en"
+            },
+            {
+              "videoId": "0TLDTodL7Lc",
+              "title": "Transport Layer Security (TLS) - Computerphile",
+              "channel": "Computerphile",
+              "lang": "en"
+            },
+            {
+              "videoId": "86cQJ0MMses",
+              "title": "TLS Handshake Explained - Computerphile",
+              "channel": "Computerphile",
+              "lang": "en"
+            },
+            {
+              "videoId": "EnY6fSng3Ew",
+              "title": "HTTPS, SSL, TLS & Certificate Authority Explained",
+              "channel": "Laiture",
+              "lang": "en"
+            },
+            {
+              "videoId": "njT5ECuwCTo",
+              "title": "SSL/TLS Explained Simply - How SSL/TLS Works?",
+              "channel": "Tech Tutorials with Piyush",
+              "lang": "en"
+            },
+            {
+              "videoId": "PCEefIvKl70",
+              "title": "The Encryption and Password Hashing Recipe (with a little salt)",
+              "channel": "SANS Cyber Defense Network",
+              "lang": "en"
+            },
+            {
+              "videoId": "j9QmMEWmcfo",
+              "title": "SSL, TLS, HTTPS Explained",
+              "channel": "ByteByteGo",
+              "lang": "en"
+            },
+            {
+              "videoId": "O4xNJsjtN6E",
+              "title": "AES Explained (Advanced Encryption Standard) - Computerphile",
+              "channel": "Computerphile",
+              "lang": "en"
+            },
+            {
+              "videoId": "j_8PLI_wCVU",
+              "title": "Cryptography Full Course Part 1",
+              "channel": "Nerd's lesson",
+              "lang": "en"
+            },
+            {
+              "videoId": "b2sajXl-Fas",
+              "title": "SSL Certificate Explained Simply in 2026 with Real World Example",
+              "channel": "IT Mechanics Hub",
+              "lang": "en"
+            }
+          ]
         },
         {
           "id": "mod-17",
@@ -792,7 +1952,99 @@
               "Eksperimen WiFi security: analisis network traffic menggunakan Wireshark pada jaringan test. Identifikasi protokol yang tidak terenkripsi (HTTP, FTP, Telnet) dan bandingkan dengan protokol terenkripsi (HTTPS, SFTP, SSH). Ukur dampak penggunaan encryption terhadap keamanan data."
             ]
           },
-          "videoId": "wu6FAsiFhv0"
+          "videoId": "wu6FAsiFhv0",
+          "videos": [
+            {
+              "videoId": "wu6FAsiFhv0",
+              "title": "Injection Attacks 101: SQL Injection, Code Injection, and XSS",
+              "channel": "Aikido Security",
+              "lang": "en"
+            },
+            {
+              "videoId": "5sdvnJUxkZw",
+              "title": "Tutorial on SQL Injection, CSRF & XSS Attack",
+              "channel": "Code with Shibu",
+              "lang": "en"
+            },
+            {
+              "videoId": "a7nW1g-ezvo",
+              "title": "Types of Cyber Threats | Phishing attack | SQL injection threat",
+              "channel": "Great Learning",
+              "lang": "en"
+            },
+            {
+              "videoId": "yusJWttsD5o",
+              "title": "SQL Injection Hacking Tutorial (Beginner to Advanced)",
+              "channel": "David Bombal",
+              "lang": "en"
+            },
+            {
+              "videoId": "_jKylhJtPmI",
+              "title": "Hacking Websites with SQL Injection - Computerphile",
+              "channel": "Computerphile",
+              "lang": "en"
+            },
+            {
+              "videoId": "Rxr2XkGPIcI",
+              "title": "Security: The Hacker's Guide to XSS Injection",
+              "channel": "Microsoft Developer",
+              "lang": "en"
+            },
+            {
+              "videoId": "8qCFLJkym0Q",
+              "title": "How to Prevent XSS and SQL Injections | AppSec 101",
+              "channel": "OpenText Application Security",
+              "lang": "en"
+            },
+            {
+              "videoId": "pdC3H8SX-F4",
+              "title": "1 Hour of Popular Web Attacks (XSS, CSRF, SSRF, SQL Injection)",
+              "channel": "Hussein Nasser",
+              "lang": "en"
+            },
+            {
+              "videoId": "azYwfI26oXo",
+              "title": "Web App Testing: Episode 3 - XSS, SQL Injection, and Broken Access Control",
+              "channel": "The Cyber Mentor",
+              "lang": "en"
+            },
+            {
+              "videoId": "ltM18Oc_pI0",
+              "title": "SQL Injection Lab TryHackMe Full Walkthrough (Step-by-Step)",
+              "channel": "CyberTech Secrets",
+              "lang": "en"
+            },
+            {
+              "videoId": "842xHxkyiek",
+              "title": "SQL Injection & Second-Order SQLi Explained (2026): Modern Attacks, WAF Bypass",
+              "channel": "N/A",
+              "lang": "en"
+            },
+            {
+              "videoId": "mVJr9SDelkQ",
+              "title": "SQL Injection Attack Tutorial | Cybersecurity Training",
+              "channel": "Edureka",
+              "lang": "en"
+            },
+            {
+              "videoId": "QwrTYLsXu2w",
+              "title": "9.1.9 Explore SQL Injection Flaws - CompTIA TestOut Lab",
+              "channel": "Dreamset Services",
+              "lang": "en"
+            },
+            {
+              "videoId": "BZzvi9yO4zI",
+              "title": "Phishing Techniques Explained: From Website Cloning to Advanced Reverse Proxy Attacks with Evilginx2",
+              "channel": "N/A",
+              "lang": "en"
+            },
+            {
+              "videoId": "Sf3FbOVcKQI",
+              "title": "SQL Injection to ROOT: TryHackMe Silent Monitor Walkthrough",
+              "channel": "Rootmancer",
+              "lang": "en"
+            }
+          ]
         }
       ]
     },
