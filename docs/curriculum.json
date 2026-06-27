@@ -1,11 +1,1697 @@
 {
   "phases": [
     {
+      "id": "fundamental",
+      "title": "FUNDAMENTAL LINUX",
+      "icon": "💻",
+      "description": "Master the basics of Linux command line and system",
+      "status": "unlocked",
+      "modules": [
+        {
+          "id": "mod-1",
+          "number": 1,
+          "title": "Linux Basic Navigation",
+          "xp": 100,
+          "description": "Learn pwd, ls, cd, mkdir, and basic directory operations",
+          "content": {
+            "intro": "Linux navigation is the foundation of everything in cybersecurity. You must be comfortable moving around the filesystem before you can hack anything.",
+            "concepts": [
+              "pwd - Print Working Directory: shows where you are in the filesystem",
+              "ls - List: shows files and folders in current directory",
+              "cd - Change Directory: move between folders",
+              "mkdir - Make Directory: create new folders",
+              "rmdir - Remove Directory: delete empty folders",
+              "~ (tilde) represents your home directory"
+            ],
+            "commands": [
+              {
+                "cmd": "pwd",
+                "desc": "Show current location in filesystem"
+              },
+              {
+                "cmd": "ls",
+                "desc": "List files in current directory"
+              },
+              {
+                "cmd": "ls -la",
+                "desc": "List ALL files including hidden with details"
+              },
+              {
+                "cmd": "cd /home",
+                "desc": "Go to /home directory"
+              },
+              {
+                "cmd": "cd ..",
+                "desc": "Go up one directory"
+              },
+              {
+                "cmd": "cd ~",
+                "desc": "Go to home directory"
+              },
+              {
+                "cmd": "mkdir latihan",
+                "desc": "Create folder named 'latihan'"
+              },
+              {
+                "cmd": "rmdir latihan",
+                "desc": "Remove empty folder 'latihan'"
+              }
+            ],
+            "practice": [
+              "Navigate to /tmp and create a folder named 'myfolder'",
+              "Go inside 'myfolder' and create 3 files with touch",
+              "List all files with details using ls -la",
+              "Go back to your home directory using cd ~",
+              "Use pwd to confirm you're in your home directory"
+            ]
+          },
+          "videoId": "LyXrnAvTbFc"
+        },
+        {
+          "id": "mod-2",
+          "number": 2,
+          "title": "File Operations",
+          "xp": 100,
+          "description": "Create, copy, move, and delete files",
+          "content": {
+            "intro": "Files are everywhere in Linux. Mastering file operations is essential for daily tasks and security work.",
+            "concepts": [
+              "touch - Create empty file or update timestamp",
+              "cp - Copy file or directory",
+              "mv - Move or rename file",
+              "rm - Remove file (careful! no undo in Linux)",
+              "cat - Display file contents",
+              "-r flag for recursive operations on directories"
+            ],
+            "commands": [
+              {
+                "cmd": "touch file.txt",
+                "desc": "Create empty file"
+              },
+              {
+                "cmd": "cp file.txt backup.txt",
+                "desc": "Copy file"
+              },
+              {
+                "cmd": "cp -r folder1 folder2",
+                "desc": "Copy directory recursively"
+              },
+              {
+                "cmd": "mv file.txt /tmp/",
+                "desc": "Move file to /tmp"
+              },
+              {
+                "cmd": "mv old.txt new.txt",
+                "desc": "Rename file"
+              },
+              {
+                "cmd": "rm file.txt",
+                "desc": "Delete file (permanent!)"
+              },
+              {
+                "cmd": "cat file.txt",
+                "desc": "Show file contents"
+              },
+              {
+                "cmd": "head -n 5 file.txt",
+                "desc": "Show first 5 lines"
+              }
+            ],
+            "practice": [
+              "Create a file named 'notes.txt' with touch",
+              "Copy it to 'notes_backup.txt'",
+              "Rename 'notes_backup.txt' to 'backup.txt'",
+              "Delete the backup file with rm",
+              "Create a directory and copy multiple files into it"
+            ]
+          },
+          "videoId": "pIs5pt-H640"
+        },
+        {
+          "id": "mod-3",
+          "number": 3,
+          "title": "File Permissions",
+          "xp": 150,
+          "description": "Understand and modify file permissions (chmod, chown)",
+          "content": {
+            "intro": "Linux permissions control who can read, write, and execute files. Critical for system security.",
+            "concepts": [
+              "r (read) = 4, w (write) = 2, x (execute) = 1",
+              "Owner, Group, Others - three permission layers",
+              "chmod - Change file mode/permissions",
+              "chown - Change file owner and group",
+              "Sticky bit, SUID, SGID special permissions"
+            ],
+            "commands": [
+              {
+                "cmd": "ls -la",
+                "desc": "View detailed permissions"
+              },
+              {
+                "cmd": "chmod 755 script.sh",
+                "desc": "rwxr-xr-x (owner:full, others:read+exec)"
+              },
+              {
+                "cmd": "chmod 644 file.txt",
+                "desc": "rw-r--r-- (owner:read+write, others:read)"
+              },
+              {
+                "cmd": "chmod +x script.sh",
+                "desc": "Add execute permission"
+              },
+              {
+                "cmd": "chmod -R 700 folder/",
+                "desc": "Recursive, owner only"
+              },
+              {
+                "cmd": "chown user:group file.txt",
+                "desc": "Change owner and group"
+              },
+              {
+                "cmd": "stat file.txt",
+                "desc": "Show detailed file info"
+              }
+            ],
+            "practice": [
+              "Create a script.sh and make it executable",
+              "Change permissions to 600 (owner read+write only)",
+              "View the permission changes with ls -la",
+              "Change ownership of a file (requires sudo)",
+              "Understand the difference between 755 and 777"
+            ]
+          },
+          "videoId": "sQbUFZa1M2Y"
+        },
+        {
+          "id": "mod-4",
+          "number": 4,
+          "title": "User Management",
+          "xp": 100,
+          "description": "Manage users, groups, and sudo access",
+          "content": {
+            "intro": "User management is key for system administration and security. Understanding users helps you escalate privileges.",
+            "concepts": [
+              "whoami - Current user",
+              "sudo - Superuser do (admin commands)",
+              "useradd - Create new user",
+              "passwd - Change password",
+              "Groups and /etc/group file"
+            ],
+            "commands": [
+              {
+                "cmd": "whoami",
+                "desc": "Show current user"
+              },
+              {
+                "cmd": "id",
+                "desc": "Show user ID and groups"
+              },
+              {
+                "cmd": "sudo su",
+                "desc": "Switch to root user"
+              },
+              {
+                "cmd": "exit",
+                "desc": "Exit root/back to normal user"
+              },
+              {
+                "cmd": "sudo useradd -m newuser",
+                "desc": "Create new user with home dir"
+              },
+              {
+                "cmd": "sudo passwd newuser",
+                "desc": "Set password for new user"
+              },
+              {
+                "cmd": "sudo userdel -r olduser",
+                "desc": "Delete user and home dir"
+              },
+              {
+                "cmd": "cat /etc/passwd",
+                "desc": "List all users"
+              }
+            ],
+            "practice": [
+              "Check who you are with whoami and id",
+              "Switch to root with sudo su and back with exit",
+              "Create a new user 'testuser'",
+              "Add testuser to the sudo group",
+              "View the /etc/passwd file"
+            ]
+          },
+          "videoId": "Z0wx2V6MqBw"
+        },
+        {
+          "id": "mod-5",
+          "number": 5,
+          "title": "Process Management",
+          "xp": 100,
+          "description": "View and manage running processes",
+          "content": {
+            "intro": "Processes are running programs. Managing them is crucial for security and system administration.",
+            "concepts": [
+              "ps - Process status",
+              "top/htop - Real-time process viewer",
+              "kill - Terminate a process with signals",
+              "jobs - Background jobs in current shell",
+              "Process states: running, stopped, zombie"
+            ],
+            "commands": [
+              {
+                "cmd": "ps aux",
+                "desc": "Show all running processes"
+              },
+              {
+                "cmd": "top",
+                "desc": "Real-time process monitor"
+              },
+              {
+                "cmd": "htop",
+                "desc": "Interactive process viewer (better)"
+              },
+              {
+                "cmd": "kill PID",
+                "desc": "Kill process by ID"
+              },
+              {
+                "cmd": "kill -9 PID",
+                "desc": "Force kill process"
+              },
+              {
+                "cmd": "ps aux | grep name",
+                "desc": "Find process by name"
+              },
+              {
+                "cmd": "bg",
+                "desc": "Run job in background"
+              },
+              {
+                "cmd": "fg",
+                "desc": "Bring job to foreground"
+              }
+            ],
+            "practice": [
+              "Run 'top' and identify the top 3 processes by CPU",
+              "Find all processes with 'ssh' in the name",
+              "Start a background process with & and bring it back",
+              "Kill a process using kill -9",
+              "Use ps to find your own shell process"
+            ]
+          },
+          "videoId": "h9BfGxS7X5Q"
+        },
+        {
+          "id": "mod-6",
+          "number": 6,
+          "title": "Text Processing",
+          "xp": 150,
+          "description": "grep, sed, awk, and text manipulation",
+          "content": {
+            "intro": "Text processing is essential for log analysis, parsing outputs, and automation in cybersecurity.",
+            "concepts": [
+              "grep - Search text patterns using regex",
+              "sed - Stream editor for filtering and transforming",
+              "awk - Pattern scanning and processing language",
+              "pipe | - Chain commands together",
+              "Regular expressions basics"
+            ],
+            "commands": [
+              {
+                "cmd": "grep 'pattern' file",
+                "desc": "Search for pattern in file"
+              },
+              {
+                "cmd": "grep -i 'error' log.txt",
+                "desc": "Case-insensitive search"
+              },
+              {
+                "cmd": "grep -r 'password' /etc/",
+                "desc": "Recursive search"
+              },
+              {
+                "cmd": "grep -n 'root' /etc/passwd",
+                "desc": "Show line numbers"
+              },
+              {
+                "cmd": "cat file | head -10",
+                "desc": "Show first 10 lines"
+              },
+              {
+                "cmd": "cat file | tail -10",
+                "desc": "Show last 10 lines"
+              },
+              {
+                "cmd": "wc -l file.txt",
+                "desc": "Count lines"
+              },
+              {
+                "cmd": "sort file.txt",
+                "desc": "Sort lines alphabetically"
+              }
+            ],
+            "practice": [
+              "Search for 'root' in /etc/passwd",
+              "Count how many users are in the system",
+              "Find all .conf files in /etc/ using grep",
+              "Use grep with regex to find IP addresses",
+              "Chain grep with other commands using pipe"
+            ]
+          },
+          "videoId": "Rqv21Vy5x8E"
+        },
+        {
+          "id": "mod-7",
+          "number": 7,
+          "title": "Shell Scripting Basics",
+          "xp": 200,
+          "description": "Write your first bash scripts",
+          "content": {
+            "intro": "Shell scripting automates tasks and is fundamental for penetration testing and system administration.",
+            "concepts": [
+              "#!/bin/bash - Shebang line tells system which interpreter",
+              "Variables - Store data for reuse",
+              "if/else - Conditionals for decision making",
+              "for/while - Loops for repetition",
+              "User input with read command"
+            ],
+            "commands": [
+              {
+                "cmd": "#!/bin/bash",
+                "desc": "Script header (shebang)"
+              },
+              {
+                "cmd": "var=\"hello\"",
+                "desc": "Assign variable (no spaces!)"
+              },
+              {
+                "cmd": "echo $var",
+                "desc": "Print variable value"
+              },
+              {
+                "cmd": "if [ condition ]; then ... fi",
+                "desc": "If statement"
+              },
+              {
+                "cmd": "for i in 1 2 3; do ... done",
+                "desc": "For loop"
+              },
+              {
+                "cmd": "while [ condition ]; do ... done",
+                "desc": "While loop"
+              },
+              {
+                "cmd": "chmod +x script.sh",
+                "desc": "Make script executable"
+              },
+              {
+                "cmd": "./script.sh",
+                "desc": "Run script"
+              }
+            ],
+            "practice": [
+              "Create a script that prints your name and today's date",
+              "Write a script that counts files in current directory",
+              "Create a script that asks for user input and responds",
+              "Write a script with if/else that checks if a file exists",
+              "Create a loop that prints numbers 1-10"
+            ]
+          },
+          "videoId": "DQfvftz-fEI"
+        },
+        {
+          "id": "mod-8",
+          "number": 8,
+          "title": "Package Management",
+          "xp": 100,
+          "description": "Install, update, and remove software packages",
+          "content": {
+            "intro": "Package management is how you install tools and software on Linux. Essential for setting up your hacking lab.",
+            "concepts": [
+              "apt - Debian/Ubuntu package manager",
+              "dpkg - Low-level package manager",
+              "Repositories - Sources of software packages",
+              "Dependencies - Required packages"
+            ],
+            "commands": [
+              {
+                "cmd": "sudo apt update",
+                "desc": "Update package list"
+              },
+              {
+                "cmd": "sudo apt upgrade",
+                "desc": "Upgrade all packages"
+              },
+              {
+                "cmd": "sudo apt install nmap",
+                "desc": "Install a package"
+              },
+              {
+                "cmd": "sudo apt remove nmap",
+                "desc": "Remove a package"
+              },
+              {
+                "cmd": "dpkg -l | grep nmap",
+                "desc": "Check if package installed"
+              },
+              {
+                "cmd": "which nmap",
+                "desc": "Find package location"
+              },
+              {
+                "cmd": "apt search toolname",
+                "desc": "Search for packages"
+              }
+            ],
+            "practice": [
+              "Update your system with sudo apt update && sudo apt upgrade",
+              "Install nmap if not already installed",
+              "Check nmap version with nmap --version",
+              "Search for and install htop",
+              "Remove a package and verify it's gone"
+            ]
+          },
+          "videoId": "q8E7qL0bS6g"
+        }
+      ]
+    },
+    {
+      "id": "networking",
+      "title": "NETWORKING BASICS",
+      "icon": "🌐",
+      "description": "Understand network fundamentals for security",
+      "status": "locked",
+      "modules": [
+        {
+          "id": "mod-9",
+          "number": 9,
+          "title": "IP Address & Subnet",
+          "xp": 150,
+          "description": "Understand IP addressing and subnetting",
+          "content": {
+            "intro": "IP addresses are like home addresses for devices on a network. Understanding them is crucial for network security.",
+            "concepts": [
+              "IPv4 (32-bit) vs IPv6 (128-bit)",
+              "Private vs Public IP ranges",
+              "Subnet mask and CIDR notation (/24, /16)",
+              "127.0.0.1 = localhost (your own machine)",
+              "DHCP vs Static IP"
+            ],
+            "commands": [
+              {
+                "cmd": "ip a",
+                "desc": "Show IP addresses (modern)"
+              },
+              {
+                "cmd": "ifconfig",
+                "desc": "Show network interfaces (legacy)"
+              },
+              {
+                "cmd": "ping 8.8.8.8",
+                "desc": "Test connectivity to Google DNS"
+              },
+              {
+                "cmd": "ping -c 4 google.com",
+                "desc": "Ping 4 times only"
+              },
+              {
+                "cmd": "hostname -I",
+                "desc": "Show local IP address"
+              },
+              {
+                "cmd": "ip route",
+                "desc": "Show routing table"
+              }
+            ],
+            "practice": [
+              "Find your IP address using ip a",
+              "Ping google.com and observe response time",
+              "Understand the difference between 192.168.x.x and public IPs",
+              "Calculate subnet for a /24 network",
+              "Find your default gateway"
+            ]
+          },
+          "videoId": "CMlqR70Nk9Y"
+        },
+        {
+          "id": "mod-10",
+          "number": 10,
+          "title": "DNS Basics",
+          "xp": 100,
+          "description": "Domain Name System resolution",
+          "content": {
+            "intro": "DNS translates human-readable domain names to IP addresses. Understanding DNS is key for reconnaissance.",
+            "concepts": [
+              "Domain → IP resolution process",
+              "DNS record types: A, AAAA, MX, CNAME, TXT",
+              "/etc/hosts file (local DNS override)",
+              "DNS servers: recursive vs authoritative"
+            ],
+            "commands": [
+              {
+                "cmd": "nslookup google.com",
+                "desc": "Query DNS records"
+              },
+              {
+                "cmd": "dig google.com",
+                "desc": "Detailed DNS query"
+              },
+              {
+                "cmd": "dig @8.8.8.8 google.com",
+                "desc": "Query specific DNS server"
+              },
+              {
+                "cmd": "host google.com",
+                "desc": "Simple DNS lookup"
+              },
+              {
+                "cmd": "cat /etc/hosts",
+                "desc": "View local DNS entries"
+              },
+              {
+                "cmd": "cat /etc/resolv.conf",
+                "desc": "View DNS configuration"
+              }
+            ],
+            "practice": [
+              "Lookup the IP of google.com using dig",
+              "Add a custom entry to /etc/hosts",
+              "Query different DNS record types (MX, TXT, CNAME)",
+              "Find the authoritative nameserver for a domain",
+              "Use nslookup to find subdomains"
+            ]
+          },
+          "videoId": "UVm_xLZ0bSg"
+        },
+        {
+          "id": "mod-11",
+          "number": 11,
+          "title": "TCP/UDP & Ports",
+          "xp": 150,
+          "description": "Understand ports, protocols, and connections",
+          "content": {
+            "intro": "Ports are like doors to a computer. Each service uses specific ports. Port scanning is fundamental to recon.",
+            "concepts": [
+              "TCP = reliable connection (HTTP, SSH, FTP)",
+              "UDP = fast but unreliable (DNS, gaming, VoIP)",
+              "Common ports: 22(SSH), 80(HTTP), 443(HTTPS), 3306(MySQL)",
+              "Three-way handshake: SYN → SYN-ACK → ACK"
+            ],
+            "commands": [
+              {
+                "cmd": "ss -tuln",
+                "desc": "Show open ports (modern)"
+              },
+              {
+                "cmd": "netstat -tuln",
+                "desc": "Show open ports (legacy)"
+              },
+              {
+                "cmd": "lsof -i :22",
+                "desc": "What's using port 22"
+              },
+              {
+                "cmd": "nmap localhost",
+                "desc": "Scan own ports"
+              },
+              {
+                "cmd": "nc -zv target 80",
+                "desc": "Test port connectivity"
+              },
+              {
+                "cmd": "cat /etc/services",
+                "desc": "List known services"
+              }
+            ],
+            "practice": [
+              "List all open ports on your machine",
+              "Identify which ports SSH and HTTP use",
+              "Scan localhost with nmap",
+              "Use netstat to find which process uses port 443",
+              "Understand the difference between TCP and UDP"
+            ]
+          },
+          "videoId": "kE6PqMbOQxw"
+        },
+        {
+          "id": "mod-12",
+          "number": 12,
+          "title": "Network Commands",
+          "xp": 100,
+          "description": "Essential network diagnostic tools",
+          "content": {
+            "intro": "These tools help diagnose and troubleshoot network issues. Essential for both attack and defense.",
+            "concepts": [
+              "ping - Test connectivity using ICMP",
+              "traceroute - Trace packet path through networks",
+              "curl - Transfer data with URLs",
+              "wget - Download files from web"
+            ],
+            "commands": [
+              {
+                "cmd": "ping -c 4 google.com",
+                "desc": "Ping 4 times"
+              },
+              {
+                "cmd": "traceroute google.com",
+                "desc": "Trace route to destination"
+              },
+              {
+                "cmd": "curl ifconfig.me",
+                "desc": "Show public IP"
+              },
+              {
+                "cmd": "curl -I http://example.com",
+                "desc": "Show HTTP headers"
+              },
+              {
+                "cmd": "wget http://example.com/file.txt",
+                "desc": "Download file"
+              },
+              {
+                "cmd": "curl -X POST url -d 'data'",
+                "desc": "POST request"
+              }
+            ],
+            "practice": [
+              "Ping google.com 10 times and note the response time",
+              "Trace the route to a remote server",
+              "Download a file with wget",
+              "Use curl to check HTTP headers of a website",
+              "Find your public IP using curl"
+            ]
+          },
+          "videoId": "QGx8R4z0b9Y"
+        },
+        {
+          "id": "mod-13",
+          "number": 13,
+          "title": "Wireshark Basics",
+          "xp": 200,
+          "description": "Packet capture and analysis introduction",
+          "content": {
+            "intro": "Wireshark is a network protocol analyzer for deep packet inspection. Essential for understanding network attacks.",
+            "concepts": [
+              "Packet capture (pcap) files",
+              "Protocol filters (http, tcp, dns)",
+              "TCP stream following",
+              "HTTP packet inspection",
+              "Capture vs display filters"
+            ],
+            "commands": [
+              {
+                "cmd": "wireshark",
+                "desc": "Launch Wireshark GUI"
+              },
+              {
+                "cmd": "tshark -i eth0",
+                "desc": "Terminal-based capture"
+              },
+              {
+                "cmd": "tcpdump -i eth0",
+                "desc": "Command-line capture"
+              },
+              {
+                "cmd": "tcpdump port 80 -w capture.pcap",
+                "desc": "Capture HTTP to file"
+              },
+              {
+                "cmd": "tcpdump -r capture.pcap",
+                "desc": "Read pcap file"
+              }
+            ],
+            "practice": [
+              "Capture 10 packets with tcpdump",
+              "Filter for HTTP traffic only",
+              "Analyze a simple packet capture",
+              "Follow a TCP stream in Wireshark",
+              "Identify DNS queries in a capture"
+            ]
+          },
+          "videoId": "kY-TT538jp4"
+        }
+      ]
+    },
+    {
+      "id": "security",
+      "title": "SECURITY FUNDAMENTALS",
+      "icon": "🔒",
+      "description": "Core security concepts and principles",
+      "status": "locked",
+      "modules": [
+        {
+          "id": "mod-14",
+          "number": 14,
+          "title": "CIA Triad",
+          "xp": 100,
+          "description": "Confidentiality, Integrity, Availability",
+          "content": {
+            "intro": "The CIA Triad is the foundation of information security. Every security decision relates to these three principles.",
+            "concepts": [
+              "Confidentiality - Only authorized access to data",
+              "Integrity - Data is accurate and unmodified",
+              "Availability - Systems accessible when needed",
+              "Balancing CIA - tradeoffs between security and usability"
+            ],
+            "commands": [],
+            "practice": [
+              "Identify CIA in a real-world scenario (e.g., online banking)",
+              "Analyze a data breach using CIA framework",
+              "Design security controls for each CIA component",
+              "List how encryption protects confidentiality",
+              "Explain how checksums protect integrity"
+            ]
+          },
+          "videoId": "8b6JqHqz7WY"
+        },
+        {
+          "id": "mod-15",
+          "number": 15,
+          "title": "Authentication & Authorization",
+          "xp": 150,
+          "description": "Who are you and what can you do?",
+          "content": {
+            "intro": "Authentication verifies identity, authorization determines permissions. Both are essential for security.",
+            "concepts": [
+              "Authentication factors: know/have/are",
+              "Multi-factor authentication (MFA)",
+              "Role-based access control (RBAC)",
+              "Principle of least privilege",
+              "OAuth, JWT, session tokens"
+            ],
+            "commands": [
+              {
+                "cmd": "ssh-keygen",
+                "desc": "Generate SSH key pair"
+              },
+              {
+                "cmd": "ssh-copy-id user@host",
+                "desc": "Copy public key to server"
+              },
+              {
+                "cmd": "ssh -i key.pem user@host",
+                "desc": "Connect with specific key"
+              },
+              {
+                "cmd": "chmod 600 ~/.ssh/id_rsa",
+                "desc": "Secure private key"
+              }
+            ],
+            "practice": [
+              "Compare different authentication methods",
+              "Set up SSH key-based authentication",
+              "Analyze Linux permissions as access control",
+              "Implement MFA on a test account",
+              "Review /etc/passwd and /etc/shadow"
+            ]
+          },
+          "videoId": "Jb5S5Pz7b9k"
+        },
+        {
+          "id": "mod-16",
+          "number": 16,
+          "title": "Cryptography Basics",
+          "xp": 200,
+          "description": "Encryption, hashing, and digital signatures",
+          "content": {
+            "intro": "Cryptography protects data through mathematical techniques. Understanding it is crucial for security professionals.",
+            "concepts": [
+              "Symmetric vs Asymmetric encryption",
+              "Hashing (MD5, SHA-256, SHA-512)",
+              "Digital certificates and PKI",
+              "SSL/TLS handshake process",
+              "Key exchange and perfect forward secrecy"
+            ],
+            "commands": [
+              {
+                "cmd": "echo -n 'text' | md5sum",
+                "desc": "Generate MD5 hash"
+              },
+              {
+                "cmd": "echo -n 'text' | sha256sum",
+                "desc": "Generate SHA256 hash"
+              },
+              {
+                "cmd": "openssl enc -aes-256-cbc -in file -out encrypted",
+                "desc": "Encrypt file"
+              },
+              {
+                "cmd": "openssl enc -d -aes-256-cbc -in encrypted -out decrypted",
+                "desc": "Decrypt file"
+              },
+              {
+                "cmd": "openssl rand -hex 32",
+                "desc": "Generate random key"
+              },
+              {
+                "cmd": "gpg -c file.txt",
+                "desc": "Encrypt with GPG"
+              }
+            ],
+            "practice": [
+              "Generate hash of a string using sha256sum",
+              "Compare MD5 and SHA256 outputs for same input",
+              "Encrypt and decrypt a file with openssl",
+              "Create a self-signed certificate with openssl",
+              "Understand why MD5 is considered insecure"
+            ]
+          },
+          "videoId": "tbvahZM0B3g"
+        },
+        {
+          "id": "mod-17",
+          "number": 17,
+          "title": "Common Attacks",
+          "xp": 200,
+          "description": "SQL injection, XSS, phishing, and more",
+          "content": {
+            "intro": "Understanding attacks is essential for defense. Learn how attackers think to protect better.",
+            "concepts": [
+              "SQL Injection (SQLi) - injecting SQL through input",
+              "Cross-Site Scripting (XSS) - injecting malicious scripts",
+              "Phishing and Social Engineering",
+              "Brute Force attacks - trying all combinations",
+              "Man-in-the-Middle (MITM) attacks"
+            ],
+            "commands": [
+              {
+                "cmd": "nikto -h target.com",
+                "desc": "Web vulnerability scanner"
+              },
+              {
+                "cmd": "sqlmap -u 'url?id=1'",
+                "desc": "SQL injection automation"
+              },
+              {
+                "cmd": "hydra -l user -P wordlist target ssh",
+                "desc": "Brute force SSH"
+              },
+              {
+                "cmd": "ettercap -G",
+                "desc": "MITM attack tool"
+              }
+            ],
+            "practice": [
+              "Identify SQL injection in sample vulnerable code",
+              "Recognize phishing email patterns",
+              "Test for reflected XSS in a web form",
+              "Set up a basic brute force attack in lab",
+              "Explain how MITM attacks work"
+            ]
+          },
+          "videoId": "e4lLJdeCRZE"
+        }
+      ]
+    },
+    {
+      "id": "offensive",
+      "title": "OFFENSIVE SECURITY",
+      "icon": "⚔️",
+      "description": "Penetration testing and ethical hacking",
+      "status": "locked",
+      "modules": [
+        {
+          "id": "mod-18",
+          "number": 18,
+          "title": "Reconnaissance",
+          "xp": 200,
+          "description": "Information gathering techniques",
+          "content": {
+            "intro": "Recon is the first and most important phase of penetration testing. The more you know, the easier the attack.",
+            "concepts": [
+              "Passive vs Active recon",
+              "OSINT (Open Source Intelligence)",
+              "Google dorking - advanced search operators",
+              "WHOIS and DNS enumeration",
+              "Social media intelligence (SOCMINT)"
+            ],
+            "commands": [
+              {
+                "cmd": "whois target.com",
+                "desc": "Domain registration info"
+              },
+              {
+                "cmd": "theHarvester -d target.com -b google",
+                "desc": "Email/domain harvest"
+              },
+              {
+                "cmd": "google 'site:target.com filetype:pdf'",
+                "desc": "Google dorking"
+              },
+              {
+                "cmd": "subfinder -d target.com",
+                "desc": "Subdomain enumeration"
+              },
+              {
+                "cmd": "amass enum -d target.com",
+                "desc": "OSINT subdomain scan"
+              },
+              {
+                "cmd": "wappalyzer target.com",
+                "desc": "Technology detection"
+              }
+            ],
+            "practice": [
+              "Perform WHOIS lookup on a domain",
+              "Use Google dorking to find sensitive files",
+              "Gather emails and subdomains for a target",
+              "Create a recon report for a test target",
+              "Use OSINT to find information about a company"
+            ]
+          },
+          "videoId": "GwPekt5EYuM"
+        },
+        {
+          "id": "mod-19",
+          "number": 19,
+          "title": "Nmap Deep Dive",
+          "xp": 250,
+          "description": "Master network scanning with Nmap",
+          "content": {
+            "intro": "Nmap is THE most important tool for network scanning. Mastering it is essential for any penetration tester.",
+            "concepts": [
+              "Scan types: SYN (-sS), TCP (-sT), UDP (-sU)",
+              "Service version detection (-sV)",
+              "OS detection (-O)",
+              "Scripting Engine (NSE)",
+              "Timing and performance options"
+            ],
+            "commands": [
+              {
+                "cmd": "nmap target.com",
+                "desc": "Basic scan"
+              },
+              {
+                "cmd": "nmap -sV -sC target.com",
+                "desc": "Version + default scripts"
+              },
+              {
+                "cmd": "nmap -O target.com",
+                "desc": "OS detection"
+              },
+              {
+                "cmd": "nmap -A target.com",
+                "desc": "Aggressive scan (all)"
+              },
+              {
+                "cmd": "nmap -p- target.com",
+                "desc": "Scan all 65535 ports"
+              },
+              {
+                "cmd": "nmap --script vuln target.com",
+                "desc": "Vulnerability scan"
+              },
+              {
+                "cmd": "nmap -sU target.com",
+                "desc": "UDP scan"
+              },
+              {
+                "cmd": "nmap -T4 target.com",
+                "desc": "Fast timing template"
+              }
+            ],
+            "practice": [
+              "Scan localhost with different options",
+              "Scan for all open ports on a target",
+              "Identify running services and versions",
+              "Use NSE scripts to find vulnerabilities",
+              "Compare SYN scan vs TCP connect scan"
+            ]
+          },
+          "videoId": "d7L6DdkmN8I"
+        },
+        {
+          "id": "mod-20",
+          "number": 20,
+          "title": "Metasploit Basics",
+          "xp": 300,
+          "description": "Exploitation framework introduction",
+          "content": {
+            "intro": "Metasploit is the world's most used penetration testing framework. It makes exploitation easier and more organized.",
+            "concepts": [
+              "Modules: exploit, payload, auxiliary, post",
+              "Meterpreter - advanced payload",
+              "Database integration for tracking",
+              "Post-exploitation techniques",
+              "Payloads: reverse shells, bind shells"
+            ],
+            "commands": [
+              {
+                "cmd": "msfconsole",
+                "desc": "Launch Metasploit console"
+              },
+              {
+                "cmd": "search exploit_name",
+                "desc": "Search for exploits"
+              },
+              {
+                "cmd": "use exploit/path",
+                "desc": "Select an exploit module"
+              },
+              {
+                "cmd": "show options",
+                "desc": "View required options"
+              },
+              {
+                "cmd": "set RHOSTS target",
+                "desc": "Set target host"
+              },
+              {
+                "cmd": "set LHOST your_ip",
+                "desc": "Set listener host"
+              },
+              {
+                "cmd": "exploit",
+                "desc": "Run the exploit"
+              },
+              {
+                "cmd": "sessions -l",
+                "desc": "List active sessions"
+              }
+            ],
+            "practice": [
+              "Search for vsftpd 2.3.4 backdoor exploit",
+              "Configure and run an exploit against Metasploitable",
+              "Navigate Meterpreter after successful exploit",
+              "Use auxiliary modules for scanning",
+              "Practice with different payload types"
+            ]
+          },
+          "videoId": "LY2fv1_uRSY"
+        },
+        {
+          "id": "mod-21",
+          "number": 21,
+          "title": "Web Application Hacking",
+          "xp": 300,
+          "description": "OWASP Top 10 and web exploitation",
+          "content": {
+            "intro": "Web applications are the most common attack surface. Understanding web vulnerabilities is crucial.",
+            "concepts": [
+              "OWASP Top 10 vulnerabilities",
+              "SQL Injection deep dive",
+              "Cross-Site Scripting (XSS) types",
+              "Cross-Site Request Forgery (CSRF)",
+              "Local File Inclusion (LFI) / Remote File Inclusion (RFI)"
+            ],
+            "commands": [
+              {
+                "cmd": "nikto -h http://target",
+                "desc": "Web vulnerability scan"
+              },
+              {
+                "cmd": "sqlmap -u 'url?id=1' --dbs",
+                "desc": "SQL injection enumeration"
+              },
+              {
+                "cmd": "dirb http://target",
+                "desc": "Directory brute force"
+              },
+              {
+                "cmd": "gobuster dir -u url -w wordlist",
+                "desc": "Directory/file discovery"
+              },
+              {
+                "cmd": "wfuzz -c -z file,wordlist url/FUZZ",
+                "desc": "Web fuzzer"
+              }
+            ],
+            "practice": [
+              "Test a DVWA instance for SQL injection",
+              "Find hidden directories with dirb/gobuster",
+              "Exploit a basic XSS vulnerability",
+              "Practice LFI/RFI on a vulnerable app",
+              "Write a basic vulnerability report"
+            ]
+          },
+          "videoId": "Q7x3WkX5Z5I"
+        },
+        {
+          "id": "mod-22",
+          "number": 22,
+          "title": "Privilege Escalation",
+          "xp": 350,
+          "description": "Linux and Windows privilege escalation",
+          "content": {
+            "intro": "After getting initial access, you need to escalate privileges to fully compromise the system.",
+            "concepts": [
+              "SUID/SGID binaries exploitation",
+              "Kernel vulnerabilities",
+              "Sudo misconfigurations",
+              "Cron job exploitation",
+              "Windows UAC bypass"
+            ],
+            "commands": [
+              {
+                "cmd": "find / -perm -4000 2>/dev/null",
+                "desc": "Find SUID binaries"
+              },
+              {
+                "cmd": "sudo -l",
+                "desc": "Check sudo permissions"
+              },
+              {
+                "cmd": "cat /etc/crontab",
+                "desc": "Check cron jobs"
+              },
+              {
+                "cmd": "uname -a",
+                "desc": "Check kernel version"
+              },
+              {
+                "cmd": "linpeas.sh",
+                "desc": "Linux privilege escalation finder"
+              },
+              {
+                "cmd": "winpeas.exe",
+                "desc": "Windows privilege escalation finder"
+              }
+            ],
+            "practice": [
+              "Find SUID binaries and research exploits",
+              "Check for sudo misconfigurations",
+              "Exploit a SUID binary for privilege escalation",
+              "Use LinPEAS to enumerate a system",
+              "Practice on HackTheBox or TryHackMe machines"
+            ]
+          },
+          "videoId": "o-tL9ULF0KI"
+        }
+      ]
+    },
+    {
+      "id": "defensive",
+      "title": "DEFENSIVE SECURITY",
+      "icon": "🛡️",
+      "description": "SOC, Blue Team, and incident response",
+      "status": "locked",
+      "modules": [
+        {
+          "id": "mod-23",
+          "number": 23,
+          "title": "Log Analysis",
+          "xp": 200,
+          "description": "Analyze system and security logs",
+          "content": {
+            "intro": "Logs are the eyes and ears of security monitoring. Learning to read them is essential for detection.",
+            "concepts": [
+              "Syslog and journalctl",
+              "Apache/Nginx access and error logs",
+              "Authentication logs (/var/log/auth.log)",
+              "SIEM concepts and log aggregation",
+              "Log correlation and analysis"
+            ],
+            "commands": [
+              {
+                "cmd": "journalctl -f",
+                "desc": "Follow system logs in real-time"
+              },
+              {
+                "cmd": "cat /var/log/auth.log | grep 'Failed'",
+                "desc": "Find failed logins"
+              },
+              {
+                "cmd": "tail -f /var/log/apache2/access.log",
+                "desc": "Watch web access log"
+              },
+              {
+                "cmd": "grep 'error' /var/log/syslog",
+                "desc": "Find errors in syslog"
+              },
+              {
+                "cmd": "last -i",
+                "desc": "Show login history"
+              },
+              {
+                "cmd": "lastb",
+                "desc": "Show failed login attempts"
+              }
+            ],
+            "practice": [
+              "Find failed SSH login attempts in auth.log",
+              "Analyze web server access logs for patterns",
+              "Create a simple log monitoring script",
+              "Identify suspicious activity in logs",
+              "Use awk to parse log files"
+            ]
+          },
+          "videoId": "kY-TT538jp4"
+        },
+        {
+          "id": "mod-24",
+          "number": 24,
+          "title": "Incident Response",
+          "xp": 200,
+          "description": "How to respond to security incidents",
+          "content": {
+            "intro": "Incident response is a structured approach to handling security breaches. Preparation is key.",
+            "concepts": [
+              "NIST Incident Response Lifecycle",
+              "Preparation phase",
+              "Detection and Analysis",
+              "Containment, Eradication, Recovery",
+              "Post-incident activity and lessons learned"
+            ],
+            "commands": [
+              {
+                "cmd": " volatility -f memory.dump imageinfo",
+                "desc": "Memory forensics"
+              },
+              {
+                "cmd": " autopsy",
+                "desc": "Disk forensics GUI"
+              },
+              {
+                "cmd": " volatility -f memory.dump pslist",
+                "desc": "List processes from memory"
+              },
+              {
+                "cmd": " strings suspicious.exe",
+                "desc": "Extract strings from binary"
+              }
+            ],
+            "practice": [
+              "Create an incident response checklist",
+              "Analyze a compromised system scenario",
+              "Document findings and recommendations",
+              "Practice chain of custody for evidence",
+              "Create an incident response plan for a company"
+            ]
+          },
+          "videoId": "H-e0PSnSjC8"
+        },
+        {
+          "id": "mod-25",
+          "number": 25,
+          "title": "SIEM & Monitoring",
+          "xp": 250,
+          "description": "Security Information and Event Management",
+          "content": {
+            "intro": "SIEM tools collect and analyze security data in real-time. Essential for SOC analysts.",
+            "concepts": [
+              "SIEM architecture and components",
+              "Splunk, ELK Stack, Wazuh",
+              "Alert rules and correlation",
+              "Dashboard creation",
+              "Threat hunting basics"
+            ],
+            "commands": [
+              {
+                "cmd": "splunk search 'index=main'",
+                "desc": "Search Splunk logs"
+              },
+              {
+                "cmd": "curl -XGET 'localhost:9200/_search'",
+                "desc": "Query Elasticsearch"
+              },
+              {
+                "cmd": "ossec-control start",
+                "desc": "Start OSSEC/Wazuh"
+              },
+              {
+                "cmd": "journalctl -u wazuh-agent",
+                "desc": "Check Wazuh agent"
+              }
+            ],
+            "practice": [
+              "Set up a basic SIEM in a lab environment",
+              "Create alert rules for suspicious activity",
+              "Build a security dashboard",
+              "Perform threat hunting with queries",
+              "Analyze false positives and tune alerts"
+            ]
+          },
+          "videoId": "Fqs23bJzN0E"
+        },
+        {
+          "id": "mod-26",
+          "number": 26,
+          "title": "Firewalls & IDS/IPS",
+          "xp": 250,
+          "description": "Network defense mechanisms",
+          "content": {
+            "intro": "Firewalls and IDS/IPS are the first line of defense. Understanding them helps both attack and defense.",
+            "concepts": [
+              "Packet filtering firewalls",
+              "Stateful inspection",
+              "IDS vs IPS differences",
+              "Snort/Suricata rules",
+              "Network segmentation"
+            ],
+            "commands": [
+              {
+                "cmd": "sudo ufw status",
+                "desc": "Check UFW firewall status"
+              },
+              {
+                "cmd": "sudo ufw enable",
+                "desc": "Enable firewall"
+              },
+              {
+                "cmd": "sudo ufw allow 22/tcp",
+                "desc": "Allow SSH"
+              },
+              {
+                "cmd": "sudo iptables -L",
+                "desc": "List iptables rules"
+              },
+              {
+                "cmd": "sudo snort -A console -q -u snort -c /etc/snort/snort.conf -i eth0",
+                "desc": "Run Snort IDS"
+              }
+            ],
+            "practice": [
+              "Configure UFW to allow only SSH and HTTP",
+              "Write basic Snort rules",
+              "Analyze firewall logs",
+              "Set up a basic IDS in lab environment",
+              "Test rules against known attack patterns"
+            ]
+          },
+          "videoId": "Zgh2nFjv3H0"
+        },
+        {
+          "id": "mod-27",
+          "number": 27,
+          "title": "Malware Analysis",
+          "xp": 300,
+          "description": "Analyze and reverse engineer malware",
+          "content": {
+            "intro": "Malware analysis helps understand threats and develop countermeasures. Essential for advanced defense.",
+            "concepts": [
+              "Static vs Dynamic analysis",
+              "Sandboxing and behavioral analysis",
+              "Reverse engineering basics",
+              "Common malware families",
+              "Anti-analysis techniques"
+            ],
+            "commands": [
+              {
+                "cmd": "file malware.exe",
+                "desc": "Identify file type"
+              },
+              {
+                "cmd": "strings malware.exe",
+                "desc": "Extract readable strings"
+              },
+              {
+                "cmd": "objdump -d malware.exe",
+                "desc": "Disassemble binary"
+              },
+              {
+                "cmd": "strace ./malware",
+                "desc": "Trace system calls"
+              },
+              {
+                "cmd": "yara -r rules/ malware.exe",
+                "desc": "Scan with YARA rules"
+              }
+            ],
+            "practice": [
+              "Analyze a benign executable with static tools",
+              "Extract strings and find indicators",
+              "Use a sandbox for behavioral analysis",
+              "Write basic YARA rules",
+              "Document malware capabilities"
+            ]
+          },
+          "videoId": "jM3wR8qV5gA"
+        }
+      ]
+    },
+    {
+      "id": "web",
+      "title": "WEB SECURITY",
+      "icon": "🕸️",
+      "description": "Web application security testing",
+      "status": "locked",
+      "modules": [
+        {
+          "id": "mod-28",
+          "number": 28,
+          "title": "Burp Suite Basics",
+          "xp": 250,
+          "description": "Web application security testing tool",
+          "content": {
+            "intro": "Burp Suite is the industry standard for web application security testing. Master it to test web apps effectively.",
+            "concepts": [
+              "Proxy setup and configuration",
+              "Repeater for request manipulation",
+              "Intruder for automated attacks",
+              "Scanner for vulnerability detection",
+              "Extensions and custom plugins"
+            ],
+            "commands": [
+              {
+                "cmd": "burpsuite",
+                "desc": "Launch Burp Suite"
+              },
+              {
+                "cmd": "Configure browser proxy to 127.0.0.1:8080",
+                "desc": "Route traffic through Burp"
+              },
+              {
+                "cmd": "Use Repeater to modify requests",
+                "desc": "Manual request testing"
+              },
+              {
+                "cmd": "Configure Intruder positions and payloads",
+                "desc": "Automated attacks"
+              }
+            ],
+            "practice": [
+              "Configure browser to use Burp proxy",
+              "Intercept and modify HTTP requests",
+              "Use Repeater to test input validation",
+              "Perform a basic SQL injection with Intruder",
+              "Analyze a web application's authentication"
+            ]
+          },
+          "videoId": "MGmfLvhhtSY"
+        },
+        {
+          "id": "mod-29",
+          "number": 29,
+          "title": "Web Exploitation Labs",
+          "xp": 300,
+          "description": "Practice on vulnerable web applications",
+          "content": {
+            "intro": "Practice makes perfect. Use vulnerable web apps to hone your web exploitation skills safely.",
+            "concepts": [
+              "DVWA (Damn Vulnerable Web App)",
+              "WebGoat - OWASP teaching app",
+              "HackTheBox web challenges",
+              "Bug bounty programs",
+              "Responsible disclosure"
+            ],
+            "commands": [
+              {
+                "cmd": "docker run --rm -p 80:80 vulnerables/web-dvwa",
+                "desc": "Run DVWA"
+              },
+              {
+                "cmd": "docker run --rm -p 8080:80 webgoat/webgoat",
+                "desc": "Run WebGoat"
+              },
+              {
+                "cmd": "curl -X POST url -d 'username=admin'",
+                "desc": "Test login bypass"
+              },
+              {
+                "cmd": "sqlmap -u 'url?id=1' --level=5 --risk=3",
+                "desc": "Advanced SQLi"
+              }
+            ],
+            "practice": [
+              "Set up and exploit DVWA vulnerabilities",
+              "Complete WebGoat lessons",
+              "Solve HackTheBox web challenges",
+              "Document your findings professionally",
+              "Practice responsible reporting"
+            ]
+          },
+          "videoId": "PzN0ADwHJn8"
+        },
+        {
+          "id": "mod-30",
+          "number": 30,
+          "title": "API Security",
+          "xp": 300,
+          "description": "REST and GraphQL API security testing",
+          "content": {
+            "intro": "APIs are everywhere. Securing them is critical as they're often the backbone of modern applications.",
+            "concepts": [
+              "OWASP API Security Top 10",
+              "Authentication: API keys, JWT, OAuth",
+              "Common API vulnerabilities",
+              "Rate limiting and abuse prevention",
+              "GraphQL-specific attacks"
+            ],
+            "commands": [
+              {
+                "cmd": "curl -H 'Authorization: Bearer token' url",
+                "desc": "Test API with JWT"
+              },
+              {
+                "cmd": "arjun -u url/api",
+                "desc": "Find hidden API endpoints"
+              },
+              {
+                "cmd": "katana -u url",
+                "desc": "API crawling"
+              },
+              {
+                "cmd": "ffuf -w wordlist -u url/api/FUZZ",
+                "desc": "API fuzzing"
+              }
+            ],
+            "practice": [
+              "Test API authentication mechanisms",
+              "Find and exploit IDOR vulnerabilities",
+              "Test for mass assignment",
+              "Implement proper API security controls",
+              "Analyze API documentation for weaknesses"
+            ]
+          },
+          "videoId": "b6fYJq1KzYQ"
+        }
+      ]
+    },
+    {
+      "id": "ai-security",
+      "title": "AI SECURITY",
+      "icon": "🤖",
+      "description": "AI/ML security and adversarial attacks",
+      "status": "locked",
+      "modules": [
+        {
+          "id": "mod-31",
+          "number": 31,
+          "title": "AI Security Fundamentals",
+          "xp": 200,
+          "description": "Security implications of AI systems",
+          "content": {
+            "intro": "As AI becomes prevalent, securing AI systems and using AI for security becomes critical.",
+            "concepts": [
+              "Adversarial attacks on ML models",
+              "Data poisoning attacks",
+              "Model theft and extraction",
+              "AI-powered cyber attacks",
+              "Ethical considerations"
+            ],
+            "commands": [
+              {
+                "cmd": "python3 -m pip install adversarial-robustness-toolbox",
+                "desc": "Install ART library"
+              },
+              {
+                "cmd": "python3 -c 'import art'",
+                "desc": "Verify installation"
+              },
+              {
+                "cmd": "Capture AI model with",
+                "desc": "model extraction tools"
+              }
+            ],
+            "practice": [
+              "Understand adversarial examples conceptually",
+              "Analyze AI model vulnerabilities",
+              "Explore defensive techniques",
+              "Research recent AI security incidents",
+              "Discuss ethical implications of AI in security"
+            ]
+          },
+          "videoId": "kY-TT538jp4"
+        },
+        {
+          "id": "mod-32",
+          "number": 32,
+          "title": "AI-Powered Security Tools",
+          "xp": 250,
+          "description": "Using AI for cybersecurity defense and offense",
+          "content": {
+            "intro": "AI is revolutionizing cybersecurity - both for attackers and defenders. Learn to leverage AI tools.",
+            "concepts": [
+              "ML-based threat detection",
+              "User and Entity Behavior Analytics (UEBA)",
+              "Automated vulnerability scanning",
+              "AI for malware detection",
+              "Prompt injection and LLM attacks"
+            ],
+            "commands": [
+              {
+                "cmd": "python3 anomaly_detection.py",
+                "desc": "Run anomaly detection"
+              },
+              {
+                "cmd": "use ml-based scanner",
+                "desc": "AI vulnerability scanner"
+              },
+              {
+                "cmd": "analyze with UEBA tools",
+                "desc": "Behavior analytics"
+              }
+            ],
+            "practice": [
+              "Set up a basic ML-based IDS",
+              "Analyze network traffic with ML models",
+              "Test AI-powered security tools",
+              "Build a simple threat detection model",
+              "Evaluate AI security tool effectiveness"
+            ]
+          },
+          "videoId": "Fqs23bJzN0E"
+        },
+        {
+          "id": "mod-33",
+          "number": 33,
+          "title": "Career & Certification Path",
+          "xp": 300,
+          "description": "Cybersecurity career guidance and certifications",
+          "content": {
+            "intro": "This module helps you plan your cybersecurity career and prepare for industry certifications.",
+            "concepts": [
+              "Cybersecurity career paths",
+              "Certifications: CEH, OSCP, CompTIA Security+",
+              "Building a home lab",
+              "Bug bounty hunting",
+              "Continuous learning resources"
+            ],
+            "commands": [
+              {
+                "cmd": "Build home lab with VirtualBox/VMware",
+                "desc": "Set up practice environment"
+              },
+              {
+                "cmd": "Join cybersecurity communities",
+                "desc": "Networking and learning"
+              },
+              {
+                "cmd": "Create a cybersecurity blog",
+                "desc": "Document your journey"
+              },
+              {
+                "cmd": "Contribute to open source security tools",
+                "desc": "Build your portfolio"
+              }
+            ],
+            "practice": [
+              "Create a cybersecurity career plan",
+              "Set up a complete home lab",
+              "Start a bug bounty hunting journey",
+              "Build a professional portfolio",
+              "Join cybersecurity communities and competitions"
+            ]
+          },
+          "videoId": "G7f9Q5q7z9I"
+        }
+      ]
+    },
+    {
       "id": "red_team",
       "title": "RED TEAM",
       "icon": "🔴",
       "description": "Master offensive security tools and techniques for penetration testing",
-      "status": "unlocked",
+      "status": "locked",
       "modules": [
         {
           "id": "mod-red-1",
@@ -994,7 +2680,7 @@
       "title": "BLUE TEAM",
       "icon": "🔵",
       "description": "Learn defensive security, incident response, and threat detection",
-      "status": "unlocked",
+      "status": "locked",
       "modules": [
         {
           "id": "mod-blue-1",
@@ -1773,11 +3459,11 @@
       ]
     },
     {
-      "id": "web_security",
+      "id": "web_security_new",
       "title": "WEB SECURITY",
       "icon": "🌐",
       "description": "Web application security testing and vulnerability assessment",
-      "status": "unlocked",
+      "status": "locked",
       "modules": [
         {
           "id": "mod-web-1",
@@ -2457,11 +4143,11 @@
       ]
     },
     {
-      "id": "ai_security",
+      "id": "ai_security_new",
       "title": "AI SECURITY",
       "icon": "🤖",
       "description": "AI/ML security, adversarial attacks, and defensive techniques",
-      "status": "unlocked",
+      "status": "locked",
       "modules": [
         {
           "id": "mod-ai-1",
