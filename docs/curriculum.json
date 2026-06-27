@@ -12,465 +12,360 @@
           "number": 1,
           "title": "Linux Basic Navigation",
           "xp": 100,
-          "description": "Learn pwd, ls, cd, mkdir, and basic directory operations",
+          "description": "Master the fundamental Linux commands for navigating the filesystem: pwd, ls, cd, and mkdir.",
           "content": {
-            "intro": "Linux navigation is the foundation of everything in cybersecurity. You must be comfortable moving around the filesystem before you can hack anything.",
+            "intro": "The Linux filesystem is organized as an inverted tree starting from the root directory (/). Unlike Windows which uses drive letters (C:, D:), Linux uses a single unified tree structure. Understanding how to navigate this structure is the first essential skill for any Linux user.",
             "concepts": [
-              "pwd - Print Working Directory: shows where you are in the filesystem",
-              "ls - List: shows files and folders in current directory",
-              "cd - Change Directory: move between folders",
-              "mkdir - Make Directory: create new folders",
-              "rmdir - Remove Directory: delete empty folders",
-              "~ (tilde) represents your home directory"
+              "The Linux filesystem follows a hierarchical tree structure starting from the root directory (/). All files and directories branch out from this single root point. Key directories include /home (user home directories), /etc (configuration files), /usr (user programs), and /var (variable data like logs). Understanding this structure helps you know where to find and store files.",
+              "The pwd (print working directory) command tells you exactly where you are in the filesystem at any moment. It returns the full absolute path from root to your current location. This is especially useful when you are deep in nested directories and need to confirm your position before performing operations.",
+              "The ls (list) command displays the contents of a directory. With options like -l (long format showing permissions, owner, size, date), -a (show hidden files starting with .), and -h (human-readable sizes), you can get detailed information. Combining options like ls -la gives you a comprehensive view.",
+              "The cd (change directory) command moves you between directories in the filesystem. Special shortcuts include cd ~ or just cd to go to your home directory, cd .. to move up one level to the parent directory, and cd / to go to the root directory. Both relative and absolute paths work with cd.",
+              "The mkdir (make directory) command creates new directories. Use mkdir -p to create nested directory structures in one command (e.g., mkdir -p projects/web/app creates three levels at once). The -p flag also prevents errors if the directory already exists."
             ],
             "commands": [
               {
                 "cmd": "pwd",
-                "desc": "Show current location in filesystem"
-              },
-              {
-                "cmd": "ls",
-                "desc": "List files in current directory"
+                "desc": "Print the full path of your current working directory"
               },
               {
                 "cmd": "ls -la",
-                "desc": "List ALL files including hidden with details"
+                "desc": "List all files including hidden ones in long format with permissions and details"
               },
               {
-                "cmd": "cd /home",
-                "desc": "Go to /home directory"
+                "cmd": "cd /path/to/directory",
+                "desc": "Change to the specified directory; use cd ~ for home, cd .. for parent, cd / for root"
               },
               {
-                "cmd": "cd ..",
-                "desc": "Go up one directory"
+                "cmd": "mkdir -p dir1/dir2/dir3",
+                "desc": "Create nested directory structure recursively, creating parent directories as needed"
               },
               {
-                "cmd": "cd ~",
-                "desc": "Go to home directory"
-              },
-              {
-                "cmd": "mkdir latihan",
-                "desc": "Create folder named 'latihan'"
-              },
-              {
-                "cmd": "rmdir latihan",
-                "desc": "Remove empty folder 'latihan'"
+                "cmd": "mkdir dir1 dir2 dir3",
+                "desc": "Create multiple directories at once in the current location"
               }
             ],
             "practice": [
-              "Navigate to /tmp and create a folder named 'myfolder'",
-              "Go inside 'myfolder' and create 3 files with touch",
-              "List all files with details using ls -la",
-              "Go back to your home directory using cd ~",
-              "Use pwd to confirm you're in your home directory"
+              "Navigate to your home directory, create a directory called projects, then create subdirectories web and app inside it using mkdir -p. Use pwd and ls -la to verify the structure.",
+              "Starting from /home, use cd and ls to navigate to /var/log, list its contents, then navigate back to your home directory using only relative paths (cd ..).",
+              "Create a directory structure school/semester1/maths, school/semester1/science, school/semester1/english in one command using mkdir -p, then use ls -R to verify."
             ]
           },
-          "videoId": "LyXrnAvTbFc"
+          "videoId": "PZ84I6fCa_0"
         },
         {
           "id": "mod-2",
           "number": 2,
           "title": "File Operations",
-          "xp": 100,
-          "description": "Create, copy, move, and delete files",
+          "xp": 120,
+          "description": "Learn essential file operations in Linux including creating, copying, moving, removing, and viewing files.",
           "content": {
-            "intro": "Files are everywhere in Linux. Mastering file operations is essential for daily tasks and security work.",
+            "intro": "File operations are the bread and butter of Linux system administration. Whether you are managing configuration files, organizing project directories, or cleaning up temporary files, these commands form the core of your daily workflow. Linux treats everything as a file, so mastering file operations is fundamental.",
             "concepts": [
-              "touch - Create empty file or update timestamp",
-              "cp - Copy file or directory",
-              "mv - Move or rename file",
-              "rm - Remove file (careful! no undo in Linux)",
-              "cat - Display file contents",
-              "-r flag for recursive operations on directories"
+              "The touch command creates empty files or updates the timestamp of existing files. When used on a non-existent file, it creates a new empty file. When used on an existing file, it updates the access and modification timestamps without changing the content. This is useful for creating placeholder files or forcing recompilation in build systems.",
+              "The cp (copy) command duplicates files and directories. Use -r (recursive) to copy directories and their contents, -p to preserve permissions and timestamps, and -i to prompt before overwriting. The syntax is cp [options] source destination.",
+              "The mv (move) command relocates files and directories or renames them. Unlike cp, mv removes the file from its original location. It works for both moving to a different directory and renaming in the same directory. Use -i to prompt before overwriting, -v for verbose output.",
+              "The rm (remove) command deletes files and directories permanently. There is no recycle bin in Linux command line. Use -r for directories (recursive), -f to force removal without prompting, and -i for interactive mode. Be extremely careful with rm, especially with wildcards or in scripts.",
+              "The cat (concatenate) command displays file contents on the terminal. It reads files sequentially and outputs them to standard output. You can use it to view small files, concatenate multiple files together, or create files using cat > filename. For large files, use less or head/tail instead."
             ],
             "commands": [
               {
-                "cmd": "touch file.txt",
-                "desc": "Create empty file"
+                "cmd": "touch filename.txt",
+                "desc": "Create an empty file or update the timestamp of an existing file"
               },
               {
-                "cmd": "cp file.txt backup.txt",
-                "desc": "Copy file"
+                "cmd": "cp -r source_dir/ dest_dir/",
+                "desc": "Recursively copy a directory and all its contents to the destination"
               },
               {
-                "cmd": "cp -r folder1 folder2",
-                "desc": "Copy directory recursively"
+                "cmd": "mv oldname.txt newname.txt",
+                "desc": "Rename a file or move it to a different directory"
               },
               {
-                "cmd": "mv file.txt /tmp/",
-                "desc": "Move file to /tmp"
+                "cmd": "rm -rf directory/",
+                "desc": "Forcefully and recursively delete a directory and all its contents (use with caution!)"
               },
               {
-                "cmd": "mv old.txt new.txt",
-                "desc": "Rename file"
-              },
-              {
-                "cmd": "rm file.txt",
-                "desc": "Delete file (permanent!)"
-              },
-              {
-                "cmd": "cat file.txt",
-                "desc": "Show file contents"
-              },
-              {
-                "cmd": "head -n 5 file.txt",
-                "desc": "Show first 5 lines"
+                "cmd": "cat filename.txt",
+                "desc": "Display the entire contents of a file on the terminal"
               }
             ],
             "practice": [
-              "Create a file named 'notes.txt' with touch",
-              "Copy it to 'notes_backup.txt'",
-              "Rename 'notes_backup.txt' to 'backup.txt'",
-              "Delete the backup file with rm",
-              "Create a directory and copy multiple files into it"
+              "Create 5 empty files using touch (file1.txt through file5.txt), copy files 1-3 to a new directory backup, then move file4.txt to backup and rename file5.txt to archive.txt.",
+              "Create a directory logs with 3 text files inside using cat > and echo. Use cat to display each file, then use cat to merge all files into one combined.txt.",
+              "Practice safe file deletion: create a directory temp with files inside, use rm -i to delete files one by one with confirmation, then use rm -r to remove the empty directory."
             ]
           },
-          "videoId": "pIs5pt-H640"
+          "videoId": "IGKXLC6ZdAI"
         },
         {
           "id": "mod-3",
           "number": 3,
           "title": "File Permissions",
           "xp": 150,
-          "description": "Understand and modify file permissions (chmod, chown)",
+          "description": "Understand and manage Linux file permissions using chmod, chown, and special permissions like SUID.",
           "content": {
-            "intro": "Linux permissions control who can read, write, and execute files. Critical for system security.",
+            "intro": "Linux is a multi-user operating system, and file permissions are its primary security mechanism. Every file and directory has permissions that control who can read, write, or execute it. Understanding permissions is critical for system security. The permission system uses three user categories (owner, group, others) and three permission types (read, write, execute).",
             "concepts": [
-              "r (read) = 4, w (write) = 2, x (execute) = 1",
-              "Owner, Group, Others - three permission layers",
-              "chmod - Change file mode/permissions",
-              "chown - Change file owner and group",
-              "Sticky bit, SUID, SGID special permissions"
+              "Every file has three sets of permissions: owner (u), group (g), and others (o). Each set can have read (r=4), write (w=2), and execute (x=1) permissions. The ls -l command shows permissions as a 10-character string like -rwxr-xr-- where the first character indicates file type followed by three groups of rwx permissions.",
+              "chmod changes file permissions using two methods: symbolic mode (chmod u+x file adds execute for owner) and numeric mode (chmod 755 file sets rwxr-xr-x). In numeric mode, each digit represents owner-group-others, calculated by adding 4 (read) + 2 (write) + 1 (execute). Common patterns: 755 for executables, 644 for regular files, 700 for private directories.",
+              "chown changes file ownership who owns the file. Use chown user:group file to change both owner and group, or chown user file to change just the owner. The -R flag applies changes recursively to directories and their contents. Only root can change ownership of files owned by other users.",
+              "Special permission bits add extra functionality beyond standard rwx. SUID (Set User ID) makes a file run with the file owner's permissions the classic example is /usr/bin/passwd which needs root access to modify /etc/shadow. SGID (Set Group ID) on directories ensures new files inherit the directory's group. The sticky bit on directories like /tmp prevents users from deleting files they do not own.",
+              "Understanding permission security is crucial for cybersecurity. World-writable files (chmod 777) are a major security risk. Directory permissions affect traversal execute permission on a directory is needed to cd into it. Configuration files should typically be 644 or 600, and scripts should be 755. Always follow the principle of least privilege."
             ],
             "commands": [
               {
-                "cmd": "ls -la",
-                "desc": "View detailed permissions"
-              },
-              {
                 "cmd": "chmod 755 script.sh",
-                "desc": "rwxr-xr-x (owner:full, others:read+exec)"
+                "desc": "Set permissions to rwxr-xr-x for owner read/write/execute, group and others read/execute"
               },
               {
-                "cmd": "chmod 644 file.txt",
-                "desc": "rw-r--r-- (owner:read+write, others:read)"
-              },
-              {
-                "cmd": "chmod +x script.sh",
-                "desc": "Add execute permission"
-              },
-              {
-                "cmd": "chmod -R 700 folder/",
-                "desc": "Recursive, owner only"
+                "cmd": "chmod u+x file.sh",
+                "desc": "Add execute permission for the file owner using symbolic mode"
               },
               {
                 "cmd": "chown user:group file.txt",
-                "desc": "Change owner and group"
+                "desc": "Change the owner and group of a file requiring root or sudo"
               },
               {
-                "cmd": "stat file.txt",
-                "desc": "Show detailed file info"
+                "cmd": "ls -la",
+                "desc": "Display detailed file listing including permissions, owner, group, and size"
+              },
+              {
+                "cmd": "chmod u+s /usr/bin/prog",
+                "desc": "Set the SUID bit so the program runs with the owner's privileges"
               }
             ],
             "practice": [
-              "Create a script.sh and make it executable",
-              "Change permissions to 600 (owner read+write only)",
-              "View the permission changes with ls -la",
-              "Change ownership of a file (requires sudo)",
-              "Understand the difference between 755 and 777"
+              "Create a shell script test.sh with echo Hello. Use chmod to make it executable, verify with ls -l, then run it. Experiment with chmod 644 (not executable) vs chmod 755 (executable).",
+              "Create a file owned by your user, then use sudo chown to change it to root:root. Create a directory with chmod 777 and explain why this is a security risk, then fix it to 755.",
+              "Find SUID binaries on your system using find / -perm -4000 2>/dev/null. Examine /usr/bin/passwd permissions with ls -la and explain why it needs SUID."
             ]
           },
-          "videoId": "sQbUFZa1M2Y"
+          "videoId": "twnDb1Xs68I"
         },
         {
           "id": "mod-4",
           "number": 4,
           "title": "User Management",
-          "xp": 100,
-          "description": "Manage users, groups, and sudo access",
+          "xp": 130,
+          "description": "Learn to manage Linux users and groups using useradd, passwd, sudo, and related commands.",
           "content": {
-            "intro": "User management is key for system administration and security. Understanding users helps you escalate privileges.",
+            "intro": "Linux is a multi-user operating system designed to support multiple users simultaneously. User management is a fundamental sysadmin task that involves creating accounts, setting passwords, managing groups, and controlling privileges. Proper user management is essential for system security.",
             "concepts": [
-              "whoami - Current user",
-              "sudo - Superuser do (admin commands)",
-              "useradd - Create new user",
-              "passwd - Change password",
-              "Groups and /etc/group file"
+              "Every Linux user has a unique User ID (UID) and belongs to a primary group with a Group ID (GID). User information is stored in /etc/passwd (username, UID, GID, home directory, shell), while encrypted passwords are in /etc/shadow (only readable by root). System users (UID < 1000) run services, while regular users (UID >= 1000) are human accounts.",
+              "The useradd command creates new user accounts. Key options include -m (create home directory), -s (set login shell), -G (add to supplementary groups), and -e (set account expiration date). The simpler adduser command on Debian/Ubuntu provides an interactive wizard that prompts for information and automatically creates the home directory.",
+              "The passwd command manages user passwords. Use sudo passwd username to set or change a user's password. Users can change their own password with just passwd. The -l flag locks an account, -u unlocks it, -S shows account status. Strong password policies are critical for security.",
+              "The sudo command allows authorized users to execute commands with root privileges without logging in as root. Users must be in the sudo group or configured in /etc/sudoers. The -u flag specifies which user to run as, -l lists allowed commands, and visudo safely edits the sudoers file. Sudo logs all commands for audit purposes.",
+              "User groups organize users for shared permissions. Use groupadd to create groups, usermod -aG to add users to groups, and groups to see group memberships. Group permissions on files allow all group members to access files. This is essential for team collaboration and organizing access to shared resources."
             ],
             "commands": [
               {
-                "cmd": "whoami",
-                "desc": "Show current user"
+                "cmd": "sudo useradd -m -s /bin/bash newuser",
+                "desc": "Create a new user with home directory and bash shell"
               },
               {
-                "cmd": "id",
-                "desc": "Show user ID and groups"
+                "cmd": "sudo passwd username",
+                "desc": "Set or change a user's password prompting for new password twice"
               },
               {
-                "cmd": "sudo su",
-                "desc": "Switch to root user"
+                "cmd": "sudo usermod -aG sudo username",
+                "desc": "Add a user to the sudo group granting administrative privileges"
               },
               {
-                "cmd": "exit",
-                "desc": "Exit root/back to normal user"
+                "cmd": "id username",
+                "desc": "Display user ID, group ID, and all group memberships for a user"
               },
               {
-                "cmd": "sudo useradd -m newuser",
-                "desc": "Create new user with home dir"
-              },
-              {
-                "cmd": "sudo passwd newuser",
-                "desc": "Set password for new user"
-              },
-              {
-                "cmd": "sudo userdel -r olduser",
-                "desc": "Delete user and home dir"
-              },
-              {
-                "cmd": "cat /etc/passwd",
-                "desc": "List all users"
+                "cmd": "sudo userdel -r username",
+                "desc": "Delete a user and their home directory completely"
               }
             ],
             "practice": [
-              "Check who you are with whoami and id",
-              "Switch to root with sudo su and back with exit",
-              "Create a new user 'testuser'",
-              "Add testuser to the sudo group",
-              "View the /etc/passwd file"
+              "Create a new user developer with a home directory and bash shell. Set a password, then switch to that user with su - developer and verify with whoami and id.",
+              "Create a group webteam, add the developer user to it, create a shared directory owned by webteam, and verify that the developer user can access it.",
+              "Configure sudo access for the developer user by adding them to the sudo group. Test by running sudo whoami as the developer user to verify root access works."
             ]
           },
-          "videoId": "Z0wx2V6MqBw"
+          "videoId": "D0tPoX1Fx6w"
         },
         {
           "id": "mod-5",
           "number": 5,
           "title": "Process Management",
-          "xp": 100,
-          "description": "View and manage running processes",
+          "xp": 140,
+          "description": "Master Linux process management with ps, top, kill, and jobs commands.",
           "content": {
-            "intro": "Processes are running programs. Managing them is crucial for security and system administration.",
+            "intro": "Every running program on Linux is a process, identified by a unique Process ID (PID). Process management is essential for system administration you need to monitor resource usage, terminate misbehaving processes, and manage background tasks. Linux provides powerful tools to view, control, and prioritize processes.",
             "concepts": [
-              "ps - Process status",
-              "top/htop - Real-time process viewer",
-              "kill - Terminate a process with signals",
-              "jobs - Background jobs in current shell",
-              "Process states: running, stopped, zombie"
+              "A process is an instance of a running program. Each process has a PID, a Parent PID (PPID) showing which process spawned it, and belongs to a user (UID). Processes have states: R (running), S (sleeping/waiting), D (uninterruptible sleep usually I/O), T (stopped), and Z (zombie exited but parent has not collected exit status). Understanding process states helps diagnose system issues.",
+              "The ps command provides a snapshot of current processes. Common forms: ps aux (BSD style all processes with CPU/memory), ps -ef (UNIX style with PPID), ps auxf (process tree). Key columns include PID, %CPU, %MEM, STAT (state), and COMMAND. Unlike top, ps shows a static snapshot rather than real-time updates.",
+              "The top command provides a real-time, interactive view of running processes. It updates automatically and shows system uptime, load average, CPU usage, and memory usage. Interactive keys include P (sort by CPU), M (sort by memory), k (kill a process by PID), and q (quit). htop is a more user-friendly alternative with color and mouse support.",
+              "The kill command terminates processes by sending signals. The default signal is SIGTERM (15) which asks the process to shut down gracefully. Use kill -9 (SIGKILL) to force-terminate an unresponsive process, though this should be a last resort as it does not allow cleanup. killall kills all processes with a given name, and pkill kills by pattern match.",
+              "Job control manages foreground and background processes. Start a background job with command &. Use jobs to list background jobs, fg %job_number to bring a job to foreground, and bg %job_number to resume a stopped job in the background. Ctrl+Z suspends the current foreground job. nohup command & makes a job survive logout."
             ],
             "commands": [
               {
                 "cmd": "ps aux",
-                "desc": "Show all running processes"
+                "desc": "List all running processes with CPU and memory usage in BSD style"
               },
               {
                 "cmd": "top",
-                "desc": "Real-time process monitor"
-              },
-              {
-                "cmd": "htop",
-                "desc": "Interactive process viewer (better)"
+                "desc": "Display real-time system stats and running processes interactively"
               },
               {
                 "cmd": "kill PID",
-                "desc": "Kill process by ID"
+                "desc": "Send SIGTERM signal to gracefully terminate a process by its PID"
               },
               {
                 "cmd": "kill -9 PID",
-                "desc": "Force kill process"
+                "desc": "Send SIGKILL to force-terminate an unresponsive process immediately"
               },
               {
-                "cmd": "ps aux | grep name",
-                "desc": "Find process by name"
-              },
-              {
-                "cmd": "bg",
-                "desc": "Run job in background"
-              },
-              {
-                "cmd": "fg",
-                "desc": "Bring job to foreground"
+                "cmd": "jobs",
+                "desc": "List all background and stopped jobs in the current shell session"
               }
             ],
             "practice": [
-              "Run 'top' and identify the top 3 processes by CPU",
-              "Find all processes with 'ssh' in the name",
-              "Start a background process with & and bring it back",
-              "Kill a process using kill -9",
-              "Use ps to find your own shell process"
+              "Run 'sleep 60' in the foreground, press Ctrl+Z to suspend it, use jobs to see it, then bg to resume in background, and fg to bring it back to foreground before killing it.",
+              "Use ps aux | grep bash to find all bash processes running, identify their PIDs and PPIDs, and understand the parent-child process relationship.",
+              "Start a long-running process in the background with nohup sleep 300 &. Verify it is running with jobs, then use kill to terminate it gracefully."
             ]
           },
-          "videoId": "h9BfGxS7X5Q"
+          "videoId": "vh7jwXo_tLc"
         },
         {
           "id": "mod-6",
           "number": 6,
           "title": "Text Processing",
-          "xp": 150,
-          "description": "grep, sed, awk, and text manipulation",
+          "xp": 160,
+          "description": "Master Linux text processing tools: grep, sed, awk, and pipes for searching, transforming, and analyzing text data.",
           "content": {
-            "intro": "Text processing is essential for log analysis, parsing outputs, and automation in cybersecurity.",
+            "intro": "Text processing is one of the most powerful capabilities of the Linux command line. The combination of grep, sed, awk, and pipes allows you to search, filter, transform, and analyze text data with remarkable efficiency. These tools are essential for log analysis, configuration management, data extraction, and automating repetitive text operations.",
             "concepts": [
-              "grep - Search text patterns using regex",
-              "sed - Stream editor for filtering and transforming",
-              "awk - Pattern scanning and processing language",
-              "pipe | - Chain commands together",
-              "Regular expressions basics"
+              "grep (Global Regular Expression Print) searches text for patterns and returns matching lines. It supports basic and extended regular expressions, making it incredibly flexible. Key options include -i (case-insensitive), -r (recursive search through directories), -v (invert match to show non-matching lines), -n (show line numbers), and -c (count matches). grep is your first tool for finding information in files.",
+              "sed (Stream Editor) performs text transformations on input streams line by line. It reads input, applies editing commands, and outputs the result without modifying the original file unless you use -i for in-place editing. The most common operation is substitution: sed 's/old/new/g' file replaces all occurrences of old with new. sed can also delete lines (sed '3d' file), insert text, and print specific line ranges.",
+              "awk is a pattern-scanning and processing language that splits each line into fields using a delimiter (default is whitespace). It excels at column-based data processing. Fields are referenced as $1, $2, $3, etc., and $0 represents the entire line. awk can filter, format, calculate, and generate reports from structured text. For example: awk '{print $1, $3}' file prints the first and third columns.",
+              "Pipes (|) are the glue that connects Linux commands together. The output of one command becomes the input of the next. This allows you to build powerful text processing pipelines. For example: cat access.log | grep '404' | awk '{print $1}' | sort | uniq -c | sort -rn finds the top IPs causing 404 errors. Mastering pipelines is key to becoming efficient on the command line.",
+              "cut, sort, uniq, and wc are complementary text processing tools. cut extracts specific columns or characters from lines. sort orders lines alphabetically or numerically. uniq removes duplicate adjacent lines (usually combined with sort). wc counts lines, words, and characters. These simple tools combine powerfully with grep, sed, and awk in pipelines."
             ],
             "commands": [
               {
-                "cmd": "grep 'pattern' file",
-                "desc": "Search for pattern in file"
+                "cmd": "grep -i 'error' logfile.txt",
+                "desc": "Search for error lines case-insensitively in a log file"
               },
               {
-                "cmd": "grep -i 'error' log.txt",
-                "desc": "Case-insensitive search"
+                "cmd": "sed 's/old/new/g' file.txt",
+                "desc": "Replace all occurrences of old with new in the text (output to stdout)"
               },
               {
-                "cmd": "grep -r 'password' /etc/",
-                "desc": "Recursive search"
+                "cmd": "awk -F: '{print $1, $3}' /etc/passwd",
+                "desc": "Print username and UID from /etc/passwd using colon as field separator"
               },
               {
-                "cmd": "grep -n 'root' /etc/passwd",
-                "desc": "Show line numbers"
+                "cmd": "cat file.txt | sort | uniq -c | sort -rn",
+                "desc": "Count unique lines and sort by frequency descending"
               },
               {
-                "cmd": "cat file | head -10",
-                "desc": "Show first 10 lines"
-              },
-              {
-                "cmd": "cat file | tail -10",
-                "desc": "Show last 10 lines"
-              },
-              {
-                "cmd": "wc -l file.txt",
-                "desc": "Count lines"
-              },
-              {
-                "cmd": "sort file.txt",
-                "desc": "Sort lines alphabetically"
+                "cmd": "grep -rn 'TODO' /path/to/project/",
+                "desc": "Recursively search all files in a directory for TODO comments with line numbers"
               }
             ],
             "practice": [
-              "Search for 'root' in /etc/passwd",
-              "Count how many users are in the system",
-              "Find all .conf files in /etc/ using grep",
-              "Use grep with regex to find IP addresses",
-              "Chain grep with other commands using pipe"
+              "Create a log file with mixed content (errors, warnings, info). Use grep to find only errors, then pipe to awk to extract timestamps, then sort and count unique patterns.",
+              "Use sed to replace all occurrences of a word in a configuration file, preview the changes without modifying the file, then apply the changes in-place with -i.",
+              "Parse /etc/passwd using awk to create a formatted report showing username, UID, and home directory for all users with UIDs above 1000."
             ]
           },
-          "videoId": "Rqv21Vy5x8E"
+          "videoId": "9rCcnVVzVYg"
         },
         {
           "id": "mod-7",
           "number": 7,
           "title": "Shell Scripting Basics",
-          "xp": 200,
-          "description": "Write your first bash scripts",
+          "xp": 170,
+          "description": "Learn bash shell scripting fundamentals: variables, conditionals, loops, and writing your first automation scripts.",
           "content": {
-            "intro": "Shell scripting automates tasks and is fundamental for penetration testing and system administration.",
+            "intro": "Shell scripting transforms repetitive command-line tasks into automated, reusable programs. Bash (Bourne Again Shell) is the most common scripting language on Linux systems. Learning shell scripting allows you to automate backups, process files in batches, create system maintenance routines, and build powerful tools from simple building blocks.",
             "concepts": [
-              "#!/bin/bash - Shebang line tells system which interpreter",
-              "Variables - Store data for reuse",
-              "if/else - Conditionals for decision making",
-              "for/while - Loops for repetition",
-              "User input with read command"
+              "A bash script is a text file containing a sequence of commands that the bash interpreter executes line by line. Scripts begin with a shebang line (#!/bin/bash) that tells the system which interpreter to use. Create scripts with a text editor, make them executable with chmod +x script.sh, and run them with ./script.sh or bash script.sh.",
+              "Variables in bash store data for later use. Assign with name=value (no spaces around =). Reference with $name or ${name}. Use double quotes for variables containing spaces: echo \"$myvar\". Special variables include $0 (script name), $1-$9 (arguments), $? (exit status of last command), $$ (current PID), and $# (number of arguments).",
+              "Conditional statements (if/else) allow scripts to make decisions. The syntax uses test conditions in brackets: if [ $x -gt 10 ]; then echo big; fi. Common test operators: -eq (equal), -ne (not equal), -gt (greater than), -lt (less than), -f (file exists), -d (directory exists), -z (string is empty). Use elif for multiple conditions and else for the default case.",
+              "Loops repeat commands for collections of items. The for loop iterates over a list: for i in 1 2 3; do echo $i; done. The while loop runs while a condition is true: while [ $count -lt 10 ]; do ... done. The until loop runs until a condition becomes true. Loop over files with for f in *.txt; do echo $f; done. Use break to exit and continue to skip to next iteration.",
+              "Functions in bash group reusable code. Define with function_name() { commands; } and call with function_name. Functions can accept arguments ($1, $2), return values via echo (capture with result=$(function_name)), and set a return code with return. Functions improve script readability and enable code reuse across scripts."
             ],
             "commands": [
               {
                 "cmd": "#!/bin/bash",
-                "desc": "Script header (shebang)"
-              },
-              {
-                "cmd": "var=\"hello\"",
-                "desc": "Assign variable (no spaces!)"
-              },
-              {
-                "cmd": "echo $var",
-                "desc": "Print variable value"
-              },
-              {
-                "cmd": "if [ condition ]; then ... fi",
-                "desc": "If statement"
-              },
-              {
-                "cmd": "for i in 1 2 3; do ... done",
-                "desc": "For loop"
-              },
-              {
-                "cmd": "while [ condition ]; do ... done",
-                "desc": "While loop"
+                "desc": "Shebang line that must be the first line of a bash script to specify the interpreter"
               },
               {
                 "cmd": "chmod +x script.sh",
-                "desc": "Make script executable"
+                "desc": "Make a script file executable so it can be run with ./script.sh"
               },
               {
-                "cmd": "./script.sh",
-                "desc": "Run script"
+                "cmd": "echo \"Hello $NAME\"",
+                "desc": "Display text with variable expansion to output dynamic content"
+              },
+              {
+                "cmd": "if [ condition ]; then ... fi",
+                "desc": "Conditional execution block that runs commands based on test result"
+              },
+              {
+                "cmd": "for i in 1 2 3; do echo $i; done",
+                "desc": "Loop that iterates over a list and executes commands for each item"
               }
             ],
             "practice": [
-              "Create a script that prints your name and today's date",
-              "Write a script that counts files in current directory",
-              "Create a script that asks for user input and responds",
-              "Write a script with if/else that checks if a file exists",
-              "Create a loop that prints numbers 1-10"
+              "Write a script that accepts a filename as an argument ($1), checks if the file exists with -f, displays its size with ls -lh, and prints an error message if the file does not exist.",
+              "Create a script with a for loop that backs up all .txt files in the current directory by copying them to a backup/ directory with a .bak extension.",
+              "Write a script that uses a while loop to count down from 10 to 1, printing each number, and uses the date command to show the current time when the countdown finishes."
             ]
           },
-          "videoId": "DQfvftz-fEI"
+          "videoId": "LhVAzEAoEmw"
         },
         {
           "id": "mod-8",
           "number": 8,
           "title": "Package Management",
-          "xp": 100,
-          "description": "Install, update, and remove software packages",
+          "xp": 120,
+          "description": "Learn to manage software packages on Debian/Ubuntu systems using apt and dpkg commands.",
           "content": {
-            "intro": "Package management is how you install tools and software on Linux. Essential for setting up your hacking lab.",
+            "intro": "Package management is how Linux systems install, update, and remove software. Unlike downloading executables from websites, Linux uses package managers that handle dependencies automatically, track installed software, and provide centralized updates. APT (Advanced Package Tool) is the high-level manager for Debian/Ubuntu, while dpkg is the lower-level tool that handles individual .deb package files.",
             "concepts": [
-              "apt - Debian/Ubuntu package manager",
-              "dpkg - Low-level package manager",
-              "Repositories - Sources of software packages",
-              "Dependencies - Required packages"
+              "Software packages in Linux are bundles of files (binaries, configs, documentation) wrapped in a standardized format with metadata. On Debian/Ubuntu, packages use the .deb format. Packages declare dependencies other packages they need to function. The package manager resolves these dependencies automatically, ensuring all required libraries and tools are installed together.",
+              "APT (Advanced Package Tool) is the primary package manager on Debian-based distributions. It communicates with remote repositories (servers hosting package collections) to download and install software. Before installing, always run apt update to refresh the local package index. The sources.list file and sources.list.d/ directory define which repositories your system checks for packages.",
+              "Common apt operations include: apt update (refresh package lists), apt upgrade (update all installed packages), apt install package (install new software), apt remove package (remove software but keep configs), apt purge package (remove software and configs), and apt autoremove (clean up unused dependencies). Always run update before install or upgrade.",
+              "dpkg is the low-level package manager that handles individual .deb files. Unlike apt, dpkg does not resolve dependencies automatically. Key commands: dpkg -i package.deb (install), dpkg -r package (remove), dpkg -l (list installed packages), dpkg -L package (list files installed by package), and dpkg -S /path/to/file (find which package owns a file).",
+              "Package management best practices for security: keep your system updated with regular apt update && apt upgrade, only install packages from trusted repositories, review packages before installing with apt show package, and use apt autoremove to keep your system clean. Understanding package management is essential for maintaining secure and stable Linux systems."
             ],
             "commands": [
               {
                 "cmd": "sudo apt update",
-                "desc": "Update package list"
+                "desc": "Refresh the local package index from all configured repositories"
+              },
+              {
+                "cmd": "sudo apt install package-name",
+                "desc": "Download and install a package along with its dependencies"
               },
               {
                 "cmd": "sudo apt upgrade",
-                "desc": "Upgrade all packages"
+                "desc": "Upgrade all installed packages to their latest available versions"
               },
               {
-                "cmd": "sudo apt install nmap",
-                "desc": "Install a package"
+                "cmd": "sudo apt remove package-name",
+                "desc": "Remove a package while preserving its configuration files"
               },
               {
-                "cmd": "sudo apt remove nmap",
-                "desc": "Remove a package"
-              },
-              {
-                "cmd": "dpkg -l | grep nmap",
-                "desc": "Check if package installed"
-              },
-              {
-                "cmd": "which nmap",
-                "desc": "Find package location"
-              },
-              {
-                "cmd": "apt search toolname",
-                "desc": "Search for packages"
+                "cmd": "dpkg -l | grep package",
+                "desc": "Search the list of installed packages for a specific package name"
               }
             ],
             "practice": [
-              "Update your system with sudo apt update && sudo apt upgrade",
-              "Install nmap if not already installed",
-              "Check nmap version with nmap --version",
-              "Search for and install htop",
-              "Remove a package and verify it's gone"
+              "Run sudo apt update to refresh package lists, then install htop with sudo apt install htop. Use htop to monitor system processes, then uninstall it with sudo apt remove.",
+              "Use apt-cache search to find packages related to networking, then use apt show on a package to view its description, dependencies, and size before installing it.",
+              "Download a .deb file (e.g., from Google Chrome), install it with sudo dpkg -i, fix any dependency errors with sudo apt -f install, and verify the installation worked."
             ]
           },
-          "videoId": "q8E7qL0bS6g"
+          "videoId": "i7OnnalqwQo"
         }
       ]
     },
@@ -486,248 +381,225 @@
           "number": 9,
           "title": "IP Address & Subnet",
           "xp": 150,
-          "description": "Understand IP addressing and subnetting",
+          "description": "Memahami IPv4, IPv6, subnet mask, dan CIDR notation untuk perencanaan jaringan yang efisien.",
           "content": {
-            "intro": "IP addresses are like home addresses for devices on a network. Understanding them is crucial for network security.",
+            "intro": "IP Address adalah identitas unik setiap perangkat di jaringan. Tanpa IP, komputer tidak bisa berkomunikasi satu sama lain. Module ini mengajarkan cara kerja alamat IP, perbedaan IPv4 vs IPv6, serta teknik subnetting untuk membagi jaringan menjadi segmen-segmen yang lebih kecil dan efisien.",
             "concepts": [
-              "IPv4 (32-bit) vs IPv6 (128-bit)",
-              "Private vs Public IP ranges",
-              "Subnet mask and CIDR notation (/24, /16)",
-              "127.0.0.1 = localhost (your own machine)",
-              "DHCP vs Static IP"
+              "IPv4 adalah sistem alamat 32-bit yang ditulis dalam empat oktet desimal (contoh: 192.168.1.1). Setiap oktet bernilai 0-255, memberikan total sekitar 4.3 miliar alamat unik. IPv4 dibagi menjadi kelas A, B, C, D, dan E berdasarkan nilai oktet pertamanya.",
+              "IPv6 adalah sistem alamat 128-bit yang ditulis dalam heksadesimal (contoh: 2001:0db8:85a3::8a2e:0370:7334). IPv6 diciptakan untuk mengatasi kehabisan alamat IPv4 dan menyediakan ruang alamat yang hampir tak terbatas. Alat pendek seperti '::' digunakan untuk mengganti rangkaian nol yang berurutan.",
+              "Subnet mask menentukan bagian mana dari IP address yang merupakan network ID dan bagian mana yang merupakan host ID. Contoh: 255.255.255.0 berarti 24 bit pertama adalah network. Subnet mask memungkinkan router memutuskan apakah paket harus dikirim langsung atau melalui gateway.",
+              "CIDR (Classless Inter-Domain Routing) adalah notasi modern untuk menulis subnet mask menggunakan slash (contoh: /24 = 255.255.255.0). CIDR menggantikan sistem kelas yang kaku dan memungkinkan alokasi IP yang lebih fleksibel. Semakin kecil angka setelah slash, semakin banyak host yang didukung.",
+              "Public IP adalah alamat yang dapat diakses dari internet, sedangkan Private IP hanya digunakan dalam jaringan lokal. Range private IP meliputi: 10.0.0.0/8, 172.16.0.0/12, dan 192.168.0.0/16. NAT (Network Address Translation) memungkinkan banyak perangkat private berbagi satu public IP."
             ],
             "commands": [
               {
-                "cmd": "ip a",
-                "desc": "Show IP addresses (modern)"
+                "cmd": "ip addr show",
+                "desc": "Menampilkan semua alamat IP pada interface jaringan di Linux"
               },
               {
                 "cmd": "ifconfig",
-                "desc": "Show network interfaces (legacy)"
+                "desc": "Menampilkan konfigurasi interface jaringan (termasuk IP, netmask, broadcast)"
               },
               {
-                "cmd": "ping 8.8.8.8",
-                "desc": "Test connectivity to Google DNS"
+                "cmd": "ping 192.168.1.1",
+                "desc": "Menguji konektivitas ke IP target menggunakan ICMP echo request"
               },
               {
-                "cmd": "ping -c 4 google.com",
-                "desc": "Ping 4 times only"
+                "cmd": "ip route show",
+                "desc": "Menampilkan tabel routing untuk mengetahui path paket"
               },
               {
-                "cmd": "hostname -I",
-                "desc": "Show local IP address"
-              },
-              {
-                "cmd": "ip route",
-                "desc": "Show routing table"
+                "cmd": "ipcalc 192.168.1.100/24",
+                "desc": "Menghitung informasi subnet: network, broadcast, host range, dan jumlah host"
               }
             ],
             "practice": [
-              "Find your IP address using ip a",
-              "Ping google.com and observe response time",
-              "Understand the difference between 192.168.x.x and public IPs",
-              "Calculate subnet for a /24 network",
-              "Find your default gateway"
+              "Hitung manual: Berapa jumlah host yang tersedia untuk jaringan 192.168.10.0/26? Tentukan network address, broadcast address, dan range host yang valid.",
+              "Gunakan perintah 'ip addr show' untuk menemukan IP address perangkat Anda, lalu tentukan: (a) apakah itu private atau public IP? (b) berapa subnet mask-nya? (c) berapa jumlah host di jaringan yang sama?",
+              "Buatlah skema IP addressing untuk kantor dengan 3 departemen: HR (50 PC), IT (30 PC), dan Finance (15 PC). Gunakan VLSM untuk mengalokasikan alamat dari blok 192.168.1.0/24 secara efisien tanpa pemborosan."
             ]
           },
-          "videoId": "CMlqR70Nk9Y"
+          "videoId": "rRs-s2zgiM0"
         },
         {
           "id": "mod-10",
           "number": 10,
           "title": "DNS Basics",
-          "xp": 100,
-          "description": "Domain Name System resolution",
+          "xp": 150,
+          "description": "Memahami cara kerja DNS, jenis-jenis record, dan tools diagnostik seperti dig dan nslookup.",
           "content": {
-            "intro": "DNS translates human-readable domain names to IP addresses. Understanding DNS is key for reconnaissance.",
+            "intro": "DNS (Domain Name System) adalah sistem yang menerjemahkan nama domain yang mudah diingat (google.com) menjadi IP address yang dipahami komputer. Tanpa DNS, kita harus menghafal angka-angka untuk mengakses setiap website. Module ini mengajarkan bagaimana DNS bekerja di balik layar dan cara menganalisisnya.",
             "concepts": [
-              "Domain → IP resolution process",
-              "DNS record types: A, AAAA, MX, CNAME, TXT",
-              "/etc/hosts file (local DNS override)",
-              "DNS servers: recursive vs authoritative"
+              "DNS resolution adalah proses bertahap dari recursive resolver ke root servers, kemudian ke TLD servers (.com, .org), dan akhirnya ke authoritative name servers. Proses ini biasanya terjadi dalam milidetik dan melibatkan multiple query untuk menemukan IP yang benar.",
+              "Record types utama meliputi: A (IPv4 address), AAAA (IPv6 address), CNAME (alias ke domain lain), MX (mail server), NS (name server), TXT (teks verifikasi), SOA (start of authority), dan PTR (reverse DNS lookup). Setiap record memiliki TTL (Time To Live) yang menentukan berapa lama data di-cache.",
+              "DNS caching terjadi di multiple level: browser cache, OS cache, router cache, dan ISP cache. Caching meningkatkan kecepatan tetapi dapat menyebabkan delay propagasi saat DNS record diubah. TTL menentukan berapa detik record di-cache sebelum harus di-query ulang.",
+              "Recursive resolver bertindak sebagai perantara antara client dan DNS servers. Ketika Anda mengetik google.com, resolver pertama-tama mengecek cache lokal, lalu jika tidak ada, mulai bertanya ke root server, TLD server, hingga authoritative server untuk menemukan jawabannya.",
+              "DNS spoofing atau cache poisoning adalah serangan di mana attacker menyuntikkan data DNS palsu ke cache resolver, mengarahkan korban ke website berbahaya. DNSSEC (DNS Security Extensions) menggunakan kriptografi untuk memverifikasi keaslian DNS record dan mencegah serangan ini."
             ],
             "commands": [
               {
                 "cmd": "nslookup google.com",
-                "desc": "Query DNS records"
+                "desc": "Query DNS untuk menemukan IP address dari nama domain"
               },
               {
                 "cmd": "dig google.com",
-                "desc": "Detailed DNS query"
+                "desc": "Query DNS dengan output detail termasuk response time dan TTL"
+              },
+              {
+                "cmd": "dig google.com MX",
+                "desc": "Mencari mail server (MX record) dari suatu domain"
               },
               {
                 "cmd": "dig @8.8.8.8 google.com",
-                "desc": "Query specific DNS server"
+                "desc": "Query DNS ke server spesifik (Google DNS) untuk perbandingan"
               },
               {
-                "cmd": "host google.com",
-                "desc": "Simple DNS lookup"
-              },
-              {
-                "cmd": "cat /etc/hosts",
-                "desc": "View local DNS entries"
-              },
-              {
-                "cmd": "cat /etc/resolv.conf",
-                "desc": "View DNS configuration"
+                "cmd": "host -t any google.com",
+                "desc": "Menampilkan semua jenis DNS record dari suatu domain"
               }
             ],
             "practice": [
-              "Lookup the IP of google.com using dig",
-              "Add a custom entry to /etc/hosts",
-              "Query different DNS record types (MX, TXT, CNAME)",
-              "Find the authoritative nameserver for a domain",
-              "Use nslookup to find subdomains"
+              "Gunakan 'nslookup' dan 'dig' untuk memeriksa DNS record google.com. Bandingkan hasilnya: IP address mana yang ditemukan? Berapa TTL-nya? Gunakan juga 'dig +trace google.com' untuk melihat seluruh jalur resolusi dari root server.",
+              "Lakukan reverse DNS lookup menggunakan 'nslookup 8.8.8.8' dan 'dig -x 8.8.8.8'. Jelaskan apa yang dikembalikan oleh reverse DNS dan mengapa ini berguna untuk keamanan.",
+              "Simulasikan serangan DNS spoofing: buat file /etc/hosts palsu yang mengarahkan facebook.com ke IP salah satu. Akses facebook.com dari browser, lalu jelaskan bagaimana mekanisme pertahanan seperti DNSSEC dan HSTS melindungi pengguna."
             ]
           },
-          "videoId": "UVm_xLZ0bSg"
+          "videoId": "12wzEqOXPwU"
         },
         {
           "id": "mod-11",
           "number": 11,
           "title": "TCP/UDP & Ports",
           "xp": 150,
-          "description": "Understand ports, protocols, and connections",
+          "description": "Memahami protokol transport TCP/UDP, three-way handshake, dan sistem port numbering.",
           "content": {
-            "intro": "Ports are like doors to a computer. Each service uses specific ports. Port scanning is fundamental to recon.",
+            "intro": "TCP dan UDP adalah dua protokol transport utama yang mengatur bagaimana data dikirim antar perangkat. TCP menjamin pengiriman data yang reliable, sementara UDP lebih cepat tetapi tanpa jaminan. Module ini menjelaskan mekanisme di balik keduanya, termasuk proses three-way handshake yang fundamental.",
             "concepts": [
-              "TCP = reliable connection (HTTP, SSH, FTP)",
-              "UDP = fast but unreliable (DNS, gaming, VoIP)",
-              "Common ports: 22(SSH), 80(HTTP), 443(HTTPS), 3306(MySQL)",
-              "Three-way handshake: SYN → SYN-ACK → ACK"
+              "TCP (Transmission Control Protocol) adalah protokol connection-oriented yang menjamin data sampai dengan benar, dalam urutan yang tepat, dan tanpa duplikasi. TCP menggunakan sequence number dan acknowledgement untuk melacak setiap segmen yang dikirim, serta melakukan retransmission jika ada paket yang hilang.",
+              "Three-way handshake adalah proses pembukaan koneksi TCP: (1) Client mengirim SYN dengan initial sequence number, (2) Server membalas SYN-ACK dengan sequence number sendiri dan acknowledge number, (3) Client mengirim ACK untuk menyelesaikan handshake. Proses ini memastikan kedua pihak siap berkomunikasi.",
+              "UDP (User Datagram Protocol) adalah protokol connectionless yang mengirim data tanpa建立 koneksi formal. UDP tidak melakukan handshake, tidak ada retransmission, dan tidak ada flow control. Kelebihannya adalah overhead yang rendah dan kecepatan tinggi, cocok untuk streaming video, gaming online, dan DNS queries.",
+              "Port numbering menggunakan angka 0-65535 untuk mengidentifikasi aplikasi atau service tertentu. Well-known ports (0-1023) untuk service utama seperti HTTP (80), HTTPS (443), SSH (22), FTP (20,21), DNS (53). Registered ports (1024-49151) untuk aplikasi komersial, dan dynamic ports (49152-65535) untuk koneksi sementara.",
+              "TCP flow control menggunakan mekanisme window size untuk mengontrol jumlah data yang dikirim sebelum menunggu acknowledgement. Jika receiver kewalahan, ia dapat meminta sender untuk memperlambat. Congestion control juga mencegah kelebihan beban pada jaringan dengan menyesuaikan window size berdasarkan kondisi network."
             ],
             "commands": [
               {
-                "cmd": "ss -tuln",
-                "desc": "Show open ports (modern)"
-              },
-              {
                 "cmd": "netstat -tuln",
-                "desc": "Show open ports (legacy)"
+                "desc": "Menampilkan semua koneksi TCP/UDP aktif dan port yang sedang mendengarkan (listening)"
               },
               {
-                "cmd": "lsof -i :22",
-                "desc": "What's using port 22"
+                "cmd": "ss -tuln",
+                "desc": "Alternatif modern netstat yang lebih cepat untuk melihat socket statistics"
               },
               {
-                "cmd": "nmap localhost",
-                "desc": "Scan own ports"
+                "cmd": "nmap -sT 192.168.1.1",
+                "desc": "Port scanning menggunakan TCP connect scan untuk menemukan port terbuka"
               },
               {
-                "cmd": "nc -zv target 80",
-                "desc": "Test port connectivity"
+                "cmd": "telnet 192.168.1.1 80",
+                "desc": "Menguji apakah port 80 (HTTP) di target dapat diakses"
               },
               {
-                "cmd": "cat /etc/services",
-                "desc": "List known services"
+                "cmd": "tcpdump -i any port 80",
+                "desc": "Menangkap semua traffic di port 80 secara real-time untuk analisis"
               }
             ],
             "practice": [
-              "List all open ports on your machine",
-              "Identify which ports SSH and HTTP use",
-              "Scan localhost with nmap",
-              "Use netstat to find which process uses port 443",
-              "Understand the difference between TCP and UDP"
+              "Gunakan 'netstat -tuln' untuk melihat semua port yang sedang listening di komputer Anda. Identifikasi service apa saja yang berjalan di port 22, 80, 443. Apakah ada port yang mencurigakan?",
+              "Lakukan port scan pada komputer lokal menggunakan 'nmap -sT localhost'. Bandingkan hasilnya dengan 'nmap -sS localhost' (SYN scan). Jelaskan perbedaan teknis dan implikasi keamanannya.",
+              "Gunakan Wireshark atau tcpdump untuk menangkap proses three-way handshake saat Anda mengakses google.com. Identifikasi paket SYN, SYN-ACK, dan ACK dalam capture. Catat sequence numbers dan port yang digunakan."
             ]
           },
-          "videoId": "kE6PqMbOQxw"
+          "videoId": "fSFeIdMZ_3I"
         },
         {
           "id": "mod-12",
           "number": 12,
           "title": "Network Commands",
-          "xp": 100,
-          "description": "Essential network diagnostic tools",
+          "xp": 150,
+          "description": "Menguasai perintah jaringan esensial: ping, traceroute, curl, wget untuk troubleshooting dan analisis.",
           "content": {
-            "intro": "These tools help diagnose and troubleshoot network issues. Essential for both attack and defense.",
+            "intro": "Command-line tools adalah senjata utama network administrator dan cybersecurity analyst. Perintah seperti ping, traceroute, curl, dan wget memungkinkan Anda mendiagnosis masalah jaringan, menguji konektivitas, dan menganalisis traffic. Module ini mengajarkan cara menggunakan setiap tools secara efektif.",
             "concepts": [
-              "ping - Test connectivity using ICMP",
-              "traceroute - Trace packet path through networks",
-              "curl - Transfer data with URLs",
-              "wget - Download files from web"
+              "Ping menggunakan ICMP echo request untuk menguji konektivitas ke target. Output menunjukkan round-trip time (RTT), packet loss, dan TTL. Ping berguna untuk mengecek apakah host aktif, mengukur latency, dan mendeteksi masalah jaringan. Gunakan 'ping -c 4' untuk membatasi jumlah packet.",
+              "Traceroute melacak path paket dari sumber ke tujuan dengan mengirim paket dengan TTL (Time To Live) yang meningkat bertahap. Setiap router mengurangi TTL, dan ketika TTL=0, router mengirim ICMP Time Exceeded. Ini memungkinkan kita melihat setiap hop dan mengidentifikasi bottleneck.",
+              "curl (Client URL) adalah tool serbaguna untuk transfer data menggunakan berbagai protokol (HTTP, FTP, SCP, dll). Curl mendukung semua method HTTP (GET, POST, PUT, DELETE), bisa mengirim headers, cookies, dan autentikasi. Sangat berguna untuk testing API dan debugging request/response.",
+              "wget adalah tool download yang mendukung resume download, recursive download, dan penjadwalan. Berbeda dengan curl yang lebih fleksibel untuk transfer data, wget dioptimalkan untuk mengambil file dari web. Fitur mirror memungkinkan menyalin seluruh website untuk offline browsing.",
+              "Perbedaan ping vs curl vs wget: ping menguji konektivitas layer 3 (network), curl bekerja di layer 7 (application) untuk interaksi HTTP/FTP, wget fokus pada file download. Untuk troubleshooting, mulai dari ping (cek host aktif), lalu traceroute (cek path), lalu curl (cek service response)."
             ],
             "commands": [
               {
-                "cmd": "ping -c 4 google.com",
-                "desc": "Ping 4 times"
+                "cmd": "ping -c 5 google.com",
+                "desc": "Mengirim 5 ICMP echo request untuk menguji konektivitas dan mengukur latency"
               },
               {
                 "cmd": "traceroute google.com",
-                "desc": "Trace route to destination"
+                "desc": "Melacak path paket ke tujuan, menunjukkan setiap router (hop) yang dilewati"
               },
               {
-                "cmd": "curl ifconfig.me",
-                "desc": "Show public IP"
+                "cmd": "curl -I https://google.com",
+                "desc": "Mengambil HTTP headers saja (HEAD request) untuk mengecek status server"
               },
               {
-                "cmd": "curl -I http://example.com",
-                "desc": "Show HTTP headers"
+                "cmd": "wget --spider https://google.com",
+                "desc": "Mengecek apakah URL valid tanpa mengunduh file (dry run)"
               },
               {
-                "cmd": "wget http://example.com/file.txt",
-                "desc": "Download file"
-              },
-              {
-                "cmd": "curl -X POST url -d 'data'",
-                "desc": "POST request"
+                "cmd": "curl -X POST -d 'data=test' https://api.example.com",
+                "desc": "Mengirim POST request dengan data ke API endpoint"
               }
             ],
             "practice": [
-              "Ping google.com 10 times and note the response time",
-              "Trace the route to a remote server",
-              "Download a file with wget",
-              "Use curl to check HTTP headers of a website",
-              "Find your public IP using curl"
+              "Bandingkan latency dengan 'ping google.com', 'ping facebook.com', dan 'ping 8.8.8.8'. Catat RTT masing-masing. Kemudian gunakan 'traceroute' ke target dengan latency tertinggi. Di hop manakah delay terbesar terjadi?",
+              "Gunakan 'curl -v https://httpbin.org/get' untuk melihat seluruh proses HTTP request: DNS resolution, TCP handshake, TLS negotiation, HTTP request, dan response. Identifikasi setiap tahap dari output verbose.",
+              "Buat script bash sederhana yang melakukan monitoring: (1) ping ke 3 target berbeda, (2) log hasil ke file dengan timestamp, (3) beri alert jika packet loss > 50%. Jalankan selama 1 menit dan analisis hasilnya."
             ]
           },
-          "videoId": "QGx8R4z0b9Y"
+          "videoId": "FpySl1zV5M8"
         },
         {
           "id": "mod-13",
           "number": 13,
           "title": "Wireshark Basics",
-          "xp": 200,
-          "description": "Packet capture and analysis introduction",
+          "xp": 150,
+          "description": "Menguasai packet capture dan analisis menggunakan Wireshark untuk keamanan jaringan.",
           "content": {
-            "intro": "Wireshark is a network protocol analyzer for deep packet inspection. Essential for understanding network attacks.",
+            "intro": "Wireshark adalah network protocol analyzer terbaik di dunia yang memungkinkan Anda melihat setiap paket data yang melewati jaringan. Dengan Wireshark, Anda bisa menganalisis traffic, mendeteksi serangan, dan memecahkan masalah jaringan di level terdalam. Module ini mengajarkan fundamental packet analysis.",
             "concepts": [
-              "Packet capture (pcap) files",
-              "Protocol filters (http, tcp, dns)",
-              "TCP stream following",
-              "HTTP packet inspection",
-              "Capture vs display filters"
+              "Promiscuous mode adalah mode di mana NIC (Network Interface Card) menangkap semua traffic di jaringan, bukan hanya yang ditujukan untuk MAC address-nya. Normalnya NIC hanya memproses paket yang ditujukan padanya. Wireshark mengaktifkan mode ini untuk memungkinkan sniffing seluruh traffic di segmen jaringan.",
+              "Wireshark interface terdiri dari tiga pane: Packet List (daftar paket ringkas), Packet Detail (detail protocol stack dari paket terpilih), dan Packet Bytes (raw data dalam hex dan ASCII). Memahami navigasi antar pane ini adalah ketrampilan dasar untuk analisis paket yang efektif.",
+              "Display filters adalah ekspresi kuat untuk menyaring paket di Wireshark. Contoh: 'ip.addr == 192.168.1.1' (filter by IP), 'tcp.port == 443' (filter by port), 'http.request' (filter HTTP requests), 'dns' (hanya DNS traffic). Filter bisa dikombinasikan dengan AND, OR, NOT.",
+              "Wireshark coloring rules membantu mengidentifikasi jenis traffic secara visual. Hijau = TCP normal, kuning/purple = TCP problems (retransmission, out-of-order), hitam = packet loss, biru = DNS, ungu = HTTP. Kustomisasi coloring rules mempercepat analisis traffic yang kompleks.",
+              "Follow TCP/UDP Stream memungkinkan Anda melihat seluruh isi koneksi dalam bentuk yang terbaca (reconstructed). Fitur ini sangat powerful untuk menganalisis HTTP requests, melihat credentials yang dikirim dalam plaintext, atau menganalisis payload dari koneksi tertentu."
             ],
             "commands": [
               {
-                "cmd": "wireshark",
-                "desc": "Launch Wireshark GUI"
-              },
-              {
                 "cmd": "tshark -i eth0",
-                "desc": "Terminal-based capture"
+                "desc": "Menangkap traffic dari interface eth0 menggunakan command-line version Wireshark"
               },
               {
-                "cmd": "tcpdump -i eth0",
-                "desc": "Command-line capture"
+                "cmd": "tshark -f 'port 80' -i eth0",
+                "desc": "Capture filter untuk hanya menangkap traffic HTTP (port 80)"
               },
               {
-                "cmd": "tcpdump port 80 -w capture.pcap",
-                "desc": "Capture HTTP to file"
+                "cmd": "tshark -r capture.pcap",
+                "desc": "Membaca file capture yang sudah tersimpan (.pcap/.pcapng)"
               },
               {
-                "cmd": "tcpdump -r capture.pcap",
-                "desc": "Read pcap file"
+                "cmd": "tshark -Y 'http.request' -T fields -e http.host",
+                "desc": "Menampilkan hanya HTTP host dari setiap request dalam file capture"
+              },
+              {
+                "cmd": "editcap -r input.pcap output.pcap -c 1000",
+                "desc": "Membagi file capture menjadi beberapa file dengan 1000 paket per file"
               }
             ],
             "practice": [
-              "Capture 10 packets with tcpdump",
-              "Filter for HTTP traffic only",
-              "Analyze a simple packet capture",
-              "Follow a TCP stream in Wireshark",
-              "Identify DNS queries in a capture"
+              "Buka Wireshark, pilih interface WiFi/Ethernet, dan mulai capture. Buka browser dan akses http://httpbin.org/get. Stop capture, lalu gunakan display filter 'http.request' untuk menemukan request Anda. Follow TCP stream untuk melihat isi HTTP conversation.",
+              "Analisis traffic DNS dengan filter 'dns'. Jalankan 'nslookup google.com' di terminal, lalu temukan query DNS dan response-nya di Wireshark. Identifikasi: (a) IP DNS server yang digunakan, (b) IP hasil resolusi, (c) TTL dari record tersebut.",
+              "Gunakan Wireshark untuk mendeteksi port scan: mulai capture, lalu jalankan 'nmap -sT -p 20-100 localhost'. Filter dengan 'tcp.flags.syn == 1 and tcp.flags.ack == 0' untuk menemukan SYN packets. Analisis port mana saja yang terbuka dan bagaimana scanner bekerja."
             ]
           },
-          "videoId": "kY-TT538jp4"
+          "videoId": "qTaOZrDnMzQ"
         }
       ]
     },
@@ -743,162 +615,184 @@
           "number": 14,
           "title": "CIA Triad",
           "xp": 100,
-          "description": "Confidentiality, Integrity, Availability",
+          "description": "Memahami tiga pilar utama keamanan informasi: Confidentiality, Integrity, dan Availability sebagai fondasi cybersecurity.",
           "content": {
-            "intro": "The CIA Triad is the foundation of information security. Every security decision relates to these three principles.",
+            "intro": "CIA Triad adalah kerangka dasar (framework) dalam Information Security yang terdiri dari tiga prinsip utama: Confidentiality (Kerahasiaan), Integrity (Keutuhan), dan Availability (Ketersediaan). Ketiga prinsip ini menjadi fondasi seluruh bidang cybersecurity — apa pun spesialisasi yang kamu pilih nanti, konsep dasarnya tetap sama. Memahami CIA Triad membantu membangun security mindset sejak awal.",
             "concepts": [
-              "Confidentiality - Only authorized access to data",
-              "Integrity - Data is accurate and unmodified",
-              "Availability - Systems accessible when needed",
-              "Balancing CIA - tradeoffs between security and usability"
+              "Confidentiality (Kerahasiaan): Memastikan bahwa informasi hanya dapat diakses oleh pihak yang berwenang. Tujuan utamanya adalah mencegah kebocoran data ke pihak yang tidak seharusnya. Implementasinya meliputi enkripsi data, kontrol akses berbasis peran, autentikasi multi-faktor, dan pembatasan akses fisik terhadap infrastruktur.",
+              "Integrity (Keutuhan Data): Menjamin bahwa data tetap akurat, konsisten, dan tidak mengalami modifikasi yang tidak sah selama penyimpanan atau transmisi. Ancaman terhadap integrity meliputi man-in-the-middle attacks, data tampering, dan corruption. Implementasinya menggunakan checksum, hash functions, digital signatures, dan version control.",
+              "Availability (Ketersediaan): Memastikan bahwa sistem, layanan, dan data selalu tersedia saat dibutuhkan oleh pengguna yang sah. Ancaman terhadap availability meliputi DDoS attacks, hardware failures, dan natural disasters. Implementasinya menggunakan redundancy, load balancing, backup systems, dan disaster recovery plans.",
+              "Hubungan Antar Elemen: Ketiga prinsip CIA Triad saling berkaitan dan harus diterapkan secara seimbang. Keamanan yang berlebihan pada satu aspek dapat mengorbankan aspek lain — misalnya enkripsi yang terlalu ketat dapat mengurangi availability. Setiap aset organisasi dapat diklasifikasikan berdasarkan ketiga faktor ini sesuai dengan ancaman yang mungkin muncul.",
+              "Security Mindset: CIA Triad bukan sekadar definisi, melainkan pola pikir (mindset) yang harus dimiliki oleh setiap profesional keamanan. Dengan memahami CIA Triad, kamu akan lebih mudah memahami berbagai bidang cybersecurity seperti Network Security, SOC Analysis, Digital Forensics, dan Incident Response. CIA Triad adalah bahasa dasar dalam dunia Information Security."
             ],
-            "commands": [],
+            "commands": [
+              {
+                "cmd": "openssl enc -aes-256-cbc -salt -in plaintext.txt -out encrypted.bin",
+                "desc": "Enkripsi file menggunakan AES-256 untuk menjaga confidentiality data"
+              },
+              {
+                "cmd": "sha256sum important_file.txt",
+                "desc": "Generate SHA-256 hash untuk memverifikasi integrity file"
+              },
+              {
+                "cmd": "dd if=/dev/urandom of=backup.img bs=1M count=100",
+                "desc": "Membuat image backup untuk testing availability system"
+              },
+              {
+                "cmd": "gpg --verify document.txt.asc document.txt",
+                "desc": "Verifikasi digital signature untuk memastikan integrity dan authenticity dokumen"
+              },
+              {
+                "cmd": "chmod 600 sensitive_data.key",
+                "desc": "Membatasi akses file kriptografi hanya untuk owner guna menjaga confidentiality"
+              }
+            ],
             "practice": [
-              "Identify CIA in a real-world scenario (e.g., online banking)",
-              "Analyze a data breach using CIA framework",
-              "Design security controls for each CIA component",
-              "List how encryption protects confidentiality",
-              "Explain how checksums protect integrity"
+              "Analisis sebuah kasus pelanggaran data (data breach) dari berita terkini. Identifikasi prinsip CIA Triad mana yang dilanggar, bagaimana pelanggaran tersebut terjadi, dan apa langkah mitigasi yang seharusnya diambil oleh organisasi tersebut.",
+              "Buatlah skenario sederhana di mana kamu harus melindungi data mahasiswa di sebuah universitas. Tentukan implementasi Confidentiality (siapa yang boleh akses), Integrity (bagaimana menjaga data tidak diubah), dan Availability (bagaimana data selalu bisa diakses) untuk data tersebut.",
+              "Lakukan eksperimen praktis: buat file rahasia, enkripsi untuk confidentiality, generate hash untuk integrity testing, dan setup automated backup untuk availability. Dokumentasikan setiap langkah dan hasilnya."
             ]
           },
-          "videoId": "8b6JqHqz7WY"
+          "videoId": "9D9hQkibg7c"
         },
         {
           "id": "mod-15",
           "number": 15,
           "title": "Authentication & Authorization",
-          "xp": 150,
-          "description": "Who are you and what can you do?",
+          "xp": 120,
+          "description": "Mempelajari mekanisme autentikasi (MFA, OAuth, JWT) dan otorisasi (RBAC) untuk mengontrol akses sistem secara aman.",
           "content": {
-            "intro": "Authentication verifies identity, authorization determines permissions. Both are essential for security.",
+            "intro": "Authentication adalah proses memverifikasi identitas pengguna ('siapa kamu?'), sedangkan Authorization menentukan apa yang boleh dilakukan pengguna setelah terautentikasi ('apa yang boleh kamu lakukan?'). Keduanya merupakan pilar kritis dalam keamanan backend modern. Memahami perbedaan ini sangat penting karena banyak developer mencampuradukkan konsep authentication dengan authorization framework seperti OAuth2.",
             "concepts": [
-              "Authentication factors: know/have/are",
-              "Multi-factor authentication (MFA)",
-              "Role-based access control (RBAC)",
-              "Principle of least privilege",
-              "OAuth, JWT, session tokens"
+              "Multi-Factor Authentication (MFA): Mekanisme keamanan yang membutuhkan dua atau lebih metode verifikasi sebelum mengakses sistem. Faktor yang digunakan meliputi: sesuatu yang kamu tahu (password/PIN), sesuatu yang kamu miliki (token/HP), dan sesuatu yang kamu (biometrik). MFA secara signifikan mengurangi risiko akun diretas karena attacker harus menguasai lebih dari satu faktor.",
+              "Role-Based Access Control (RBAC): Metode otorisasi yang menetapkan hak akses berdasarkan peran (role) pengguna dalam organisasi. Contoh: Admin memiliki akses penuh, Editor bisa mengedit konten, User hanya bisa melihat. RBAC sederhana, efektif, dan merupakan metode otorisasi paling umum digunakan. Implementasinya biasanya menggunakan middleware yang memeriksa role sebelum mengizinkan akses ke resource tertentu.",
+              "JSON Web Tokens (JWT): Standar token berbasis JSON yang digunakan untuk autentikasi stateless. JWT terdiri dari tiga bagian: Header (algoritma dan jenis token), Payload (data pengguna/claims), dan Signature (tanda tangan kriptografi). JWT memungkinkan sistem tidak menyimpan session di server — cukup client menyimpan token dan mengirimkannya di setiap request. JWT menggunakan HttpOnly cookies untuk keamanan transport layer.",
+              "OAuth 2.0: Framework otorisasi (bukan autentikasi) yang memungkinkan aplikasi pihak ketiga mengakses resource pengguna tanpa memberikan kredensial. OAuth 2.0 bekerja dengan alur Authorization Code: user login di provider (Google/GitHub), provider mengirim authorization code ke aplikasi, aplikasi menukarkan code untuk access token. OAuth 2.0 digunakan untuk login sosial (Sign in with Google) dan akses API pihak ketiga.",
+              "Perbedaan Authentication vs Authorization: Authentication = verifikasi identitas (login dengan username/password). Authorization = verifikasi hak akses (apakah kamu boleh mengakses resource ini?). Authentication selalu terjadi sebelum Authorization. Sistem yang baik menerapkan principle of least privilege — berikan hak akses minimum yang diperlukan untuk menyelesaikan tugas."
             ],
             "commands": [
               {
-                "cmd": "ssh-keygen",
-                "desc": "Generate SSH key pair"
+                "cmd": "ssh-keygen -t ed25519 -C \"user@example.com\"",
+                "desc": "Generate SSH key pair untuk autentikasi tanpa password ke server"
               },
               {
-                "cmd": "ssh-copy-id user@host",
-                "desc": "Copy public key to server"
+                "cmd": "openssl dgst -sha256 -sign private.pem -out signature.txt.sig data.txt",
+                "desc": "Buat digital signature menggunakan JWT-style untuk verifikasi integritas pesan"
               },
               {
-                "cmd": "ssh -i key.pem user@host",
-                "desc": "Connect with specific key"
+                "cmd": "echo '{\"user\":\"admin\",\"role\":\"admin\"}' | base64",
+                "desc": "Encode payload JWT-style untuk melihat struktur header dan payload"
               },
               {
-                "cmd": "chmod 600 ~/.ssh/id_rsa",
-                "desc": "Secure private key"
+                "cmd": "openssl rsa -in private.pem -pubout -out public.pem",
+                "desc": "Generate public key dari private key untuk asymmetric authentication"
+              },
+              {
+                "cmd": "curl -H \"Authorization: Bearer <token>\" https://api.example.com/protected",
+                "desc": "Test API endpoint dengan JWT bearer token untuk verifikasi autentikasi"
               }
             ],
             "practice": [
-              "Compare different authentication methods",
-              "Set up SSH key-based authentication",
-              "Analyze Linux permissions as access control",
-              "Implement MFA on a test account",
-              "Review /etc/passwd and /etc/shadow"
+              "Setup sebuah sistem RBAC sederhana dengan 3 role (Admin, Editor, Viewer). Buat middleware yang memeriksa role sebelum mengizinkan akses ke endpoint tertentu. Test dengan membuat request sebagai setiap role dan dokumentasikan hasilnya.",
+              "Implementasikan alur JWT authentication: register user, login untuk mendapatkan token, akses protected route dengan token, dan refresh token saat expired. Gunakan library seperti jsonwebtoken (Node.js) atau PyJWT (Python).",
+              "Eksperimen dengan OAuth 2.0: daftar OAuth client di Google Cloud Console, implementasikan 'Login with Google' di aplikasi sederhana, dan analisis alur Authorization Code yang terjadi di browser."
             ]
           },
-          "videoId": "Jb5S5Pz7b9k"
+          "videoId": "eHekHzI3MGg"
         },
         {
           "id": "mod-16",
           "number": 16,
           "title": "Cryptography Basics",
-          "xp": 200,
-          "description": "Encryption, hashing, and digital signatures",
+          "xp": 150,
+          "description": "Mempelajari dasar-dasar kriptografi: enkripsi (symmetric/asymmetric), hashing, SSL/TLS, dan digital signatures.",
           "content": {
-            "intro": "Cryptography protects data through mathematical techniques. Understanding it is crucial for security professionals.",
+            "intro": "Kriptografi adalah ilmu dan seni menjaga keamanan informasi dengan mengubah data menjadi format yang tidak dapat dibaca tanpa kunci yang benar. Kriptografi menjadi cornerstone keamanan digital modern — dari HTTPS di browser hingga enkripsi end-to-end di WhatsApp. Memahami dasar kriptografi sangat penting karena setiap protokol keamanan dibangun di atas konsep-konsep ini.",
             "concepts": [
-              "Symmetric vs Asymmetric encryption",
-              "Hashing (MD5, SHA-256, SHA-512)",
-              "Digital certificates and PKI",
-              "SSL/TLS handshake process",
-              "Key exchange and perfect forward secrecy"
+              "Symmetric Encryption (Enkripsi Simetris): Menggunakan satu kunci yang sama untuk enkripsi dan dekripsi. Contoh algoritma: AES (Advanced Encryption Standard), DES, 3DES. Kelebihannya adalah kecepatan tinggi dan cocok untuk enkripsi data dalam jumlah besar. Kekurangannya adalah masalah distribusi kunci — bagaimana cara aman berbagi kunci antara pengirim dan penerima?",
+              "Asymmetric Encryption (Enkripsi Asimetris): Menggunakan sepasang kunci: public key untuk enkripsi dan private key untuk dekripsi. Contoh algoritma: RSA, ECC (Elliptic Curve Cryptography). Kelebihannya adalah menyelesaikan masalah distribusi kunci. Kekurangannya adalah kecepatan yang lebih lambat dibanding symmetric encryption. Oleh karena itu, dalam praktiknya digunakan hybrid approach — asymmetric untuk key exchange, symmetric untuk data.",
+              "Hash Functions (Fungsi Hash): Algoritma yang mengubah input berukuran apa pun menjadi output berukuran tetap (hash/digest) yang bersifat one-way — tidak bisa dikembalikan ke bentuk asal. Contoh: SHA-256, SHA-3, MD5 (tidak direkomendasikan). Hash digunakan untuk: verifikasi integritas file, penyimpanan password (dengan salt), checksum, dan digital signatures. Sifat unik: sedikit perubahan pada input menghasilkan hash yang sangat berbedi (avalanche effect).",
+              "SSL/TLS Protocols: Protokol kriptografi yang menyediakan komunikasi aman melalui jaringan. TLS (Transport Layer Security) adalah successor SSL yang lebih aman. Proses TLS Handshake meliputi: client hello, server hello + certificate, key exchange, dan establish secure session. TLS menggunakan kombinasi asymmetric (untuk key exchange) dan symmetric (untuk data encryption). TLS digunakan di HTTPS, email, dan VPN.",
+              "Digital Signatures: Mekanisme kriptografi yang menggunakan asymmetric encryption untuk menjamin authenticity, integrity, dan non-repudiation. Proses: pengirim menandatangani hash pesan dengan private key-nya, penerima memverifikasi tanda tangan dengan public key pengirim. Digital signature membuktikan bahwa pesan benar-benar dikirim oleh pihak yang diklaim dan tidak diubah di perjalanan. Contoh penggunaan: code signing, email signing, dokumen hukum digital."
             ],
             "commands": [
               {
-                "cmd": "echo -n 'text' | md5sum",
-                "desc": "Generate MD5 hash"
+                "cmd": "openssl enc -aes-256-cbc -salt -pbkdf2 -in secret.txt -out secret.enc",
+                "desc": "Enkripsi file menggunakan AES-256 dengan password untuk symmetric encryption"
               },
               {
-                "cmd": "echo -n 'text' | sha256sum",
-                "desc": "Generate SHA256 hash"
+                "cmd": "openssl dgst -sha256 file_to_check.txt",
+                "desc": "Generate SHA-256 hash untuk memverifikasi integritas file"
               },
               {
-                "cmd": "openssl enc -aes-256-cbc -in file -out encrypted",
-                "desc": "Encrypt file"
+                "cmd": "openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365",
+                "desc": "Buat self-signed certificate untuk testing SSL/TLS"
               },
               {
-                "cmd": "openssl enc -d -aes-256-cbc -in encrypted -out decrypted",
-                "desc": "Decrypt file"
+                "cmd": "openssl rsa -encrypt -in plaintext.txt -out encrypted.txt -pubin -inkey public.pem",
+                "desc": "Enkripsi data menggunakan public key RSA untuk asymmetric encryption"
               },
               {
-                "cmd": "openssl rand -hex 32",
-                "desc": "Generate random key"
+                "cmd": "openssl dgst -sha256 -sign private.pem -out signature.bin document.txt",
+                "desc": "Buat digital signature dari dokumen untuk verifikasi authenticity"
               },
               {
-                "cmd": "gpg -c file.txt",
-                "desc": "Encrypt with GPG"
+                "cmd": "openssl dgst -sha256 -verify public.pem -signature signature.bin document.txt",
+                "desc": "Verifikasi digital signature untuk memastikan dokumen asli dan tidak diubah"
               }
             ],
             "practice": [
-              "Generate hash of a string using sha256sum",
-              "Compare MD5 and SHA256 outputs for same input",
-              "Encrypt and decrypt a file with openssl",
-              "Create a self-signed certificate with openssl",
-              "Understand why MD5 is considered insecure"
+              "Buatlah perbandingan hash dari sebuah file menggunakan beberapa algoritma (MD5, SHA-1, SHA-256, SHA-512). Ubah satu karakter dalam file, hitung ulang hashnya, dan bandingkan untuk membuktikan sifat avalanche effect.",
+              "Setup HTTPS lokal menggunakan self-signed certificate: generate key pair, buat certificate signing request (CSR), self-sign certificate, dan konfigurasi web server (nginx/apache) untuk menggunakan TLS.",
+              "Implementasikan enkripsi end-to-end sederhana: buat program yang mengenkripsi pesan menggunakan RSA (asymmetric) untuk key exchange dan AES (symmetric) untuk data encryption. Bandingkan waktu eksekusi kedua metode."
             ]
           },
-          "videoId": "tbvahZM0B3g"
+          "videoId": "2oXKjPwBSUk"
         },
         {
           "id": "mod-17",
           "number": 17,
           "title": "Common Attacks",
-          "xp": 200,
-          "description": "SQL injection, XSS, phishing, and more",
+          "xp": 150,
+          "description": "Mengenal serangan cybersecurity paling umum: SQL Injection, XSS, phishing, brute force, dan man-in-the-middle attacks.",
           "content": {
-            "intro": "Understanding attacks is essential for defense. Learn how attackers think to protect better.",
+            "intro": "Serangan cybersecurity terus berevolusi, namun beberapa jenis serangan tetap menjadi ancaman utama karena masih banyak sistem yang belum diperbaiki. Memahami bagaimana serangan bekerja adalah langkah pertama untuk membangun pertahanan yang efektif. OWASP Top 10 mencantumkan serangan paling berbahaya yang harus dipahami oleh setiap developer dan security professional.",
             "concepts": [
-              "SQL Injection (SQLi) - injecting SQL through input",
-              "Cross-Site Scripting (XSS) - injecting malicious scripts",
-              "Phishing and Social Engineering",
-              "Brute Force attacks - trying all combinations",
-              "Man-in-the-Middle (MITM) attacks"
+              "SQL Injection (SQLi): Serangan dimana attacker menyisipkan kode SQL berbahaya ke dalam input aplikasi untuk memanipulasi database. Contoh: input ' OR '1'='1 pada login form dapat melewati autentikasi. SQLi dapat digunakan untuk: membaca data sensitif, menghapus data, menjalankan administrative operations, dan dalam beberapa kasus mengambil alih server database. SQLi sudah ada selama 25 tahun namun masih masuk OWASP Top 10 karena masih banyak aplikasi yang tidak menggunakan prepared statements.",
+              "Cross-Site Scripting (XSS): Serangan di mana attacker menyisipkan script JavaScript berbahaya ke dalam halaman web yang kemudian dieksekusi di browser pengguna lain. Ada tiga jenis XSS: Stored (disimpan di database), Reflected (dikirim melalui URL), dan DOM-based (manipulasi DOM secara lokal). XSS menargetkan pengguna (bukan database) dan dapat digunakan untuk: mencuri session cookies, keylogging, redirect ke phishing site, dan defacement.",
+              "Phishing: Teknik sosial di mana attacker menyamar sebagai entitas terpercaya (bank, perusahaan, colleague) untuk menipu korbannya memberikan informasi sensitif (password, nomor kartu kredit, PIN). Bentuk phising: email phishing, spear phishing (targeted), smishing (SMS), vishing (voice call), dan clone phishing. Phishing tetap efektif karena mengeksploitasi faktor manusia — psikologi dan kepercayaan.",
+              "Brute Force Attack: Serangan yang mencoba semua kombinasi username dan password secara otomatis sampai menemukan yang benar. Variasi: dictionary attack (menggunakan daftar password umum), rainbow table attack (menggunakan tabel hash pra-hitung), dan credential stuffing (menggunakan kombinasi dari data breach sebelumnya). Pertahanan: rate limiting, account lockout, CAPTCHA, password complexity requirements, dan MFA.",
+              "Man-in-the-Middle (MITM): Serangan di mana attacker menempatkan diri di antara dua pihak yang berkomunikasi untuk menyadap, memodifikasi, atau memblokir komunikasi. Contoh: attacker di WiFi public memanfaatkan HTTP yang tidak terenkripsi untuk menyadap data login. MITM dapat dilakukan melalui: ARP spoofing, DNS spoofing, WiFi eavesdropping, dan SSL stripping. Pertahanan: HTTPS di mana-mana, certificate pinning, dan VPN."
             ],
             "commands": [
               {
-                "cmd": "nikto -h target.com",
-                "desc": "Web vulnerability scanner"
+                "cmd": "nmap -sV --script=http-sql-injection target.com",
+                "desc": "Scan target untuk mendeteksi kerentanan SQL Injection pada web server"
               },
               {
-                "cmd": "sqlmap -u 'url?id=1'",
-                "desc": "SQL injection automation"
+                "cmd": "nikto -h https://target.com -Tuning x",
+                "desc": "Scan target menggunakan Nikto untuk mendeteksi XSS dan vulnerability lainnya"
               },
               {
-                "cmd": "hydra -l user -P wordlist target ssh",
-                "desc": "Brute force SSH"
+                "cmd": "hydra -l admin -P wordlist.txt ssh://target.com",
+                "desc": "Brute force attack pada SSH login menggunakan Hydra untuk testing ketahanan password"
               },
               {
-                "cmd": "ettercap -G",
-                "desc": "MITM attack tool"
+                "cmd": "tcpdump -i eth0 -w capture.pcap port 80",
+                "desc": "Capture network traffic pada port HTTP untuk analisis MITM dan packet sniffing"
+              },
+              {
+                "cmd": "openssl s_client -connect target.com:443 -tls1_2",
+                "desc": "Test koneksi TLS ke server untuk memverifikasi keamanan SSL/TLS configuration"
               }
             ],
             "practice": [
-              "Identify SQL injection in sample vulnerable code",
-              "Recognize phishing email patterns",
-              "Test for reflected XSS in a web form",
-              "Set up a basic brute force attack in lab",
-              "Explain how MITM attacks work"
+              "Setup lab SQL Injection: buat aplikasi web sederhana dengan vulnerability SQLi (menggunakan DVWA atau WebGoat). Lakukan serangan SQLi untuk bypass login, extract data dari database, dan dokumentasikan setiap langkahnya.",
+              "Analisis email phishing: kumpulkan beberapa contoh email phishing dari spam folder (atau buatan sendiri untuk latihan). Identifikasi tanda-tanda phishing: sender address, URL suspicious, urgency language, grammar errors. Buat checklist deteksi phishing.",
+              "Eksperimen WiFi security: analisis network traffic menggunakan Wireshark pada jaringan test. Identifikasi protokol yang tidak terenkripsi (HTTP, FTP, Telnet) dan bandingkan dengan protokol terenkripsi (HTTPS, SFTP, SSH). Ukur dampak penggunaan encryption terhadap keamanan data."
             ]
           },
-          "videoId": "e4lLJdeCRZE"
+          "videoId": "wu6FAsiFhv0"
         }
       ]
     },
